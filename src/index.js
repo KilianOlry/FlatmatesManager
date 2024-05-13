@@ -1,10 +1,10 @@
 import Router from './Router';
-import Search from './controllers/Search';
+import Search from './controllers/Homepage';
 
 import './index.scss';
 
 const routes = [{
-  url: '/search',
+  url: '/',
   controller: Search
 }];
 
