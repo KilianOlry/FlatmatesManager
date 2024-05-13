@@ -9,6 +9,9 @@ const Login = class {
   renderSkeleton() {
     return `
       ${viewNav()}
+      <main>
+        
+      </main>
     `;
   }
 
