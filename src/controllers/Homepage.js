@@ -1,3 +1,5 @@
+import viewNav from '../views/global/nav';
+
 const Homepage = class {
   constructor() {
     this.el = document.querySelector('#root');
@@ -5,14 +7,22 @@ const Homepage = class {
     this.run();
   }
 
-  render() {
+  renderSkeleton() {
     return `
-      <h1>Bonjour à tous</h1>
+      ${viewNav()}
+
+      <main>
+
+      </main>
+
+      <footer>
+      
+      </footer>
     `;
   }
 
   run() {
-    this.el.innerHTML = this.render();
+    this.el.innerHTML = this.renderSkeleton();
   }
 };
 
