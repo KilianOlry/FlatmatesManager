@@ -3,8 +3,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
-  // entry: './src/index.js' if you unuse typescript entry
-  entry: './src/index.js',
+  entry: './src/index.js', //if you unuse typescript entry
+  //entry: './src/index.ts',
   output: {
     filename: 'src/[name].[fullhash].js',
     path: path.resolve(__dirname, 'dist')
@@ -30,6 +30,15 @@ module.exports = {
           "sass-loader",
         ],
       },
+      {
+        test: /\.(png|jpe?g|gif|ico|svg|webp)$/i,
+        type: './src/assets/ressource',
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
+      },
       { test: /\.ts$/, use: 'ts-loader' }
     ],
   },
@@ -43,7 +52,7 @@ module.exports = {
     open: true,
     hot: true,
     client: {
-      logging: 'info',
+      logging: 'none',
       overlay: true,
       progress: true,
       webSocketTransport: 'ws'
