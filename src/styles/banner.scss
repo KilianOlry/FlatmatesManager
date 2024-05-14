@@ -1,21 +1,16 @@
-.banner{
-    background: url('https://monnigindustry.com/wp-content/uploads/2020/08/Blog-8-12-20.jpg');
+.container-banner{
+  display: flex;
+  justify-content: center;
+  .banner{
+    background: url('https://blush.design/api/download?shareUri=nkISswa8wcWpfJdN&c=Hair_0%7E878787-0.1%7E0f0f0f-0.2%7Ec38741-0.3%7E878787_Skin_0%7E7d4439-0.1%7Eecafa3-0.2%7Ef6cbc3-0.3%7Ef6cbc3&w=800&h=800&fm=png');
     background-size: contain;
     background-position: center;
-    height: 70vh;
-    width: 100%;
-    position: relative;
-    .shadow{
-      background: rgba(0, 0, 0, 0.3);
-      position: absolute;
-      z-index: 10;
-      width: 100%;
-      height: 100%;
-    }
-    svg{
-      position: absolute;
-      bottom: -1rem;
-      left: 0;
-      z-index: 20;
-    }
-  }
+    background-repeat: no-repeat;
+    width: 600px;
+    height: 400px;
+}
+}
+
+nav{
+  background-color: #fff;
+}
