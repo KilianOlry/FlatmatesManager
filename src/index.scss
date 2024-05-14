@@ -1,8 +1,7 @@
 @charset "utf-8";
 
+@import './styles/variables';
+@import './styles/global';
+@import './styles/nav';
 @import './styles/banner';
 @import './styles/login';
-
-.bg-global{
-  background-color: #f0fdf9;
-}
