@@ -1,4 +1,5 @@
-import sidebar from '../views/admin/global/sidebar';
+import viewNav from '../views/global/nav';
+import viewSidebar from '../views/admin/global/sidebar';
 
 const Dashboard = class {
   constructor() {
@@ -9,7 +10,10 @@ const Dashboard = class {
 
   render() {
     return `
-      ${sidebar()}
+      ${viewNav()}
+      <div>
+         ${viewSidebar()}
+      </div>
     `;
   }
 
