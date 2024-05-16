@@ -1,3 +1,8 @@
+import iconVisibility from '../assets/icons/visibility.svg';
+import iconLock from '../assets/icons/lock.svg';
+import iconEmail from '../assets/icons/@.svg';
+import iconProfil from '../assets/icons/profil.svg';
+
 export default () => (`
     <div class="h-screen md:flex">
       <div
@@ -20,39 +25,30 @@ export default () => (`
           <h1 class="text-gray-800 font-bold text-2xl mb-1">S'inscrire</h1>
           <p class="text-sm font-normal text-gray-600 mb-7">Pour accéder à votre espace personnel</p>
           <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20"
-              fill="currentColor">
-              <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                clip-rule="evenodd" />
-            </svg>
-            <input class="pl-2 outline-none border-none" type="text" name="" id="" placeholder="Prénom" />
+            <img src='${iconProfil}' class='size-5'>
+            <input class="pl-2 outline-none border-none w-full" type="text" name="" id="" placeholder="Prénom" />
           </div>
           <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20"
-              fill="currentColor">
-              <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                clip-rule="evenodd" />
-            </svg>
-            <input class="pl-2 outline-none border-none" type="text" name="" id="" placeholder="Nom" />
+          <img src='${iconProfil}' class='size-5'>
+            <input class="pl-2 outline-none border-none w-full" type="text" name="" id="" placeholder="Nom" />
           </div>
               <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none"
-                  viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
-                </svg>
-                <input class="pl-2 outline-none border-none" type="email" name="" id="" placeholder="Adresse Email" />
+                <img src='${iconEmail}' class='size-5'>
+                <input class="email-input pl-2 outline-none border-none w-full" type="email" name="" id="" placeholder="Adresse Email" />
               </div>
+              <div class='message-status-email'></div>
                 <div class="flex items-center border-2 py-2 px-3 rounded-2xl">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20"
-                    fill="currentColor">
-                    <path fill-rule="evenodd"
-                      d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                      clip-rule="evenodd" />
-                  </svg>
-                  <input class="pl-2 outline-none border-none" type="text" name="" id="" placeholder="Mot de passe" />
+                <img src='${iconLock}' class='size-5 cursor-pointer'>
+                  <input class="password-input pl-2 outline-none border-none w-full" type="password" name="" id="" placeholder="Mot de passe" />
+                  <img src='${iconVisibility}' class='visibility size-5 cursor-pointer'>
                 </div>
-                  <button type="submit" class="block w-full bg-green-500 mt-4 py-2 rounded-2xl text-white font-semibold mb-2">Connexion</button>
+                <div class='message-status-password'></div>
+                <div class="flex items-center border-2 my-4 py-2 px-3 rounded-2xl">
+                    <img src='${iconLock}' class='size-5 cursor-pointer'>
+                  <input class="pl-2 w-full outline-none border-none" type="password" name="" id="" placeholder="Confirmation Mot de passe" />
+                <img src='${iconVisibility}' class='visibility size-5 cursor-pointer'>
+              </div>
+                  <button type="submit" class="block w-full bg-green-500 mt-4 py-2 rounded-2xl text-white font-semibold mb-2">Inscrivez vous</button>
                   <p class ='text-sm ml-2 '>Vous n'avez pas de compte ?<a href="/login" class='text-green-500 hover:text-green-600 cursor-pointer font-bold'> Connecter vous !</a></p>
             </form>
         </div>

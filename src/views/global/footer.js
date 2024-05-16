@@ -1,9 +1,11 @@
+import logo from '../../assets/logo.webp';
+
 export default () => (`
 <footer class="bg-white dark:bg-gray-900">
   <div class="container px-6 py-8 mx-auto">
     <div class="flex flex-col items-center text-center">
       <a href="#">
-          <img class="w-auto h-7" src="https://imgs.search.brave.com/KL2cctloDLPOXnlilm-pVKWX3QYXZVouX7d1-hmY54k/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/bG9nb2dlbmllLmZy/L2ljb25zL3ByZXZp/ZXcvMTEzOTg" alt="logo entreprise">
+          <img class="w-auto h-7" src="${logo}" alt="logo entreprise">
       </a>
 
       <p class="max-w-md mx-auto mt-4 text-gray-500 dark:text-gray-400">Merci de votre visite</p>

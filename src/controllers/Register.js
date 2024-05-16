@@ -1,8 +1,10 @@
+import FormControll from '../services/FormControl';
 import viewNav from '../views/global/nav';
 import viewRegister from '../views/register';
 
-const Register = class {
+const Register = class extends FormControll {
   constructor() {
+    super();
     this.el = document.querySelector('#root');
     this.run();
   }
@@ -18,6 +20,9 @@ const Register = class {
 
   run() {
     this.el.innerHTML = this.renderSkeleton();
+    this.checkEmail();
+    this.checkPassword();
+    this.visibilityPassword();
   }
 };
 
