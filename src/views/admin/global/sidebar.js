@@ -58,7 +58,7 @@ export default () => (`
         <li>
           <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
               <svg class="flex-shrink-0 w-8 h-8 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M1 16v-.575q0-1.475 1.425-1.95T5 13t2.575.475T9 15.425V16zm4-4q-.825 0-1.412-.587T3 10t.588-1.412T5 8t1.413.588T7 10t-.587 1.413T5 12m4.675 1.425q-.3 0-.525-.225t-.225-.525q0-.15.225-.525q.2-.25.275-.55T9.5 11t-.075-.587t-.275-.538q-.1-.125-.162-.262t-.063-.288q0-.325.213-.537t.537-.213q.2 0 .363.113t.287.262q.325.45.5.975T11 11t-.175 1.063t-.5.987q-.125.15-.287.263t-.363.112m2.125 2.15q-.325 0-.55-.212t-.225-.538q0-.15.063-.287t.162-.263q.625-.7.938-1.55T12.5 11t-.312-1.713t-.938-1.537q-.1-.125-.162-.25t-.063-.275q0-.325.213-.55t.537-.225q.175 0 .325.075t.275.2Q13.2 7.65 13.6 8.75T14 11t-.413 2.263t-1.212 2.037q-.125.125-.262.2t-.313.075M15 16v-.575q0-1.475 1.425-1.95T19 13t2.575.475T23 15.425V16zm4-4q-.825 0-1.412-.587T17 10t.588-1.412T19 8t1.413.588T21 10t-.587 1.413T19 12"/></svg>
-              <span class="flex-1 ms-3 whitespace-nowrap">Communication</span>
+              <span class="flex-1 ms-3 whitespace-nowrap">Communications</span>
           </a>
         </li>
         <li>
@@ -66,6 +66,12 @@ export default () => (`
               <svg class='flex-shrink-0 w-8 h-8 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path fill="currentColor" d="M208 32h-24v-8a8 8 0 0 0-16 0v8H88v-8a8 8 0 0 0-16 0v8H48a16 16 0 0 0-16 16v160a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16M72 48v8a8 8 0 0 0 16 0v-8h80v8a8 8 0 0 0 16 0v-8h24v32H48V48Zm136 160H48V96h160zm-96-88v64a8 8 0 0 1-16 0v-51.06l-4.42 2.22a8 8 0 0 1-7.16-14.32l16-8A8 8 0 0 1 112 120m59.16 30.45L152 176h16a8 8 0 0 1 0 16h-32a8 8 0 0 1-6.4-12.8l28.78-38.37a8 8 0 1 0-13.31-8.83a8 8 0 1 1-13.85-8A24 24 0 0 1 176 136a23.76 23.76 0 0 1-4.84 14.45"/>
               </svg>
               <span class="flex-1 ms-3 whitespace-nowrap">Calendrier</span>
+          </a>
+        </li>
+        <li>
+          <a href="/dashboard-myprofil" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+              <svg class='flex-shrink-0 w-8 h-8 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><g fill="currentColor"><path d="M32 20a8 8 0 1 1-16 0a8 8 0 0 1 16 0"/><path fill-rule="evenodd" d="M23.184 43.984C12.517 43.556 4 34.772 4 24C4 12.954 12.954 4 24 4s20 8.954 20 20s-8.954 20-20 20h-.274q-.272 0-.542-.016M11.166 36.62a3.028 3.028 0 0 1 2.523-4.005c7.796-.863 12.874-.785 20.632.018a2.99 2.99 0 0 1 2.498 4.002A17.94 17.94 0 0 0 42 24c0-9.941-8.059-18-18-18S6 14.059 6 24c0 4.916 1.971 9.373 5.166 12.621" clip-rule="evenodd"/></g></svg>
+              <span class="flex-1 ms-3 whitespace-nowrap">Mon profil</span>
           </a>
         </li>
     </ul>
