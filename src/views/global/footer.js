@@ -7,7 +7,6 @@ export default () => (`
       <a href="#">
           <img class="w-auto h-7" src="${logo}" alt="logo entreprise">
       </a>
-
       <p class="max-w-md mx-auto mt-4 text-gray-500 dark:text-gray-400">Merci de votre visite</p>
     </div>
 
