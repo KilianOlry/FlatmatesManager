@@ -1,5 +1,5 @@
 export default () => (`
 <div class="container-banner">
-  <div class="banner"></div>
+  <div class="banner jello-horizontal"></div>
 </div>
 `);
