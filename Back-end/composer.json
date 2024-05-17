@@ -1,0 +1,22 @@
+{
+    "name": "chatbot/api",
+    "description": "none",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/",
+            "App\\Controllers\\": "src/controllers/",
+            "App\\Models\\": "src/models/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Matéo GRANGE",
+            "email": "grange.mateo45@gmail.com"
+        },
+        {
+            "name": "Kilian Olry",
+            "email": "kilian.olry@gmail.com"
+        }
+    ],
+    "require": {}
+}
