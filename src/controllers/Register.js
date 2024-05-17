@@ -23,6 +23,7 @@ const Register = class extends FormControll {
     this.checkEmail();
     this.checkPassword();
     this.visibilityPassword();
+    this.matchPassword();
   }
 };
 
