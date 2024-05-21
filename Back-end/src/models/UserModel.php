@@ -7,13 +7,16 @@ use stdClass;
 
 class UserModel extends SqlConnect {
     public function add(array $data) {
-      $query = "
-        INSERT INTO users (firstname, lastname, email, password)
-        VALUES (:firstname, :lastname, :promo, :school)
-      ";
+      $query = 'INSERT INTO users (firstname, lastname, email, password)
+                VALUES (:firstname, :lastname, :email, :password)';
 
       $req = $this->db->prepare($query);
-      $req->execute($data);
+      $req->execute([
+        ':firstname' => $data['firstname'],
+        ':lastname' => $data['lastname'],
+        ':email' => $data['email'],
+        ':password' => $data['password'],
+      ]);
     }
 
     public function delete(int $id) {
