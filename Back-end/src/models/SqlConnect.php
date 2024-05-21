@@ -4,8 +4,7 @@ namespace App\Models;
 
 use \PDO;
 
-class SqlConnect
-{
+class SqlConnect {
   public object $db;
   private string $host;
   private string $port;
@@ -13,16 +12,15 @@ class SqlConnect
   private string $password;
   private string $user;
 
-  public function __construct()
-  {
+  public function __construct() {
     $this->host = '127.0.0.1';
     $this->port = '3306';
-    $this->dbname = 'colocation';
-    $this->user = 'kilian';
-    $this->password = '1234';
+    $this->dbname = 'demo';
+    $this->user = 'root';
+    $this->password = 'root';
 
     $this->db = new PDO(
-      'mysql:host=' . $this->host . ';port=' . $this->port . ';dbname=' . $this->dbname,
+      'mysql:host='.$this->host.';port='.$this->port.';dbname='.$this->dbname,
       $this->user,
       $this->password
     );
@@ -31,8 +29,7 @@ class SqlConnect
     $this->db->setAttribute(PDO::ATTR_PERSISTENT, false);
   }
 
-  public function transformDataInDot($data)
-  {
+  public function transformDataInDot($data) {
     $dataFormated = [];
 
     foreach ($data as $key => $value) {

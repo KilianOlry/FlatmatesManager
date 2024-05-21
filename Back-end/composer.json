@@ -1,6 +1,4 @@
 {
-    "name": "chatbot/api",
-    "description": "none",
     "autoload": {
         "psr-4": {
             "App\\": "src/",
@@ -10,12 +8,8 @@
     },
     "authors": [
         {
-            "name": "Matéo GRANGE",
-            "email": "grange.mateo45@gmail.com"
-        },
-        {
-            "name": "Kilian Olry",
-            "email": "kilian.olry@gmail.com"
+            "name": "xzen769",
+            "email": "xzen769@gmail.com"
         }
     ],
     "require": {}
