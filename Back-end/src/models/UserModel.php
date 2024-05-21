@@ -8,7 +8,7 @@ use stdClass;
 class UserModel extends SqlConnect {
     public function add(array $data) {
       $query = "
-        INSERT INTO users (first_name, last_name, promo, school)
+        INSERT INTO users (firstname, lastname, email, password)
         VALUES (:firstname, :lastname, :promo, :school)
       ";
 
