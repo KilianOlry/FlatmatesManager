@@ -7,17 +7,6 @@ use stdClass;
 
 class UserModel extends SqlConnect
 {
-  public function add(array $data)
-  {
-    $query = "
-        INSERT INTO users (first_name, last_name, promo, school)
-        VALUES (:firstname, :lastname, :promo, :school)
-      ";
-
-    $req = $this->db->prepare($query);
-    $req->execute($data);
-  }
-
   public function get(int $id)
   {
     $req = $this->db->prepare("SELECT * FROM users WHERE id = :id");
