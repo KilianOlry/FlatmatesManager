@@ -7,6 +7,7 @@ use App\Models\UserModel;
 
 class User extends Controller {
   protected object $user;
+  public $register;
 
   public function __construct($param) {
     $this->user = new UserModel();
@@ -15,7 +16,13 @@ class User extends Controller {
   }
 
   public function postUser() {
-    $this->user->add($this->body);
+    $this->register = new Register();
+    $email = $this->register->verifyEmail($this->body['email']);
+    
+    if ($email) {
+      $passwordHashed = $this->register->hashPassword($this->body['password']);
+      $this->user->add($this->body);
+    }
 
     return $this->user->getLast();
   }

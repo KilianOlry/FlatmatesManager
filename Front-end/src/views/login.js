@@ -27,12 +27,12 @@ export default () => (`
       <p class="text-sm font-normal text-gray-600 mb-7">Pour accéder à votre espace personnel</p>
         <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
           <img src='${iconEmail}' class='size-5 cursor-pointer'>
-          <input class="email-input w-full pl-2 outline-none border-none" type="email" name="" id="" placeholder="Adresse Email" />
+          <input class="email-input w-full pl-2 outline-none border-none" type="email" name="email" placeholder="Adresse Email" />
         </div>
         <div class='message-status-email'></div>
         <div class="flex items-center border-2 py-2 px-3 rounded-2xl">
           <img src='${iconLock}' class='size-5 cursor-pointer'>
-          <input class="password-input w-full pl-2 outline-none border-none" type="password" name="" id="" placeholder="Mot de passe" />
+          <input class="password-input w-full pl-2 outline-none border-none" type="password" name="password" placeholder="Mot de passe" />
           <img src='${iconVisibility}' class='visibility size-5 cursor-pointer'>
         </div>
         <div class='message-status-password'></div>
