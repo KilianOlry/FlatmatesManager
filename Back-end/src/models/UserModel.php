@@ -10,8 +10,8 @@ class UserModel extends SqlConnect {
       $query = 'INSERT INTO users (firstname, lastname, email, password)
                 VALUES (:firstname, :lastname, :email, :password)';
 
-      $req = $this->db->prepare($query);
-      $req->execute([
+      $stmt = $this->db->prepare($query);
+      $stmt->execute([
         ':firstname' => $data['firstname'],
         ':lastname' => $data['lastname'],
         ':email' => $data['email'],

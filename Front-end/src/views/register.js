@@ -23,31 +23,31 @@ export default () => (`
   </div>
 
   <div class="flex md:w-1/2 justify-center py-10 items-center bg-white">
-    <form class="bg-white">
+    <form class="bg-white" method='POST' id='form-register'>
       <h1 class="text-gray-800 font-bold text-2xl mb-1">S'inscrire</h1>
       <p class="text-sm font-normal text-gray-600 mb-7">Pour accéder à votre espace personnel</p>
       <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
         <img src='${iconProfil}' class='size-5'>
-        <input class="pl-2 outline-none border-none w-full" type="text" name="" id="" placeholder="Prénom" />
+        <input class="pl-2 outline-none border-none w-full" type="text" name="firstname" placeholder="Prénom" />
       </div>
       <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
         <img src='${iconProfil}' class='size-5'>
-        <input class="pl-2 outline-none border-none w-full" type="text" name="" id="" placeholder="Nom" />
+        <input class="pl-2 outline-none border-none w-full" type="text" name="lastname" placeholder="Nom" />
       </div>
           <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
             <img src='${iconEmail}' class='size-5'>
-            <input class="email-input pl-2 outline-none border-none w-full" type="email" name="" id="" placeholder="Adresse Email" />
+            <input class="email-input pl-2 outline-none border-none w-full" type="email" name="email" placeholder="Adresse Email" />
           </div>
           <div class='message-status-email'></div>
           <div class="flex items-center border-2 py-2 px-3 rounded-2xl">
             <img src='${iconLock}' class='size-5 cursor-pointer'>
-            <input class="password-input pl-2 outline-none border-none w-full" type="password" name="" id="" placeholder="Mot de passe" />
+            <input class="password-input pl-2 outline-none border-none w-full" type="password" name="password" placeholder="Mot de passe" />
             <img src='${iconVisibility}' class='visibility size-5 cursor-pointer'>
           </div>
           <div class='message-status-password'></div>
           <div class="flex items-center border-2 my-4 py-2 px-3 rounded-2xl">
             <img src='${iconLock}' class='size-5 cursor-pointer'>
-            <input class="verify-password pl-2 w-full outline-none border-none" type="password" name="" id="" placeholder="Confirmation Mot de passe" />
+            <input class="verify-password pl-2 w-full outline-none border-none" type="password" name="password-verify" placeholder="Confirmation Mot de passe" />
             <img src='${iconVisibility}' class='visibility size-5 cursor-pointer'>
           </div>
           <div class='message-status-match-password'></div>
