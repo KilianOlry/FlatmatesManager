@@ -3,10 +3,10 @@ import FormControll from '../services/FormControl';
 import viewNav from '../views/global/nav';
 import viewLogin from '../views/login';
 
-const Login = class extends FormControll {
+const Login = class {
   constructor() {
-    super();
     this.el = document.querySelector('#root');
+    this.formControl = new FormControll();
     this.run();
   }
 
@@ -19,11 +19,15 @@ const Login = class extends FormControll {
     `;
   }
 
+  FormControl() {
+    this.formControl.checkEmail();
+    this.formControl.checkPassword();
+    this.formControl.visibilityPassword();
+  }
+
   run() {
     this.el.innerHTML = this.renderSkeleton();
-    this.checkEmail();
-    this.checkPassword();
-    this.visibilityPassword();
+    this.FormControl();
   }
 };
 

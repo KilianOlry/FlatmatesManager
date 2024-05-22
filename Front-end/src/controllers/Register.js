@@ -1,12 +1,13 @@
 import axios from 'axios';
-import FormControll from '../services/FormControl';
+import FormControl from '../services/FormControl';
+
 import viewNav from '../views/global/nav';
 import viewRegister from '../views/register';
 
-const Register = class extends FormControll {
+const Register = class {
   constructor() {
-    super();
     this.el = document.querySelector('#root');
+    this.formControl = new FormControl();
     this.run();
   }
 
@@ -16,7 +17,6 @@ const Register = class extends FormControll {
       e.preventDefault();
 
       const formData = new FormData(formRegister);
-
       const data = {
         firstname: formData.get('firstname'),
         lastname: formData.get('lastname'),
@@ -24,18 +24,22 @@ const Register = class extends FormControll {
         password: formData.get('password')
       };
 
-      axios.post('http://localhost:50/user/add', data, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-        .then((response) => {
-          console.log('Réponse de l\'API:', response.data);
-        })
-        .catch((error) => {
-          console.error('Erreur lors de l\'envoi des données:', error);
-        });
+      this.axiosQuery(data);
     });
+  }
+
+  axiosQuery(data) {
+    axios.post('http://localhost:50/user/add', data, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then((response) => {
+        console.log('Réponse de l\'API:', response.data);
+      })
+      .catch((error) => {
+        console.error('Erreur lors de l\'envoi des données:', error);
+      });
   }
 
   renderSkeleton() {
@@ -47,13 +51,17 @@ const Register = class extends FormControll {
     `;
   }
 
+  FormControl() {
+    this.formControl.checkEmail();
+    this.formControl.checkPassword();
+    this.formControl.matchPassword();
+    this.formControl.visibilityPassword();
+  }
+
   run() {
     this.el.innerHTML = this.renderSkeleton();
-    this.checkEmail();
-    this.checkPassword();
-    this.visibilityPassword();
-    this.matchPassword();
     this.sendData();
+    this.FormControl();
   }
 };
 
