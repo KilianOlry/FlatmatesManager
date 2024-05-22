@@ -3,11 +3,12 @@
 namespace App\Controllers;
 
 use App\Controllers\Controller;
+use App\Services\FormControl;
 use App\Models\UserModel;
 
 class User extends Controller {
   protected object $user;
-  public $register;
+  public $formControl;
 
   public function __construct($param) {
     $this->user = new UserModel();
@@ -16,11 +17,11 @@ class User extends Controller {
   }
 
   public function postUser() {
-    $this->register = new Register();
-    $email = $this->register->verifyEmail($this->body['email']);
+    $this->formControl = new FormControl();
+    $email = $this->formControl->verifyEmail($this->body['email']);
     
     if ($email) {
-      $passwordHashed = $this->register->hashPassword($this->body['password']);
+      $passwordHashed = $this->formControl->hashPassword($this->body['password']);
       $this->user->add($this->body);
     }
 
