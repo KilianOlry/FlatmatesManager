@@ -30,7 +30,6 @@ class User extends Controller {
     } else {
       return false;
     }
-
   }
 
   public function deleteUser() {

@@ -1,3 +1,4 @@
+import toastr from 'toastr';
 import axios from 'axios';
 import FormControl from '../services/FormControl';
 
@@ -34,11 +35,11 @@ const Register = class {
         'Content-Type': 'application/json'
       }
     })
-      .then((response) => {
-        console.log('Réponse de l\'API:', response.data);
+      .then(() => {
+        toastr.success('Félicitation Votre compte est créer !!');
       })
-      .catch((error) => {
-        console.error('Erreur lors de l\'envoi des données:', error);
+      .catch(() => {
+        toastr.error('Erreur lors de la création de votre compte');
       });
   }
 

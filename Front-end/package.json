@@ -44,6 +44,7 @@
     "@fullcalendar/daygrid": "^6.1.11",
     "@fullcalendar/list": "^6.1.11",
     "@fullcalendar/timegrid": "^6.1.11",
-    "axios": "^1.7.2"
+    "axios": "^1.7.2",
+    "toastr": "^2.1.4"
   }
 }
