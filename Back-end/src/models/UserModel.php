@@ -6,16 +6,16 @@ use \PDO;
 use stdClass;
 
 class UserModel extends SqlConnect {
-    public function add(array $data) {
+    public function add($firstname, $lastname, $email, $passwordHashed) {
       $query = 'INSERT INTO users (firstname, lastname, email, password)
                 VALUES (:firstname, :lastname, :email, :password)';
 
       $stmt = $this->db->prepare($query);
       $stmt->execute([
-        ':firstname' => $data['firstname'],
-        ':lastname' => $data['lastname'],
-        ':email' => $data['email'],
-        ':password' => $data['password'],
+        ':firstname' => $firstname,
+        ':lastname' => $lastname,
+        ':email' => $email,
+        ':password' => $passwordHashed,
       ]);
     }
 

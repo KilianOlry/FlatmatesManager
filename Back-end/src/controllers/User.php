@@ -19,13 +19,18 @@ class User extends Controller {
   public function postUser() {
     $this->formControl = new FormControl();
     $email = $this->formControl->verifyEmail($this->body['email']);
+    $firstname = $this->formControl->cleanInput($this->body['firstname']);
+    $lastname = $this->formControl->cleanInput($this->body['lastname']);
     
     if ($email) {
       $passwordHashed = $this->formControl->hashPassword($this->body['password']);
-      $this->user->add($this->body);
+      $this->user->add($firstname, $lastname, $email, $passwordHashed);
+
+      return $this->user->getLast();
+    } else {
+      return false;
     }
 
-    return $this->user->getLast();
   }
 
   public function deleteUser() {
