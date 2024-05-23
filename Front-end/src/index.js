@@ -5,6 +5,7 @@ import Register from './controllers/Register';
 import Dashboard from './controllers/Dashboard';
 import DashboardMyProfil from './controllers/Dashboard-myprofil';
 import DashboardCalendar from './controllers/Dashboard-calendar';
+import DashboardTask from './controllers/Dashboard-tasks';
 import './index.scss';
 
 const routes = [{
@@ -30,6 +31,10 @@ const routes = [{
 {
   url: '/dashboard-calendar',
   controller: DashboardCalendar
+},
+{
+  url: '/dashboard-tasks',
+  controller: DashboardTask
 }
 ];
 new Router(routes);
