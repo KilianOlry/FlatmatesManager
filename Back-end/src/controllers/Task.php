@@ -4,19 +4,19 @@ namespace App\Controllers;
 
 use App\Controllers\Controller;
 use App\Services\FormControl;
-use App\Models\UserModel;
+use App\Models\TaskModel;
 
-class User extends Controller {
-  protected object $user;
+class Task extends Controller {
+  protected object $task;
   public $formControl;
 
   public function __construct($param) {
-    $this->user = new UserModel();
+    $this->task = new TaskModel();
 
     parent::__construct($param);
   }
 
-  public function postUser() {
+  public function postTask() {
     $this->formControl = new FormControl();
     $email = $this->formControl->verifyEmail($this->body['email']);
     $firstname = $this->formControl->cleanInput($this->body['firstname']);
@@ -24,19 +24,19 @@ class User extends Controller {
     
       if ($email) {
       $passwordHashed = $this->formControl->hashPassword($this->body['password']);
-      $this->user->add($firstname, $lastname, $email, $passwordHashed);
+      $this->task->add($firstname, $lastname, $email, $passwordHashed);
 
-      return $this->user->getLast();
+      return $this->task->getLast();
     } else {
       return false;
     }
   }
 
-  public function deleteUser() {
-    return $this->user->delete(intval($this->params['id']));
+  public function deleteTask() {
+    return $this->task->delete(intval($this->params['id']));
   }
 
-  public function getUser() {
-    return $this->user->get(intval($this->params['id']));
+  public function getTask() {
+    return $this->task->get(intval($this->params['id']));
   }
 }
