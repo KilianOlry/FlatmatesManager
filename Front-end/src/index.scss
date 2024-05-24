@@ -6,3 +6,15 @@
 @import './styles/nav';
 @import './styles/banner';
 @import './styles/login';
+
+.container_dashboard{
+  height: calc(100vh - 160px);
+}
+.sidebar{
+  height: calc(100vh - 160px);
+}
+.btn-modal{
+    position: absolute; /* postulat de départ */
+    top: 53%; left: 50%; /* à 50%/50% du parent référent */
+    transform: translate(-50%, -50%); /* décalage de 50% de sa propre taille */
+}

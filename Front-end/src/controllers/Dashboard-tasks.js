@@ -1,6 +1,6 @@
 import viewNav from '../views/global/nav';
 import viewSidebar from '../views/admin/global/sidebar';
-import viewContent from '../views/admin/tasks';
+import viewContent from '../views/admin/tasks/tasks';
 
 const DashboardTask = class {
   constructor() {
@@ -12,7 +12,7 @@ const DashboardTask = class {
   render() {
     return `
       ${viewNav()}
-      <div class='sm:flex'>
+      <div class='sm:flex container_dashboard'>
          ${viewSidebar()}
          ${viewContent()}
       </div>

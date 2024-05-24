@@ -13,8 +13,8 @@ export default () => (`
 </svg>
 </button>
 
-<aside id="sidebar-multi-level-sidebar" class="fixed top-0 left-0 sm:relative z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
-  <div class="h-full px-3 py-4 overflow-y-auto bg-white dark:bg-gray-800">
+<aside id="sidebar-multi-level-sidebar" class="fixed top-0 left-0 sm:relative z-40 w-64 transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+  <div class="sidebar px-3 py-4 overflow-y-auto bg-white dark:bg-gray-800">
     <ul class="space-y-2 font-medium">
 
       <li>
