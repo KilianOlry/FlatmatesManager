@@ -11,5 +11,6 @@ new Router([
   'user/:id' => User::class,
   'user/add' => User::class,
   'task/:id' => Task::class,
-  'category/:id' => Category::class
+  'category/:id' => Category::class,
+  'categorys/' => Category::class
 ]);

@@ -37,6 +37,6 @@ class Category extends Controller {
   }
 
   public function getCategory() {
-    return $this->category->get(intval($this->params['id']));
+    return $this->category->getAll();
   }
 }
