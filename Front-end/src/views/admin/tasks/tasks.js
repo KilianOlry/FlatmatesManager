@@ -12,28 +12,28 @@ export default () => (`
     Centre d'opérations
     </button>
 
-    <div class='flex flex-col bg-green-50 lg:flex-row items-center justify-evenly p-8 text-center border border-gray-200 md:rounded-es-lg md:border-e dark:bg-gray-800 dark:border-gray-700'>
+    <div class='flex flex-col cursor-pointer bg-green-50 lg:flex-row items-center justify-evenly p-8 text-center border border-gray-200 md:rounded-es-lg md:border-e dark:bg-gray-800 dark:border-gray-700'>
       <img src='${cleanImage}' class='rounded-full size-80' alt='image'>
       <div>
         <h2 class='space-y-0.5 font-medium dark:text-white text-left rtl:text-right ms-3'>Tâches Ménagères</h2>
       </div>
     </div>
 
-    <div class='flex flex-col lg:flex-row items-center justify-evenly p-8 border-b border-gray-200 md:rounded-es-lg md:border-e dark:bg-gray-800 dark:border-gray-700'>
+    <div class='flex flex-col cursor-pointer lg:flex-row items-center justify-evenly p-8 border-b border-gray-200 md:rounded-es-lg md:border-e dark:bg-gray-800 dark:border-gray-700'>
       <img src='${cookImage}' class='rounded-full size-80' alt='image'>
       <div>
         <h2 class='space-y-0.5 font-medium dark:text-white text-left rtl:text-right ms-3'>Cuisine</h2>
       </div>
     </div>
 
-    <div class='flex flex-col lg:flex-row items-center justify-evenly p-8 text-center border-b border-gray-200 md:rounded-es-lg md:border-e dark:bg-gray-800 dark:border-gray-700'>
+    <div class='flex flex-col cursor-pointer lg:flex-row items-center justify-evenly p-8 text-center border-b border-gray-200 md:rounded-es-lg md:border-e dark:bg-gray-800 dark:border-gray-700'>
       <img src='${shoppingImage}' class='rounded-full size-80' alt='image'>
       <div>
         <h2 class='space-y-0.5 font-medium dark:text-white text-left rtl:text-right ms-3'>Courses</h2>
       </div>
     </div>
 
-    <div class='flex flex-col bg-green-50 lg:flex-row items-center justify-evenly p-8 border-b border-gray-200 md:rounded-es-lg md:border-e dark:bg-gray-800 dark:border-gray-700'>
+    <div class='flex flex-col cursor-pointer bg-green-50 lg:flex-row items-center justify-evenly p-8 border-b border-gray-200 md:rounded-es-lg md:border-e dark:bg-gray-800 dark:border-gray-700'>
       <img src='${poubelleImage}' class='rounded-full size-80' alt='image'>
       <div>
         <h2 class='space-y-0.5 font-medium dark:text-white text-left rtl:text-right ms-3'>Sortir les ordures</h2>
