@@ -22,7 +22,7 @@ export default () => (`
   </div>
 
   <div class="flex md:w-1/2 justify-center py-10 items-center bg-white">
-    <form class="bg-white">
+    <form class="login-form bg-white">
       <h1 class="text-gray-800 font-bold text-2xl mb-1">Se connecter</h1>
       <p class="text-sm font-normal text-gray-600 mb-7">Pour accéder à votre espace personnel</p>
         <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">

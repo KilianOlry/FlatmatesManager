@@ -1,3 +1,4 @@
+import axios from 'axios';
 import FormControll from '../services/FormControl';
 
 import viewNav from '../views/global/nav';
@@ -25,9 +26,40 @@ const Login = class {
     this.formControl.visibilityPassword();
   }
 
+  sendData() {
+    const formLogin = document.querySelector('.login-form');
+    formLogin.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(formLogin);
+
+      const data = {
+        email: formData.get('email'),
+        password: formData.get('password')
+      };
+
+      this.axiosQuery(data);
+    });
+  }
+
+  axiosQuery(data) {
+    axios.post('http://localhost:50/user/login', data, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(() => {
+        console.log('Réussi');
+      })
+      .catch(() => {
+        console.log('Erreur');
+      });
+  }
+
   run() {
     this.el.innerHTML = this.renderSkeleton();
     this.FormControl();
+    this.sendData();
   }
 };
 
