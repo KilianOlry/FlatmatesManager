@@ -53,8 +53,8 @@ const Login = class {
         console.log(response);
         toastr.success('Félicitation Votre connexion !!');
       })
-      .catch(() => {
-        toastr.error('Erreur lors de la connexion');
+      .catch((response) => {
+        toastr.error(`Erreur lors de la connexion ${response}`);
       });
   }
 

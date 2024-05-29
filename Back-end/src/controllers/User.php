@@ -26,33 +26,44 @@ class User extends Controller {
 }
 
   public function postUser() {
-
-    if (count($this->params) >= 2){
-
-      $this->params[2] === 'auth';
+    $this->formControl = new FormControl();
 
       if (in_array('auth', $this->params)) {
 
+        $email = $this->formControl->verifyEmail($this->body['email']);
+        if ($email) {
+          $user = $this->user->ifExist($email);
+          if ($user) {
+            if (password_verify($this->body['password'], $user['password'])) {
+              return "les mot de passes correpondent";
+            }else{
+              return "erreur mot de passe";
+            }
+            return 'l\'adresse mail existe';
+          }
+          else{
+            return 'l`\'adresse mail n\'existe pas';
+          }
+        }
+        return "ce n'est pas une addresse mail";
+
       } else if (in_array('add', $this->params)) {
 
-      }
-    }
-    $this->formControl = new FormControl();
-    $email = $this->formControl->verifyEmail($this->body['email']);
-    $firstname = $this->formControl->cleanInput($this->body['firstname']);
-    $lastname = $this->formControl->cleanInput($this->body['lastname']);
-    
-      if ($email) {
-      $passwordHashed = $this->formControl->hashPassword($this->body['password']);
+        $email = $this->formControl->verifyEmail($this->body['email']);
+        $firstname = $this->formControl->cleanInput($this->body['firstname']);
+        $lastname = $this->formControl->cleanInput($this->body['lastname']);
+        
+          if ($email) {
+          $passwordHashed = $this->formControl->hashPassword($this->body['password']);
 
-    } else {
-      return false;
-    }
+          $this->user->add($firstname, $lastname, $email, $passwordHashed);
+          return $this->user->getLast();
     
-    $this->user->add($firstname, $lastname, $email, $passwordHashed);
-    return $this->user->getLast();
-}
-
+        } else {
+          return false;
+        }
+    }
+  }
 
   public function deleteUser() {
     return $this->user->delete(intval($this->params['id']));

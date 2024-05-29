@@ -37,4 +37,11 @@ class UserModel extends SqlConnect {
 
       return $req->rowCount() > 0 ? $req->fetch(PDO::FETCH_ASSOC) : new stdClass();
     }
+
+    public function ifExist($email) {
+      $req = $this->db->prepare('SELECT * FROM users WHERE email = :email');
+      $req->execute(['email' => $email]);
+      $user = $req->fetch(PDO::FETCH_ASSOC);
+      return $user;
+    }
 }
