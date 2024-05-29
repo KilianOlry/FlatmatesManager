@@ -1,3 +1,4 @@
+import toastr from 'toastr';
 import axios from 'axios';
 import FormControll from '../services/FormControl';
 
@@ -43,16 +44,17 @@ const Login = class {
   }
 
   axiosQuery(data) {
-    axios.post('http://localhost:50/user/login', data, {
+    axios.post('http://localhost:50/user/auth', data, {
       headers: {
         'Content-Type': 'application/json'
       }
     })
-      .then(() => {
-        console.log('Réussi');
+      .then((response) => {
+        console.log(response);
+        toastr.success('Félicitation Votre connexion !!');
       })
       .catch(() => {
-        console.log('Erreur');
+        toastr.error('Erreur lors de la connexion');
       });
   }
 
