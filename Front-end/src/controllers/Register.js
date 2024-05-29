@@ -36,7 +36,7 @@ const Register = class {
       }
     })
       .then(() => {
-        toastr.success('Félicitation Votre compte est créer !!');
+        toastr.success('Félicitation Votre compte est créer !! Veuillez vous connecter');
       })
       .catch(() => {
         toastr.error('Erreur lors de la création de votre compte');

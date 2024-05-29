@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie';
 import toastr from 'toastr';
 import axios from 'axios';
 import FormControll from '../services/FormControl';
@@ -50,11 +51,11 @@ const Login = class {
       }
     })
       .then((response) => {
-        console.log(response);
-        toastr.success('Félicitation Votre connexion !!');
+        Cookies.set('Session', (response.data));
+        window.location.href = '/';
       })
-      .catch((response) => {
-        toastr.error(`Erreur lors de la connexion ${response}`);
+      .catch(() => {
+        toastr.error("L'adresse mail et ou le mode de passe est incorrect");
       });
   }
 
