@@ -33,19 +33,23 @@ class User extends Controller {
         $email = $this->formControl->verifyEmail($this->body['email']);
         if ($email) {
           $user = $this->user->ifExist($email);
+
           if ($user) {
             if (password_verify($this->body['password'], $user['password'])) {
-              return "les mot de passes correpondent";
-            }else{
-              return "erreur mot de passe";
+
+              session_start();
+
+              $_SESSION['user'] = ['token' => '123456789'];
+
+              return $_SESSION['user']['token'];
+            } else {
+              return header("HTTP/1.0 401 Unauthorized");
             }
-            return 'l\'adresse mail existe';
           }
           else{
-            return 'l`\'adresse mail n\'existe pas';
+            return header("HTTP/1.0 401 Unauthorized");
           }
         }
-        return "ce n'est pas une addresse mail";
 
       } else if (in_array('add', $this->params)) {
 
