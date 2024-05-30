@@ -6,6 +6,7 @@ import Dashboard from './controllers/Dashboard';
 import DashboardMyProfil from './controllers/Dashboard-myprofil';
 import DashboardCalendar from './controllers/Dashboard-calendar';
 import DashboardTask from './controllers/Dashboard-tasks';
+import Logout from './controllers/Logout';
 import './index.scss';
 
 const routes = [{
@@ -15,6 +16,10 @@ const routes = [{
 {
   url: '/login',
   controller: Login
+},
+{
+  url: '/logout',
+  controller: Logout
 },
 {
   url: '/register',
