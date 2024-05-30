@@ -16,15 +16,6 @@ class User extends Controller {
     parent::__construct($param);
   }
 
-  public function checkMethod() {
-    // if (in_array('login', $this->params)){
-    //   $this->getUser();
-    // } else {
-    //   echo 'non';
-    // }
-
-}
-
   public function postUser() {
     $this->formControl = new FormControl();
 
@@ -38,8 +29,9 @@ class User extends Controller {
             if (password_verify($this->body['password'], $user['password'])) {
 
               session_start();
+              $token = ($user['token']);
 
-              $_SESSION['user'] = ['token' => '123456789'];
+              $_SESSION['user'] = ['token' => $token];
 
               return $_SESSION['user']['token'];
             } else {
@@ -59,8 +51,9 @@ class User extends Controller {
         
           if ($email) {
           $passwordHashed = $this->formControl->hashPassword($this->body['password']);
+          $token = $token = bin2hex($email);
 
-          $this->user->add($firstname, $lastname, $email, $passwordHashed);
+          $this->user->add($firstname, $lastname, $email, $passwordHashed, $token);
           return $this->user->getLast();
     
         } else {
