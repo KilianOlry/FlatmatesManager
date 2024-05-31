@@ -31,9 +31,15 @@ class User extends Controller {
               session_start();
               $token = ($user['token']);
 
-              $_SESSION['user'] = ['token' => $token];
+              $_SESSION['user'] = [
+                'firstname' => $user['firstname'],
+                'lastname' => $user['lastname'],
+                'email' => $user['email'],
+                'token' => $token
+              ];
 
-              return $_SESSION['user']['token'];
+              return $_SESSION['user'];
+  
             } else {
               return header("HTTP/1.0 401 Unauthorized");
             }
