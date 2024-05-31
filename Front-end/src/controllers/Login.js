@@ -28,7 +28,7 @@ const Login = class {
     this.formControl.visibilityPassword();
   }
 
-  sendData() {
+  getDataForm() {
     const formLogin = document.querySelector('.login-form');
     formLogin.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -40,18 +40,18 @@ const Login = class {
         password: formData.get('password')
       };
 
-      this.axiosQuery(data);
+      this.sendData(data);
     });
   }
 
-  axiosQuery(data) {
+  sendData(data) {
     axios.post('http://localhost:50/user/auth', data, {
       headers: {
         'Content-Type': 'application/json'
       }
     })
-      .then((response) => {
-        Cookies.set('Session', (response.data));
+      .then((responseApi) => {
+        Cookies.set('Session', JSON.stringify(this.buildCookie(responseApi)));
         window.location.href = '/';
       })
       .catch(() => {
@@ -59,10 +59,20 @@ const Login = class {
       });
   }
 
+  buildCookie(responseApi) {
+    const userSession = {
+      firstname: responseApi.data.firstname,
+      lastname: responseApi.data.lastname,
+      email: responseApi.data.email,
+      token: responseApi.data.token
+    };
+    return userSession;
+  }
+
   run() {
     this.el.innerHTML = this.renderSkeleton();
     this.FormControl();
-    this.sendData();
+    this.getDataForm();
   }
 };
 
