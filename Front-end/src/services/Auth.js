@@ -1,24 +1,24 @@
-class Auth {
-  constructor(authUser) {
-    this.ifAuth = authUser;
+import Cookies from 'js-cookie';
+
+class AuthService {
+  constructor() {
     this.run();
   }
 
-  authentification() {
-    let ifLog = '';
-    if (this.ifAuth) {
-      ifLog = true;
-      console.log('je suis connecté');
+  checkStmtUser() {
+    let stmtUser = '';
+    const currentlyCookie = Cookies.get('Session');
+    if (currentlyCookie) {
+      stmtUser = true;
     } else {
-      ifLog = false;
-      console.log('je ne suis pas connecté');
+      stmtUser = false;
     }
-    return ifLog;
+    return stmtUser;
   }
 
   run() {
-    this.authentification();
+    this.checkStmtUser();
   }
 }
 
-export default Auth;
+export default AuthService;

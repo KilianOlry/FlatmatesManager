@@ -1,4 +1,3 @@
-import Cookies from 'js-cookie';
 import viewNav from '../views/global/nav';
 import viewBanner from '../views/global/banner';
 import viewFooter from '../views/global/footer';
@@ -8,6 +7,7 @@ import Auth from '../services/Auth';
 const Homepage = class {
   constructor() {
     this.el = document.querySelector('#root');
+    this.userStmt = new Auth();
     this.run();
   }
 
@@ -27,8 +27,6 @@ const Homepage = class {
   }
 
   run() {
-    this.ifLog = new Auth(Cookies.get('Session'));
-    this.ifAuth = (this.ifLog.ifAuth);
     this.el.innerHTML = this.renderSkeleton();
   }
 };
