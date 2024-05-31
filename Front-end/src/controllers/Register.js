@@ -12,7 +12,7 @@ const Register = class {
     this.run();
   }
 
-  sendData() {
+  getDataForm() {
     const formRegister = document.querySelector('#form-register');
     formRegister.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -25,11 +25,11 @@ const Register = class {
         password: formData.get('password')
       };
 
-      this.axiosQuery(data);
+      this.sendData(data);
     });
   }
 
-  axiosQuery(data) {
+  sendData(data) {
     axios.post('http://localhost:50/user/add', data, {
       headers: {
         'Content-Type': 'application/json'
@@ -37,6 +37,9 @@ const Register = class {
     })
       .then(() => {
         toastr.success('Félicitation Votre compte est créer !! Veuillez vous connecter');
+        setTimeout(() => {
+          window.location.href = '/login';
+        }, 3000);
       })
       .catch(() => {
         toastr.error('Erreur lors de la création de votre compte');
@@ -61,8 +64,8 @@ const Register = class {
 
   run() {
     this.el.innerHTML = this.renderSkeleton();
-    this.sendData();
     this.FormControl();
+    this.getDataForm();
   }
 };
 
