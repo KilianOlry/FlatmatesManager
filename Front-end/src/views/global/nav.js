@@ -1,7 +1,7 @@
 import logo from '../../assets/logo.webp';
 import toggleBtn from '../../assets/icons/toggleBtn.svg';
 
-export default (ifLog, sessionUser) => `
+export default (stmtUser) => `
 <nav class="border-gray-200 dark:bg-gray-900">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4">
     <a href="/" class="">
@@ -16,13 +16,13 @@ export default (ifLog, sessionUser) => `
         <li>
           <a href="/" class="block text-lg py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-green-500 md:p-0 dark:text-white md:dark:text-blue-500" aria-current="page">Accueil</a>
         </li>
-        ${ifLog ? `
+        ${stmtUser ? `
         <li>
           <a href="/dashboard" class="block text-lg py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-600 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Dashboard</a>
         </li>
         <li>
           <form method='POST'>
-            <input type="hidden" name="email" ${sessionUser ? sessionUser.token : ''}>
+            <input type="hidden" name="email" value='${stmtUser ? stmtUser.token : ''}'>
             <button class="block text-lg py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-600 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" type='submit'>Déconnexion</button>
           </form> 
         </li>

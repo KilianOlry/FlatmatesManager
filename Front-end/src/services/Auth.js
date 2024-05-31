@@ -6,14 +6,12 @@ class AuthService {
   }
 
   checkStmtUser() {
-    let stmtUser = '';
     const currentlyCookie = Cookies.get('Session');
-    if (currentlyCookie) {
-      stmtUser = true;
-    } else {
-      stmtUser = false;
-    }
-    return stmtUser;
+    return !!currentlyCookie;
+  }
+
+  ifGranted() {
+    
   }
 
   run() {

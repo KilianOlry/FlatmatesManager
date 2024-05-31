@@ -7,13 +7,12 @@ import Auth from '../services/Auth';
 const Homepage = class {
   constructor() {
     this.el = document.querySelector('#root');
-    this.userStmt = new Auth();
     this.run();
   }
 
   renderSkeleton() {
     return `
-      ${viewNav(this.ifAuth)}
+      ${viewNav(this.userStmt)}
 
       <main>
       
@@ -27,6 +26,8 @@ const Homepage = class {
   }
 
   run() {
+    this.AuthService = new Auth();
+    this.userStmt = this.AuthService.checkStmtUser();
     this.el.innerHTML = this.renderSkeleton();
   }
 };
