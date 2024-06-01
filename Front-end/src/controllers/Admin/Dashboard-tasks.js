@@ -1,7 +1,7 @@
 import axios from 'axios';
-import viewNav from '../views/global/nav';
-import viewSidebar from '../views/admin/global/sidebar';
-import viewContent from '../views/admin/tasks/tasks';
+import viewNav from '../../views/global/nav';
+import viewSidebar from '../../views/admin/global/sidebar';
+import viewContent from '../../views/admin/tasks/tasks';
 
 const DashboardTask = class {
   constructor() {

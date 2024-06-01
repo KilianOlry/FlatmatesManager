@@ -1,12 +1,12 @@
 import Router from './Router';
 import Homepage from './controllers/Homepage';
-import Login from './controllers/Login';
-import Register from './controllers/Register';
-import Dashboard from './controllers/Dashboard';
-import DashboardMyProfil from './controllers/Dashboard-myprofil';
-import DashboardCalendar from './controllers/Dashboard-calendar';
-import DashboardTask from './controllers/Dashboard-tasks';
-import Logout from './controllers/Logout';
+import Login from './controllers/Auth/Login';
+import Register from './controllers/Auth/Register';
+import Dashboard from './controllers/Admin/Dashboard';
+import DashboardMyProfil from './controllers/Admin/Dashboard-myprofil';
+import DashboardCalendar from './controllers/Admin/Dashboard-calendar';
+import DashboardTask from './controllers/Admin/Dashboard-tasks';
+import Logout from './controllers/Auth/Logout';
 import './index.scss';
 
 const routes = [{

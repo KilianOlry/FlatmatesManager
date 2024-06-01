@@ -1,10 +1,10 @@
 import Cookies from 'js-cookie';
 import toastr from 'toastr';
 import axios from 'axios';
-import FormControll from '../services/FormControl';
+import FormControll from '../../services/FormControl';
 
-import viewNav from '../views/global/nav';
-import viewLogin from '../views/login';
+import viewNav from '../../views/global/nav';
+import viewLogin from '../../views/auth/login';
 
 const Login = class {
   constructor() {

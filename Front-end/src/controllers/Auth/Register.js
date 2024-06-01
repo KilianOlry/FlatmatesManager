@@ -1,9 +1,9 @@
 import toastr from 'toastr';
 import axios from 'axios';
-import FormControl from '../services/FormControl';
+import FormControl from '../../services/FormControl';
 
-import viewNav from '../views/global/nav';
-import viewRegister from '../views/register';
+import viewNav from '../../views/global/nav';
+import viewRegister from '../../views/auth/register';
 
 const Register = class {
   constructor() {

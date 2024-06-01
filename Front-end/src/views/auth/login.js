@@ -1,6 +1,6 @@
-import iconVisibility from '../assets/icons/visibility.svg';
-import iconLock from '../assets/icons/lock.svg';
-import iconEmail from '../assets/icons/@.svg';
+import iconVisibility from '../../assets/icons/visibility.svg';
+import iconLock from '../../assets/icons/lock.svg';
+import iconEmail from '../../assets/icons/@.svg';
 
 export default () => (`
 <div class="h-screen md:flex">

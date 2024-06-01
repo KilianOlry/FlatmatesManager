@@ -3,9 +3,9 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 
-import viewNav from '../views/global/nav';
-import viewSidebar from '../views/admin/global/sidebar';
-import viewContent from '../views/admin/calendar';
+import viewNav from '../../views/global/nav';
+import viewSidebar from '../../views/admin/global/sidebar';
+import viewContent from '../../views/admin/calendar';
 
 const Dashboard = class {
   constructor() {
