@@ -17,34 +17,34 @@ class Auth extends Controller {
   }
 
   public function postAuth() {
-
-      if (in_array('auth', $this->params)) {
-        $this->auth($this->body);
+      if (in_array('login', $this->params)) {
+        
+        return $this->login($this->body);
 
       } else if (in_array('register', $this->params)) {
-
         $this->register($this->body);
     }
   }
 
-  public function auth() {
+
+  public function login() {
     $this->formControl = new FormControl();
 
     $email = $this->formControl->verifyEmail($this->body['email']);
+
     if ($email) {
       $user = $this->auth->ifExist($email);
-
       if ($user) {
-        if (password_verify($this->body['password'], $user['password'])) {
 
+        if (password_verify($this->body['password'], $user['password'])) {
+          
           session_start();
-          $token = ($user['token']);
 
           $_SESSION['user'] = [
             'firstname' => $user['firstname'],
             'lastname' => $user['lastname'],
             'email' => $user['email'],
-            'token' => $token
+            'token' => $user['token']
           ];
 
           return $_SESSION['user'];
@@ -69,7 +69,7 @@ class Auth extends Controller {
     
       if ($email) {
       $passwordHashed = $this->formControl->hashPassword($this->body['password']);
-      $token = $token = bin2hex($email);
+      $token = bin2hex($email);
 
       $this->auth->register($firstname, $lastname, $email, $passwordHashed, $token);
       return $this->auth->getLast();
