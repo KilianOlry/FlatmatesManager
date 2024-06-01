@@ -10,10 +10,6 @@ class AuthService {
     return !!currentlyCookie;
   }
 
-  ifGranted() {
-    
-  }
-
   run() {
     this.checkStmtUser();
   }

@@ -35,23 +35,23 @@ const Login = class {
 
       const formData = new FormData(formLogin);
 
-      const data = {
+      const dataForm = {
         email: formData.get('email'),
         password: formData.get('password')
       };
 
-      this.sendData(data);
+      this.sendData(dataForm);
     });
   }
 
-  sendData(data) {
-    axios.post('http://localhost:50/user/auth', data, {
+  sendData(dataForm) {
+    axios.post('http://localhost:50/auth/login', dataForm, {
       headers: {
         'Content-Type': 'application/json'
       }
     })
       .then((responseApi) => {
-        Cookies.set('Session', JSON.stringify(this.buildCookie(responseApi)));
+        Cookies.set('Session', JSON.stringify(this.buildCookie(responseApi.data)));
         window.location.href = '/';
       })
       .catch(() => {
@@ -59,12 +59,12 @@ const Login = class {
       });
   }
 
-  buildCookie(responseApi) {
+  buildCookie(data) {
     const userSession = {
-      firstname: responseApi.data.firstname,
-      lastname: responseApi.data.lastname,
-      email: responseApi.data.email,
-      token: responseApi.data.token
+      firstname: data.firstname,
+      lastname: data.lastname,
+      email: data.email,
+      token: data.token
     };
     return userSession;
   }

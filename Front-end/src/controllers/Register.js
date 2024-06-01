@@ -30,7 +30,7 @@ const Register = class {
   }
 
   sendData(data) {
-    axios.post('http://localhost:50/user/add', data, {
+    axios.post('http://localhost:50/auth/register', data, {
       headers: {
         'Content-Type': 'application/json'
       }
