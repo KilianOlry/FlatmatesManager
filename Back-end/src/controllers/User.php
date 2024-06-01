@@ -15,11 +15,16 @@ class User extends Controller {
     parent::__construct($param);
   }
 
+  public function postUser() {
+    return $this->user->ifExist($this->body['token']);
+  }
+
   public function deleteUser() {
     return $this->user->delete(intval($this->params['id']));
   }
 
   public function getUser() {
-      return $this->user->get(intval($this->params['id']));
+    return $this->user->get(intval($this->params['id']));
     }
+
   }

@@ -45,4 +45,5 @@ class AuthModel extends SqlConnect {
       $user = $req->fetch(PDO::FETCH_ASSOC);
       return $user;
     }
+
 }

@@ -22,10 +22,11 @@ class Auth extends Controller {
         return $this->login($this->body);
 
       } else if (in_array('register', $this->params)) {
+        
         $this->register($this->body);
-    }
+      
+      }
   }
-
 
   public function login() {
     $this->formControl = new FormControl();
@@ -46,7 +47,8 @@ class Auth extends Controller {
             'email' => $user['email'],
             'token' => $user['token']
           ];
-
+          
+          header("HTTP/1.0 200 OK");
           return $_SESSION['user'];
 
         } else {
