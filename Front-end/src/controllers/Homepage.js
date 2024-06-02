@@ -1,19 +1,19 @@
-import Cookies from 'js-cookie';
 import viewNav from '../views/global/nav';
 import viewBanner from '../views/global/banner';
 import viewFooter from '../views/global/footer';
 import containerCard from '../views/homepage/container-cards';
 import Auth from '../services/Auth';
 
-const Homepage = class {
+const Homepage = class extends Auth {
   constructor() {
+    super();
     this.el = document.querySelector('#root');
     this.run();
   }
 
   renderSkeleton() {
     return `
-      ${viewNav(this.userStmt)}
+      ${viewNav(this.getCookie())}
 
       <main>
       
@@ -26,19 +26,8 @@ const Homepage = class {
     `;
   }
 
-  logout() {
-    this.formLogout = document.querySelector('.form-logout');
-
-    this.formLogout.addEventListener('click', () => {
-      Cookies.remove('Session');
-    });
-  }
-
-  run() {
-    this.AuthService = new Auth();
-    this.userStmt = this.AuthService.checkStmtUser();
-    this.el.innerHTML = this.renderSkeleton();
-    this.logout();
+  async run() {
+    this.el.innerHTML = await this.renderSkeleton();
   }
 };
 
