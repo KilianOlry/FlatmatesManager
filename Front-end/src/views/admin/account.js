@@ -3,35 +3,35 @@ import iconLock from '../../assets/icons/lock.svg';
 import iconEmail from '../../assets/icons/@.svg';
 import iconProfil from '../../assets/icons/profil.svg';
 
-export default () => (`
+export default (userInformation) => (`
+
 <div class="w-full md:flex">
   <div class="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-green-400 to-green-500 i justify-around items-center hidden">
    
-  <div class='flex items-center'>
-  <div class="sm:mt-40 mt-24 my-auto max-w-md border-2 border-gray-200 rounded-[20px] p-3 bg-gray-800">
-  <!-- header -->  
-  <div class="text-center m-6">
-    <h1 class="text-3xl font-semibold text-gray-100">Vos informations personnel</h1>
-  </div>
-  <!-- sign-in -->
-  <div class="m-6">
-      <div class="mb-6">
-        <p class="text-gray-200 font-bold">Votre Prénom :</p>
-      </div>
-      <div class="mb-6">
-        <p class="text-gray-200 font-bold">Votre Nom :</p>
-      </div>
-      <div class="mb-6">
-        <p class="text-gray-200 font-bold">Votre Email :</p>
-      </div>
-  </div> 
-  </div>
-</div>
+    <div class='flex items-center'>
+      <div class="sm:mt-40 mt-24 my-auto max-w-md border-2 border-gray-200 rounded-[20px] p-3 bg-gray-800"> 
+        <div class="text-center m-6">
+          <h1 class="text-3xl font-semibold text-gray-100">Vos informations personnel</h1>
+        </div>
 
-      <div class="absolute -bottom-32 -left-40 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
-      <div class="absolute -bottom-40 -left-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
-      <div class="absolute -top-40 -right-0 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
-      <div class="absolute -top-20 -right-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
+        <div class="m-6">
+            <div class="mb-6">
+              <p class="text-gray-200 font-medium italic">Votre Prénom : ${userInformation.firstname}</p>
+            </div>
+            <div class="mb-6">
+              <p class="text-gray-200 font-medium italic">Votre Nom : ${userInformation.lastname}</p>
+            </div>
+            <div class="mb-6">
+              <p class="text-gray-200 font-medium italic">Votre Email : ${userInformation.email}</p>
+            </div>
+        </div> 
+        </div>
+    </div>
+
+    <div class="absolute -bottom-32 -left-40 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
+    <div class="absolute -bottom-40 -left-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
+    <div class="absolute -top-40 -right-0 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
+    <div class="absolute -top-20 -right-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
 
   </div>
 

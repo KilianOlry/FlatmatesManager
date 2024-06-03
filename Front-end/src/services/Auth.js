@@ -1,10 +1,11 @@
-import axios from 'axios';
-import toastr from 'toastr';
+// import axios from 'axios';
+// import toastr from 'toastr';
 import Cookies from 'js-cookie';
 
 class AuthService {
   constructor() {
     this.getCookie();
+    // this.runAuth();
   }
 
   getCookie() {
@@ -12,35 +13,32 @@ class AuthService {
     return !!cookie;
   }
 
-  checkUser(cookie) {
-    if (cookie) {
-      const CookieJson = JSON.parse(cookie);
-      axios.post('http://localhost:50/user/granted', CookieJson.token, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-        .then(() => {
-          toastr.success('Autorisée');
-          const isGranted = true;
-          console.log(isGranted);
-          return isGranted;
-        })
-        .catch(() => {
-          toastr.error('Les token ne correspondent pas');
-          const isGranted = false;
-          Cookies.remove('Session');
-          return isGranted;
-        });
-    }
-  }
+  // async checkUser() {
+  //   const cookie = JSON.parse(Cookies.get('Session'));
+  //   let isGranted = '';
+  //   if (cookie) {
+  //     await axios.post('http://localhost:50/user/granted', cookie.token, {
+  //       headers: {
+  //         'Content-Type': 'application/json'
+  //       }
+  //     })
+  //       .then(() => {
+  //         toastr.success('Autorisée');
+  //         isGranted = true;
+  //       })
+  //       .catch(() => {
+  //         toastr.error('Les tokens ne correspondent pas');
+  //         isGranted = false;
+  //       });
+  //   } else {
+  //     isGranted = false;
+  //   }
+  //   return isGranted;
+  // }
 
-  logout() {
-    this.formLogout = document.querySelector('.form-logout');
-
-    this.formLogout.addEventListener('click', () => {
-      Cookies.remove('Session');
-    });
+  async runAuth() {
+    // this.isGranted = await this.checkUser();
+    this.getCookie();
   }
 }
 
