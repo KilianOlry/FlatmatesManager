@@ -27,4 +27,8 @@ class User extends Controller {
     return $this->user->get(intval($this->params['id']));
     }
 
+    public function putUser() {
+      return $this->user->update();
+    }
   }
+

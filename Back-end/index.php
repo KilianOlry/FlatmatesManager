@@ -10,6 +10,7 @@ use App\Controllers\Category;
 
 new Router([
   'user/:id' => User::class,
+  'user/:update' => User::class,
   'user/:granted' => User::class,
   'auth/:login' => Auth::class,
   'auth/:register' => Auth::class,

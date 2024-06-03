@@ -43,6 +43,10 @@ class UserModel extends SqlConnect {
       $req = $this->db->prepare('SELECT * FROM users WHERE token = :token');
       $req->execute(['token' => $token]);
       $user = $req->fetch(PDO::FETCH_ASSOC);
-      return $user;
+      return $user ?: false;
+    }
+
+    public function update() {
+      return 'bonjour';
     }
 }
