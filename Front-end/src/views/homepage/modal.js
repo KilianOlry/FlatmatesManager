@@ -19,8 +19,8 @@ export default () => `
         <div class="p-4 md:p-5">
             <form class="space-y-4" action="#">
                 <div>
-                    <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Votre token</label>
-                    <input type="password" name="password" id="password" placeholder="Votre token pour accéder à la colocation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
+                    <label for="token" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Votre token</label>
+                    <input type="token" name="token" id="token" placeholder="Votre token pour accéder à la colocation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
                 </div>
                 <button type="submit" class="w-full text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login to your account</button>
             </form>

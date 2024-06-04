@@ -4,13 +4,28 @@ import Cookies from 'js-cookie';
 
 class AuthService {
   constructor() {
-    this.getCookie();
-    // this.runAuth();
+    this.currentlyCookie = this.getCookie();
+    this.ifAdmin();
   }
 
   getCookie() {
     const cookie = Cookies.get('Session');
     return !!cookie;
+  }
+
+  ifAdmin() {
+    const sessionCookie = Cookies.get('Session');
+
+    if (!sessionCookie) {
+      return false;
+    }
+
+    try {
+      const cookieJson = JSON.parse(sessionCookie);
+      return cookieJson.role === 'ADMIN';
+    } catch (error) {
+      return false;
+    }
   }
 
   // async checkUser() {

@@ -64,7 +64,8 @@ const Login = class {
       firstname: data.firstname,
       lastname: data.lastname,
       email: data.email,
-      token: data.token
+      token: data.token,
+      role: data.role
     };
     return userSession;
   }

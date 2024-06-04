@@ -13,12 +13,12 @@ const Homepage = class extends Auth {
 
   renderSkeleton() {
     return `
-      ${viewNav(this.getCookie())}
+      ${viewNav(this.currentlyCookie)}
 
       <main>
       
         ${viewBanner()}
-        ${containerCard()}
+        ${containerCard(this.ifAdmin())}
 
       </main>
 
