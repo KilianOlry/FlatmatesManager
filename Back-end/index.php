@@ -7,6 +7,7 @@ use App\Controllers\User;
 use App\Controllers\Auth;
 use App\Controllers\Task;
 use App\Controllers\Category;
+use App\Controllers\Home;
 
 new Router([
   'user/:id' => User::class,
@@ -16,5 +17,6 @@ new Router([
   'auth/:register' => Auth::class,
   'task/:id/' => Task::class,
   'category/:id' => Category::class,
-  'categorys/' => Category::class
+  'categorys/' => Category::class,
+  'home/:create' => Home::class
 ]);

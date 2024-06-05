@@ -45,7 +45,8 @@ class Auth extends Controller {
             'firstname' => $user['firstname'],
             'lastname' => $user['lastname'],
             'email' => $user['email'],
-            'token' => $user['token']
+            'token' => $user['token'],
+            'role' => $user['role'],
           ];
           
           header("HTTP/1.0 200 OK");
