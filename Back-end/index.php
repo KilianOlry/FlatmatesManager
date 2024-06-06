@@ -18,5 +18,6 @@ new Router([
   'task/:id/' => Task::class,
   'category/:id' => Category::class,
   'categorys/' => Category::class,
-  'home/:create' => Home::class
+  'home/:create' => Home::class,
+  'home/:join' => Home::class
 ]);

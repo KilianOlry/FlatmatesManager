@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controllers\Controller;
 use App\Models\HomeModel;
 use App\Services\FormControl;
+use App\Services\IfGranted;
 
 class Home extends Controller {
   protected object $home;
@@ -12,25 +13,47 @@ class Home extends Controller {
 
   public function __construct($param) {
     $this->home = new HomeModel();
-
+    
     parent::__construct($param);
   }
 
   public function postHome() {
-    $formControl = new FormControl();
     if (in_array('create', $this->params)) {
       
-      $name = $formControl->cleanInput($this->body['name']);
-      $adress = $formControl->cleanInput($this->body['adress']);
-      $token = bin2hex($adress);
+      $this->createHome($this->body);
 
-      $this->home->add($adress, $name, $token);
-    } else {
-      return 'je suis personne';
+    } elseif (in_array('join', $this->params)) {
+
+      $this->joinHome($this->body);
+    
     }
   }
 
+  public function joinHome () {
+    $formControl = new FormControl();
+    $ifgrantedService = new ifGranted();
+    // CLEAN INPUT
+    $email = $formControl->verifyEmail($this->body['userEmail']);
+    $token = $formControl->cleanInput($this->body['token']);
+    // CHECK IF EXIST
+    $homeToken = $ifgrantedService->verifyTokenHome($token);
+    $userAdmin = $ifgrantedService->ifExist($email);
 
+    if ($userAdmin && $token) {
+      $this->home->join($userAdmin['id'], $homeToken['id']);
+    }
+  }
+
+  public function createHome($body) {
+    $formControl = new FormControl();
+
+    $name = $formControl->cleanInput($body['name']);
+    $adress = $formControl->cleanInput($body['adress']);
+    $token = bin2hex($adress);
+
+    $this->home->add($adress, $name, $token);
+    return $this->home->getLast();
+  }
 
   public function deleteHome() {
     return $this->home->delete(intval($this->params['id']));

@@ -18,6 +18,17 @@ class HomeModel extends SqlConnect {
       ]);
     }
 
+    public function join($userId ,$homeId) {
+      $query = "UPDATE users
+                SET home_id = :homeId WHERE id = :userId";
+      $stmt = $this->db->prepare($query);
+      $stmt->execute([
+        ':homeId' => $homeId,
+        ':userId' => $userId,
+      ]);
+
+    }
+
     public function delete(int $id) {
       $req = $this->db->prepare("DELETE FROM tasks WHERE id = :id");
       $req->execute(["id" => $id]);
@@ -38,7 +49,7 @@ class HomeModel extends SqlConnect {
     }
 
     public function getLast() {
-      $req = $this->db->prepare("SELECT * FROM tasks ORDER BY id DESC LIMIT 1");
+      $req = $this->db->prepare("SELECT * FROM homes ORDER BY id DESC LIMIT 1");
       $req->execute();
 
       return $req->rowCount() > 0 ? $req->fetch(PDO::FETCH_ASSOC) : new stdClass();
