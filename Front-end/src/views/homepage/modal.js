@@ -17,7 +17,7 @@ export default () => `
         </div>
   
         <div class="p-4 md:p-5">
-            <form class="space-y-4" action="#">
+            <form class="space-y-4 form-join-home" action="#">
                 <div>
                     <label for="token" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Votre token</label>
                     <input type="token" name="token" id="token" placeholder="Votre token pour accéder à la colocation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />

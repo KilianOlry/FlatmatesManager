@@ -11,6 +11,7 @@ use App\Controllers\Home;
 
 new Router([
   'user/:id' => User::class,
+  'user/:getbymail' => User::class,
   'user/:update' => User::class,
   'user/:granted' => User::class,
   'auth/:login' => Auth::class,
@@ -19,5 +20,6 @@ new Router([
   'category/:id' => Category::class,
   'categorys/' => Category::class,
   'home/:create' => Home::class,
-  'home/:join' => Home::class
+  'home/:join' => Home::class,
+  'home/:get' => Home::class
 ]);

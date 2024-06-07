@@ -29,7 +29,7 @@ const Homepage = class extends Auth {
     `;
   }
 
-  getDataForm() {
+  getDataFormCreate() {
     const formCreateHome = document.querySelector('.form-create-home');
 
     formCreateHome.addEventListener('submit', (e) => {
@@ -43,11 +43,28 @@ const Homepage = class extends Auth {
         userEmail: currentlyUser.email
       };
 
-      this.sendData(dataForm);
+      this.sendDataFormCreate(dataForm);
     });
   }
 
-  sendData(dataForm) {
+  getDataFormJoin() {
+    const formJoinHome = document.querySelector('.form-join-home');
+
+    formJoinHome.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const currentlyUser = JSON.parse(Cookies.get('Session'));
+      const formData = new FormData(formJoinHome);
+
+      const dataForm = {
+        token: formData.get('token'),
+        userEmail: currentlyUser.email
+      };
+
+      this.sendDataFormJoin(dataForm);
+    });
+  }
+
+  sendDataFormCreate(dataForm) {
     axios.post('http://localhost:50/home/create', dataForm, {
       headers: {
         'Content-Type': 'application/json'
@@ -61,9 +78,25 @@ const Homepage = class extends Auth {
       });
   }
 
+  sendDataFormJoin(dataForm) {
+    axios.post('http://localhost:50/home/join', dataForm, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then((responseApi) => {
+        console.log(responseApi);
+        toastr.success('Bienvenue dans la colocation');
+      })
+      .catch(() => {
+        toastr.error('Erreur token incorrect');
+      });
+  }
+
   async run() {
     this.el.innerHTML = await this.renderSkeleton();
-    this.getDataForm();
+    this.getDataFormCreate();
+    this.getDataFormJoin();
   }
 };
 

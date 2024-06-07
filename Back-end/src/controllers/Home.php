@@ -26,6 +26,8 @@ class Home extends Controller {
 
       $this->joinHome($this->body);
     
+    } elseif (in_array('get', $this->params)) {
+      return $this->home->getMembersHome($this->body['home_id']);
     }
   }
 
@@ -39,8 +41,10 @@ class Home extends Controller {
     $homeToken = $ifgrantedService->verifyTokenHome($token);
     $userAdmin = $ifgrantedService->ifExist($email);
 
-    if ($userAdmin && $token) {
+    if ($userAdmin && $homeToken) {
       $this->home->join($userAdmin['id'], $homeToken['id']);
+    } else {
+      return header("HTTP/1.0 401 Unauthorized");
     }
   }
 
@@ -60,8 +64,10 @@ class Home extends Controller {
   }
 
   public function getHome() {
+
     return $this->home->get(intval($this->params['id']));
-    }
+  }
+
 
     public function putHome() {
       return $this->home->update();
