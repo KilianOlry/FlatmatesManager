@@ -1,4 +1,7 @@
-export default () => (`
+import members from './members/members';
+
+export default (dataMembres) => (`
+
 <section class='w-full p-10'>
 
   <h1 class="tracking-in-expand my-8 text-2xl capitalize font-extrabold text-green-900 dark:text-white md:text-5xl lg:text-4xl">
@@ -45,29 +48,9 @@ export default () => (`
       </li>
     </ol>
 
-    <ul>
-      <li>membres</li>
-      <li class='my-4' data-popover-target="popover-default">
-        <img class="w-12 h-12 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500" src="https://th.bing.com/th/id/OIP.fQhL-xGh_QifdBufpDnbPgAAAA?rs=1&pid=ImgDetMain" alt="Bordered avatar">
-      </li>
-      <li class='my-4' data-popover-target="popover-default">
-        <img class="w-12 h-12 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500" src="https://th.bing.com/th/id/OIP.fQhL-xGh_QifdBufpDnbPgAAAA?rs=1&pid=ImgDetMain" alt="Bordered avatar">
-      </li>
-      <li class='my-4' data-popover-target="popover-default">
-        <img class="w-12 h-12 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500" src="https://th.bing.com/th/id/OIP.fQhL-xGh_QifdBufpDnbPgAAAA?rs=1&pid=ImgDetMain" alt="Bordered avatar">
-      </li>
-      <li class='my-4' data-popover-target="popover-default">
-        <img class="w-12 h-12 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500" src="https://th.bing.com/th/id/OIP.fQhL-xGh_QifdBufpDnbPgAAAA?rs=1&pid=ImgDetMain" alt="Bordered avatar">
-      </li>
-    <ul>
+  ${members(dataMembres)}
 
-  <div>
+  </div>
 
 </section>
-<div data-popover id="popover-default" role="tooltip" class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
-    <div class="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
-        <h3 class="font-semibold text-gray-900 dark:text-white">Kilian Olry</h3>
-    </div>
-</div>
-
 `);

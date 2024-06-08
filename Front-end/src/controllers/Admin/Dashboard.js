@@ -7,52 +7,58 @@ import viewContent from '../../views/admin/dashboard/dashboard';
 const Dashboard = class {
   constructor() {
     this.el = document.querySelector('#root');
-
     this.run();
   }
 
-  render() {
+  render(members) {
     return `
       ${viewNav()}
       <div class='flex'>
          ${viewSidebar()}
-         ${viewContent()}
+         ${viewContent(members)}
       </div>
     `;
   }
 
-  getUser() {
-    const data = JSON.parse(Cookies.get('Session'));
-    axios.post('http://localhost:50/user/:get', data, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then((response) => {
-        this.getMembers(response.data);
-      })
-      .catch(() => {
-        console.log('erreur');
+  async getUser() {
+    try {
+      const data = JSON.parse(Cookies.get('Session'));
+      const response = await axios.post('http://localhost:50/user/:get', data, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
       });
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching user:', error);
+      return null;
+    }
   }
 
-  getMembers(data) {
-    axios.post('http://localhost:50/home/get', data, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then((response) => {
-        console.log((response.data));
-      })
-      .catch(() => {
-        console.log('erreur');
+  async getMembers(user) {
+    try {
+      const response = await axios.post('http://localhost:50/home/get', user, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
       });
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching members:', error);
+      return null;
+    }
   }
 
   async run() {
-    this.getUser();
-    this.el.innerHTML = await this.render();
+    const user = await this.getUser();
+    if (user) {
+      const members = await this.getMembers(user);
+
+      this.el.innerHTML = await this.render(members);
+    } else {
+      this.el.innerHTML = '<p>Error loading dashboard. Please try again later.</p>';
+    }
   }
 };
 
