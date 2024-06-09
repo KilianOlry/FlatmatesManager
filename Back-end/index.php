@@ -17,6 +17,8 @@ new Router([
   'auth/:login' => Auth::class,
   'auth/:register' => Auth::class,
   'task/:id/' => Task::class,
+  'task/:getAll' => Task::class,
+  'task/:add' => Task::class,
   'category/:id' => Category::class,
   'categorys/' => Category::class,
   'home/:create' => Home::class,

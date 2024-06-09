@@ -32,6 +32,13 @@ class UserModel extends SqlConnect {
       return $req->rowCount() > 0 ? $req->fetch(PDO::FETCH_ASSOC) : new stdClass();
     }
 
+    public function getByName(string $name) {
+      $req = $this->db->prepare("SELECT id FROM users WHERE firstname = :firstname");
+      $req->execute(["firstname" => $name]);
+
+      return $req->rowCount() > 0 ? $req->fetch(PDO::FETCH_ASSOC) : new stdClass();
+    }
+
     public function getLast() {
       $req = $this->db->prepare("SELECT * FROM users ORDER BY id DESC LIMIT 1");
       $req->execute();
