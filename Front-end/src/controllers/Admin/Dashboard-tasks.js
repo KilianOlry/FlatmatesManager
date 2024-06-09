@@ -1,3 +1,4 @@
+import toastr from 'toastr';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import viewNav from '../../views/global/nav';
@@ -19,6 +20,40 @@ const DashboardTask = class {
          ${viewContent(await this.getCategorys(), flatmates)}
       </div>
     `;
+  }
+
+  getDataForm() {
+    const formCreateTask = document.querySelector('.create-task');
+    formCreateTask.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(formCreateTask);
+      const data = {
+        date: formData.get('date'),
+        flatmates: formData.get('flatmates'),
+        category: formData.get('category'),
+        priority: formData.get('priority'),
+        description: formData.get('description')
+      };
+
+      this.sendData(data);
+    });
+  }
+
+  sendData(data) {
+    axios.post('http://localhost:50/task/add', data, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then((response) => {
+        toastr.success('Félicitation Votre compte est créer !! Veuillez vous connecter');
+        console.log(response);
+      })
+      .catch((response) => {
+        toastr.error('Erreur lors de la création de votre compte');
+        console.log(response);
+      });
   }
 
   async getCategorys() {
@@ -61,11 +96,32 @@ const DashboardTask = class {
     }
   }
 
+  toggleModel() {
+    const btn = document.querySelector('.btn-modal');
+    const btnModal = document.querySelector('.modal-task');
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      btnModal.classList.add('ok');
+    });
+  }
+
+  closeToggleModal() {
+    const closeModal = document.querySelector('.close-modal');
+    const btnModal = document.querySelector('.modal-task');
+    closeModal.addEventListener('click', (e) => {
+      e.preventDefault();
+      btnModal.classList.remove('ok');
+    });
+  }
+
   async run() {
     const user = await this.getUser();
     const flatmates = await this.getFlatMates(user);
 
     this.el.innerHTML = await this.render(flatmates);
+    this.toggleModel();
+    this.closeToggleModal();
+    this.getDataForm();
   }
 };
 
