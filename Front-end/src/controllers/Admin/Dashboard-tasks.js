@@ -28,7 +28,10 @@ const DashboardTask = class {
       e.preventDefault();
 
       const formData = new FormData(formCreateTask);
+      const cookie = JSON.parse(Cookies.get('Session'));
+      const { token } = cookie;
       const data = {
+        tokenUser: token,
         date: formData.get('date'),
         flatmates: formData.get('flatmates'),
         category: formData.get('category'),

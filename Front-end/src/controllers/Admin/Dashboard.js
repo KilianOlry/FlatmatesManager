@@ -10,12 +10,13 @@ const Dashboard = class {
     this.run();
   }
 
-  render(members) {
+  render(members, tasks) {
     return `
       ${viewNav()}
       <div class='flex'>
          ${viewSidebar()}
-         ${viewContent(members)}
+         ${console.log(tasks)}
+         ${viewContent(members, tasks)}
       </div>
     `;
   }
@@ -35,6 +36,20 @@ const Dashboard = class {
     }
   }
 
+  async getTasks(dataUser) {
+    try {
+      const response = await axios.get(`http://localhost:50/task/${dataUser.id}`, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching user:', error);
+      return null;
+    }
+  }
+
   async getMembers(user) {
     try {
       const response = await axios.post('http://localhost:50/home/get', user, {
@@ -42,7 +57,6 @@ const Dashboard = class {
           'Content-Type': 'application/json'
         }
       });
-      console.log(response.data);
       return response.data;
     } catch (error) {
       console.error('Error fetching members:', error);
@@ -50,12 +64,24 @@ const Dashboard = class {
     }
   }
 
+  // changeColorPrioritytag(tasks) {
+  //   const priorityTag = document.querySelector('.priority-tag');
+  //   tasks.map((task) => {
+  //     console.log(task.priority);
+  //     priorityTag.classList.add('priority');
+  //     return true;
+  //   });
+  // }
+
   async run() {
     const user = await this.getUser();
     if (user) {
       const members = await this.getMembers(user);
 
-      this.el.innerHTML = await this.render(members);
+      const tasks = await this.getTasks(user);
+
+      this.el.innerHTML = await this.render(members, tasks);
+      this.changeColorPrioritytag(tasks);
     } else {
       this.el.innerHTML = '<p>Error loading dashboard. Please try again later.</p>';
     }
