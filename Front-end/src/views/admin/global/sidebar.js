@@ -14,7 +14,7 @@ export default () => (`
 </button>
 
 <aside id="sidebar-multi-level-sidebar" class="fixed top-0 left-0 sm:relative z-40 w-64 transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
-  <div class="sidebar px-3 py-4 overflow-y-auto bg-white dark:bg-gray-800">
+  <div class="sidebar px-3 py-4 overflow-y-auto bg-white md:rounded-2xl shadow-sm dark:bg-gray-800">
     <ul class="space-y-2 font-medium">
 
       <li>

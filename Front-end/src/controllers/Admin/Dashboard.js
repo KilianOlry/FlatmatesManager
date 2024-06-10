@@ -1,3 +1,4 @@
+import toastr from 'toastr';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import viewNav from '../../views/global/nav';
@@ -13,9 +14,8 @@ const Dashboard = class {
   render(members, tasks) {
     return `
       ${viewNav()}
-      <div class='flex'>
+      <div class='flex p-3'>
          ${viewSidebar()}
-         ${console.log(tasks)}
          ${viewContent(members, tasks)}
       </div>
     `;
@@ -73,6 +73,34 @@ const Dashboard = class {
   //   });
   // }
 
+  getStatusTask() {
+    const formStatusTasks = document.querySelectorAll('.change-status-task');
+
+    formStatusTasks.forEach((form) => {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const input = form.querySelector('.test');
+        console.log(input);
+        this.sendDataTask(input.value);
+      });
+    });
+  }
+
+  sendDataTask(id) {
+    axios.post('http://localhost:50/task/update', id, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then((response) => {
+        toastr.success('Félicitation Votre compte est créer !! Veuillez vous connecter');
+        console.log(response);
+      })
+      .catch(() => {
+        toastr.error('Erreur lors de la création de votre compte');
+      });
+  }
+
   async run() {
     const user = await this.getUser();
     if (user) {
@@ -81,7 +109,8 @@ const Dashboard = class {
       const tasks = await this.getTasks(user);
 
       this.el.innerHTML = await this.render(members, tasks);
-      this.changeColorPrioritytag(tasks);
+      this.getStatusTask();
+      // this.changeColorPrioritytag(tasks);
     } else {
       this.el.innerHTML = '<p>Error loading dashboard. Please try again later.</p>';
     }
