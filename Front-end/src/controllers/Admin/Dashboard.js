@@ -64,15 +64,6 @@ const Dashboard = class {
     }
   }
 
-  // changeColorPrioritytag(tasks) {
-  //   const priorityTag = document.querySelector('.priority-tag');
-  //   tasks.map((task) => {
-  //     console.log(task.priority);
-  //     priorityTag.classList.add('priority');
-  //     return true;
-  //   });
-  // }
-
   getStatusTask() {
     const formStatusTasks = document.querySelectorAll('.change-status-task');
 
@@ -92,25 +83,24 @@ const Dashboard = class {
         'Content-Type': 'application/json'
       }
     })
-      .then((response) => {
-        toastr.success('Félicitation Votre compte est créer !! Veuillez vous connecter');
-        console.log(response);
+      .then(() => {
+        toastr.success('Tâches terminé Félicitations !!');
       })
       .catch(() => {
-        toastr.error('Erreur lors de la création de votre compte');
+        toastr.error('Erreur lors de la mise à jour de la tâche');
       });
   }
 
   async run() {
     const user = await this.getUser();
     if (user) {
+      // Get members on flatmate
       const members = await this.getMembers(user);
-
+      // Get tasks about user
       const tasks = await this.getTasks(user);
-
-      this.el.innerHTML = await this.render(members, tasks);
+      // render view with all data
+      this.el.innerHTML = this.render(members, tasks);
       this.getStatusTask();
-      // this.changeColorPrioritytag(tasks);
     } else {
       this.el.innerHTML = '<p>Error loading dashboard. Please try again later.</p>';
     }

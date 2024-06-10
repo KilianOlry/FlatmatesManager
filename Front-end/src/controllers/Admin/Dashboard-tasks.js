@@ -49,13 +49,11 @@ const DashboardTask = class {
         'Content-Type': 'application/json'
       }
     })
-      .then((response) => {
+      .then(() => {
         toastr.success('Félicitation Votre compte est créer !! Veuillez vous connecter');
-        console.log(response);
       })
-      .catch((response) => {
+      .catch(() => {
         toastr.error('Erreur lors de la création de votre compte');
-        console.log(response);
       });
   }
 

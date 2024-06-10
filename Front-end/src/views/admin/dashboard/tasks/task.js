@@ -9,14 +9,13 @@ export default (item) => {
     return new Date(date).toLocaleString('fr-FR', {
       day: '2-digit',
       month: '2-digit',
-      year: 'numeric',
-      hour: '2-digit'
+      year: 'numeric'
     });
   }
   const date = formatDate(date_limit);
 
   return `
-<div class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
+<div class="relative min-w-56 flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
   <div class='p-3'>
     <div class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-green-600 to-green-400 text-white shadow-green-500/40 shadow-lg absolute -top-2 -left-6 grid h-16 w-16 place-items-center">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="w-6 h-6 text-white">

@@ -7,7 +7,7 @@ import cookImage from '../../../assets/cook.webp';
 import poubelleImage from '../../../assets/poubelle.webp';
 
 const images = {
-  'tâches ménagère': cleanImage,
+  'tâches ménagères': cleanImage,
   courses: shoppingImage,
   cuisine: cookImage,
   'sortir les poubelles': poubelleImage
