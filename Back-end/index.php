@@ -7,6 +7,7 @@ use App\Controllers\User;
 use App\Controllers\Auth;
 use App\Controllers\Task;
 use App\Controllers\Category;
+use App\Controllers\CategoryExpenses;
 use App\Controllers\Home;
 
 new Router([
@@ -24,5 +25,6 @@ new Router([
   'categorys/' => Category::class,
   'home/:create' => Home::class,
   'home/:join' => Home::class,
-  'home/:get' => Home::class
+  'home/:get' => Home::class,
+  'category-expenses/:getAll' => CategoryExpenses::class
 ]);

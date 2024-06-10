@@ -30,9 +30,9 @@ class TaskModel extends SqlConnect {
     public function get(int $id) {
       $req = $this->db->prepare("SELECT tasks.*, categorys_task.* FROM tasks
                                 INNER JOIN categorys_task ON tasks.category_id = categorys_task.id
-                                WHERE tasks.user_id = :id 
+                                WHERE tasks.user_id = :id AND tasks.status != :status 
                                 ORDER BY tasks.date_limit DESC");
-      $req->execute(["id" => $id]);
+      $req->execute(["id" => $id, "status" => "Terminé"]);
 
       return $req->rowCount() > 0 ? $req->fetchAll(PDO::FETCH_ASSOC) : new stdClass();
     }
