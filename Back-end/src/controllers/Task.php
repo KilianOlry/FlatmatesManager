@@ -38,7 +38,11 @@ class Task extends Controller {
       $workerflatmate = $this->user->getByName($flatmate);
       return $this->task->add($message, $createdAt, $dateLimit, $priority, $categoryId['id'], $workerflatmate['id'], $user['home_id']);
     
+    } elseif (in_array('update', $this->params)) {
+      return $this->task->update($this->body[0]);
+
     }
+
 
   }
 

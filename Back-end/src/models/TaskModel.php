@@ -28,10 +28,13 @@ class TaskModel extends SqlConnect {
     }
 
     public function get(int $id) {
-      $req = $this->db->prepare("SELECT * FROM tasks WHERE id = :id");
+      $req = $this->db->prepare("SELECT tasks.*, categorys_task.* FROM tasks
+                                INNER JOIN categorys_task ON tasks.category_id = categorys_task.id
+                                WHERE tasks.user_id = :id 
+                                ORDER BY tasks.date_limit DESC");
       $req->execute(["id" => $id]);
 
-      return $req->rowCount() > 0 ? $req->fetch(PDO::FETCH_ASSOC) : new stdClass();
+      return $req->rowCount() > 0 ? $req->fetchAll(PDO::FETCH_ASSOC) : new stdClass();
     }
 
     public function getAll() {
@@ -46,5 +49,14 @@ class TaskModel extends SqlConnect {
       $req->execute();
 
       return $req->rowCount() > 0 ? $req->fetch(PDO::FETCH_ASSOC) : new stdClass();
+    }
+
+    public function update(int $id) {
+        $query = "UPDATE tasks SET status = 'Terminé' WHERE category_id = :id";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute([
+          ':id' => $id,
+        ]);
+        return 'ok';
     }
 }
