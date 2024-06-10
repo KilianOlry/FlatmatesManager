@@ -6,6 +6,7 @@ import Dashboard from './controllers/Admin/Dashboard';
 import DashboardMyProfil from './controllers/Admin/Dashboard-myprofil';
 import DashboardCalendar from './controllers/Admin/Dashboard-calendar';
 import DashboardMessage from './controllers/Admin/Dahboard-messages';
+import DashboardExpenses from './controllers/Admin/Dashboard-expenses';
 import DashboardTask from './controllers/Admin/Dashboard-tasks';
 import Logout from './controllers/Auth/Logout';
 import './index.scss';
@@ -41,6 +42,10 @@ const routes = [{
 {
   url: '/dashboard-tasks',
   controller: DashboardTask
+},
+{
+  url: '/dashboard-expenses',
+  controller: DashboardExpenses
 },
 {
   url: '/dashboard-messages',
