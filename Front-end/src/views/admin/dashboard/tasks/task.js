@@ -25,7 +25,7 @@ export default (item) => {
     <p class="antialiased font-sans text-right text-sm leading-normal font-normal text-blue-gray-600">${date}</p>
   </div>
 
-  <div class="mt-4 px-10">
+  <div class="mt-4 px-3">
     <h4 class="block capitalize antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">${name}</h4>
   </div>
   <div class="border-t border-blue-gray-50 p-4">

@@ -15,7 +15,7 @@ const DashboardExpenses = class {
   async render(flatmates) {
     return `
       ${viewNav()}
-      <div class='sm:flex container_dashboard'>
+      <div class='sm:flex container_dashboard p-3 md:pl-6 gap-4'>
          ${viewSidebar()}
          ${viewContent(await this.getCategoriesExpenses(), flatmates)}
       </div>

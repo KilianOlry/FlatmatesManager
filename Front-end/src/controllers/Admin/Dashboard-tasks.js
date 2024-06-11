@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import toastr from 'toastr';
 import Cookies from 'js-cookie';
 import axios from 'axios';
@@ -15,7 +16,7 @@ const DashboardTask = class {
   async render(flatmates) {
     return `
       ${viewNav()}
-      <div class='sm:flex container_dashboard'>
+      <div class='sm:flex container_dashboard p-3 md:pl-6 gap-4'>
          ${viewSidebar()}
          ${viewContent(await this.getCategorys(), flatmates)}
       </div>
@@ -120,8 +121,8 @@ const DashboardTask = class {
     const flatmates = await this.getFlatMates(user);
 
     this.el.innerHTML = await this.render(flatmates);
-    this.toggleModel();
-    this.closeToggleModal();
+    await this.toggleModel();
+    await this.closeToggleModal();
     this.getDataForm();
   }
 };

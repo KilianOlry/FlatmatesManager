@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import toastr from 'toastr';
 import Cookies from 'js-cookie';
 import axios from 'axios';
@@ -16,9 +17,9 @@ const Dashboard = class extends AuthService {
   render(members, tasks, expenses) {
     return `
       ${viewNav(this.currentlyCookie)}
-      <div class='flex p-3'>
-         ${viewSidebar()}
-         ${viewContent(members, tasks, expenses)}
+      <div class='p-3 md:pl-6 flex container_dashboard'>
+        ${viewSidebar()}
+        ${viewContent(members, tasks, expenses)}
       </div>
     `;
   }
