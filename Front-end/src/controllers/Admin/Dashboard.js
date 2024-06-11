@@ -11,12 +11,12 @@ const Dashboard = class {
     this.run();
   }
 
-  render(members, tasks) {
+  render(members, tasks, expenses) {
     return `
       ${viewNav()}
       <div class='flex p-3'>
          ${viewSidebar()}
-         ${viewContent(members, tasks)}
+         ${viewContent(members, tasks, expenses)}
       </div>
     `;
   }
@@ -39,6 +39,20 @@ const Dashboard = class {
   async getTasks(dataUser) {
     try {
       const response = await axios.get(`http://localhost:50/task/${dataUser.id}`, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching user:', error);
+      return null;
+    }
+  }
+
+  async getExpenses(dataUser) {
+    try {
+      const response = await axios.get(`http://localhost:50/expense/${dataUser.id}`, {
         headers: {
           'Content-Type': 'application/json'
         }
@@ -98,8 +112,10 @@ const Dashboard = class {
       const members = await this.getMembers(user);
       // Get tasks about user
       const tasks = await this.getTasks(user);
+      // Get expenses about user
+      const expenses = await this.getExpenses(user);
       // render view with all data
-      this.el.innerHTML = this.render(members, tasks);
+      this.el.innerHTML = this.render(members, tasks, expenses);
       this.getStatusTask();
     } else {
       this.el.innerHTML = '<p>Error loading dashboard. Please try again later.</p>';
