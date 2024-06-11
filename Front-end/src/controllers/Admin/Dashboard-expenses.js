@@ -33,10 +33,30 @@ const DashboardExpenses = class {
     }
   }
 
+  toggleModal() {
+    const btn = document.querySelector('.btn-modal');
+    const btnModal = document.querySelector('.modal-task');
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      btnModal.classList.add('ok');
+    });
+  }
+
+  closeToggleModal() {
+    const closeModal = document.querySelector('.close-modal');
+    const btnModal = document.querySelector('.modal-task');
+    closeModal.addEventListener('click', (e) => {
+      e.preventDefault();
+      btnModal.classList.remove('ok');
+    });
+  }
+
   async run() {
     // const user = await this.getUser();
     // const flatmates = await this.getFlatMates(user);
     this.el.innerHTML = await this.render();
+    this.toggleModal();
+    this.closeToggleModal();
   }
 };
 

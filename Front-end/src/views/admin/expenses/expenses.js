@@ -1,4 +1,4 @@
-// import viewModal from './modal';
+import viewModal from './modal';
 import itemCategory from './expense';
 
 import credit from '../../../assets/credit.webp';
@@ -20,6 +20,7 @@ const renderComponent = (categoryItems) => `
     </button>
     ${categoryItems.map((category) => itemCategory(category, images)).join('')}
   </div>
+  ${viewModal()}
 `;
 
 export default renderComponent;
