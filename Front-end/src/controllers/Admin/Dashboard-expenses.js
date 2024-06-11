@@ -1,4 +1,4 @@
-// import toastr from 'toastr';
+import toastr from 'toastr';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import viewNav from '../../views/global/nav';
@@ -62,6 +62,43 @@ const DashboardExpenses = class {
     }
   }
 
+  getDataForm() {
+    const formCreateExpense = document.querySelector('.create-expense');
+    formCreateExpense.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(formCreateExpense);
+      const cookie = JSON.parse(Cookies.get('Session'));
+      const { token } = cookie;
+      const data = {
+        tokenUser: token,
+        date: formData.get('date'),
+        flatmates: formData.get('flatmates'),
+        category: formData.get('category'),
+        priority: formData.get('priority'),
+        description: formData.get('description'),
+        price: formData.get('price')
+      };
+      console.log(data);
+      this.sendData(data);
+    });
+  }
+
+  sendData(data) {
+    axios.post('http://localhost:50/expense/add', data, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then((response) => {
+        console.log(response);
+        // toastr.success('Félicitation Votre compte est créer !! Veuillez vous connecter');
+      })
+      .catch(() => {
+        toastr.error('Erreur lors de la création de votre compte');
+      });
+  }
+
   toggleModal() {
     const btn = document.querySelector('.btn-modal');
     const btnModal = document.querySelector('.modal-task');
@@ -85,6 +122,7 @@ const DashboardExpenses = class {
     if (user) {
       const flatmates = await this.getFlatMates(user);
       this.el.innerHTML = await this.render(flatmates);
+      this.getDataForm();
       this.toggleModal();
       this.closeToggleModal();
     }

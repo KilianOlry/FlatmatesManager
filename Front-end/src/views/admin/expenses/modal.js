@@ -13,11 +13,15 @@ export default (categoryItems, flatmates) => (`
             <span class="sr-only">Close modal</span>
         </button>
       </div>
-      <form class="create-task p-4 md:p-5">
+      <form class="create-expense p-4 md:p-5">
           <div class="grid gap-4 mb-4 grid-cols-2">
               <div class="col-span-2">
                   <label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">À faire pour le</label>
                   <input type="date" name="date" id="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Date" required="">
+              </div>
+              <div class="col-span-2">
+                  <label for="number-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Définir le prix</label>
+                  <input type="number" step="0.01" name='price' id="number-input" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Le prix" required />
               </div>
               <div class="col-span-2 sm:col-span-1">
                 <label for="flatmates" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Colocataire</label>
@@ -29,12 +33,6 @@ export default (categoryItems, flatmates) => (`
                 <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Catégorie</label>
                 <select id="category" name='category' class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                   ${categoryItems.map((element) => `<option value="${element.name}">${element.name}</option>`).join('')}
-                </select>
-              </div>
-              <div class="col-span-2">
-                <label for="priority" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Colocataire</label>
-                <select id="priority" name='priority' class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                  <option selected>Quelle Priorité</option>
                 </select>
               </div>
               <div class="col-span-2">
