@@ -6,16 +6,16 @@ use \PDO;
 use stdClass;
 
 class ExpenseModel extends SqlConnect {
-    public function add ($message, $createdAt, $dateLimit, $priority, $categoryId, $worker, $homeId) {
-      $query = 'INSERT INTO tasks (description, created_at, date_limit, priority, category_id, user_id, home_id)
-                VALUES (:message, :created_at, :date_limit, :priority, :category_id, :worker, :home_id)';
+    public function add ($price, $message, $createdAt, $dateLimit, $categoryId, $worker, $homeId) {
+      $query = 'INSERT INTO expenses (price, description, created_at, date_limit, category_id, user_id, home_id)
+                VALUES (:price, :message, :created_at, :date_limit, :category_id, :worker, :home_id)';
 
       $stmt = $this->db->prepare($query);
       $stmt->execute([
+        ':price' => $price,
         ':message' => $message,
         ':created_at' => $createdAt,
         ':date_limit' => $dateLimit,
-        ':priority' => $priority,
         ':category_id' => $categoryId,
         ':worker' => $worker,
         ':home_id' => $homeId,
