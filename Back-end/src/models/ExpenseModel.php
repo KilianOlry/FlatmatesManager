@@ -28,11 +28,11 @@ class ExpenseModel extends SqlConnect {
     }
 
     public function get(int $id) {
-      $req = $this->db->prepare("SELECT tasks.*, categorys_task.* FROM tasks
-                                INNER JOIN categorys_task ON tasks.category_id = categorys_task.id
-                                WHERE tasks.user_id = :id AND tasks.status != :status 
-                                ORDER BY tasks.date_limit DESC");
-      $req->execute(["id" => $id, "status" => "Terminé"]);
+      $req = $this->db->prepare("SELECT expenses.id AS expense_id, expenses.*, categorys_expense.* FROM expenses
+                                INNER JOIN categorys_expense ON expenses.category_id = categorys_expense.id
+                                WHERE expenses.user_id = :id AND expenses.status = :status
+                                ORDER BY expenses.date_limit DESC");
+      $req->execute(["id" => $id, 'status' => 'Impayé']);
 
       return $req->rowCount() > 0 ? $req->fetchAll(PDO::FETCH_ASSOC) : new stdClass();
     }
@@ -52,11 +52,10 @@ class ExpenseModel extends SqlConnect {
     }
 
     public function update(int $id) {
-        $query = "UPDATE tasks SET status = 'Terminé' WHERE category_id = :id";
+        $query = "UPDATE expenses SET status = 'Payé' WHERE id = :id";
         $stmt = $this->db->prepare($query);
         $stmt->execute([
           ':id' => $id,
         ]);
-        return 'ok';
     }
 }

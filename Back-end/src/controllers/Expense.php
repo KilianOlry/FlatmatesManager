@@ -39,6 +39,7 @@ class Expense extends Controller {
       return $this->expense->add($price, $message, $createdAt, $dateLimit, $categoryId['id'], $workerflatmate['id'], $user['home_id']);
     
     } elseif (in_array('update', $this->params)) {
+      
       return $this->expense->update($this->body[0]);
 
     }
@@ -50,7 +51,7 @@ class Expense extends Controller {
     return $this->expense->delete(intval($this->params['id']));
   }
 
-  public function getTask() {
+  public function getExpense() {
     if (in_array('getAll', $this->params)) {
       return $this->expense->getAll();
     } else {

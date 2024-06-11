@@ -28,5 +28,7 @@ new Router([
   'home/:join' => Home::class,
   'home/:get' => Home::class,
   'category-expenses/:getAll' => CategoryExpenses::class,
-  'expense/:add' => Expense::class
+  'expense/:id' => Expense::class,
+  'expense/:add' => Expense::class,
+  'expense/:update' => Expense::class,
 ]);
