@@ -1,5 +1,5 @@
 // import toastr from 'toastr';
-// import Cookies from 'js-cookie';
+import Cookies from 'js-cookie';
 import axios from 'axios';
 import viewNav from '../../views/global/nav';
 import viewSidebar from '../../views/admin/global/sidebar';
@@ -22,6 +22,21 @@ const DashboardExpenses = class {
     `;
   }
 
+  async getUser() {
+    try {
+      const data = JSON.parse(Cookies.get('Session'));
+      const response = await axios.post('http://localhost:50/user/:get', data, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching user:', error);
+      return null;
+    }
+  }
+
   async getCategoriesExpenses() {
     const apiUrl = 'http://localhost:50/category-expenses/getAll';
     try {
@@ -30,6 +45,20 @@ const DashboardExpenses = class {
       return datas;
     } catch (error) {
       return error;
+    }
+  }
+
+  async getFlatMates(user) {
+    try {
+      const response = await axios.post('http://localhost:50/home/get', user, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching members:', error);
+      return null;
     }
   }
 
@@ -52,11 +81,14 @@ const DashboardExpenses = class {
   }
 
   async run() {
-    // const user = await this.getUser();
-    // const flatmates = await this.getFlatMates(user);
-    this.el.innerHTML = await this.render();
-    this.toggleModal();
-    this.closeToggleModal();
+    const user = await this.getUser();
+    if (user) {
+      const flatmates = await this.getFlatMates(user);
+      console.log(flatmates);
+      this.el.innerHTML = await this.render();
+      this.toggleModal();
+      this.closeToggleModal();
+    }
   }
 };
 
