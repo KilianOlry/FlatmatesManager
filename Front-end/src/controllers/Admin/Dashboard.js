@@ -4,16 +4,18 @@ import axios from 'axios';
 import viewNav from '../../views/global/nav';
 import viewSidebar from '../../views/admin/global/sidebar';
 import viewContent from '../../views/admin/dashboard/dashboard';
+import AuthService from '../../services/Auth';
 
-const Dashboard = class {
+const Dashboard = class extends AuthService {
   constructor() {
+    super();
     this.el = document.querySelector('#root');
     this.run();
   }
 
   render(members, tasks, expenses) {
     return `
-      ${viewNav()}
+      ${viewNav(this.currentlyCookie)}
       <div class='flex p-3'>
          ${viewSidebar()}
          ${viewContent(members, tasks, expenses)}
@@ -91,6 +93,35 @@ const Dashboard = class {
     });
   }
 
+  getStatusExpense() {
+    const formStatusTasks = document.querySelectorAll('.change-status-expense');
+
+    formStatusTasks.forEach((form) => {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const input = form.querySelector('.test');
+
+        this.sendDataExpense(input.value);
+      });
+    });
+  }
+
+  sendDataExpense(id) {
+    axios.post('http://localhost:50/expense/update', id, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then((response) => {
+        console.log(response);
+        toastr.success('Tâches terminé Félicitations !!');
+      })
+      .catch((response) => {
+        console.log(response);
+        toastr.error('Erreur lors de la mise à jour de la tâche');
+      });
+  }
+
   sendDataTask(id) {
     axios.post('http://localhost:50/task/update', id, {
       headers: {
@@ -117,6 +148,7 @@ const Dashboard = class {
       // render view with all data
       this.el.innerHTML = this.render(members, tasks, expenses);
       this.getStatusTask();
+      this.getStatusExpense();
     } else {
       this.el.innerHTML = '<p>Error loading dashboard. Please try again later.</p>';
     }

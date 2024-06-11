@@ -2,7 +2,7 @@ export default (item) => {
   // eslint-disable-next-line @typescript-eslint/naming-convention
   const {
     // eslint-disable-next-line @typescript-eslint/naming-convention
-    description, date_limit, name, id
+    description, date_limit, name, expense_id
   } = item;
 
   function formatDate(date) {
@@ -34,8 +34,8 @@ export default (item) => {
     <p class="block antialiased font-sans text-base leading-relaxed font-normal text-blue-gray-600">${description}</p>
   </div>
     <div class='flex items-center justify-between px-4'>
-    <form action="" class='change-status-task'>
-      <input type='hidden' value='${id}' name='task' class='test'>
+    <form action="" class='change-status-expense'>
+      <input type='hidden' value='${expense_id}' name='expense' class='test'>
       <button type='submit'>
         <svg xmlns="http://www.w3.org/2000/svg" width="1.3em" height="1.3em" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M3 13.5a.5.5 0 0 1-.5-.5V3a.5.5 0 0 1 .5-.5h9.25a.75.75 0 0 0 0-1.5H3a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9.75a.75.75 0 0 0-1.5 0V13a.5.5 0 0 1-.5.5zm12.78-8.82a.75.75 0 0 0-1.06-1.06L9.162 9.177L7.289 7.241a.75.75 0 1 0-1.078 1.043l2.403 2.484a.75.75 0 0 0 1.07.01z" clip-rule="evenodd"/></svg>
       </button>
