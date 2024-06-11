@@ -12,12 +12,12 @@ const DashboardExpenses = class {
     this.run();
   }
 
-  async render() {
+  async render(flatmates) {
     return `
       ${viewNav()}
       <div class='sm:flex container_dashboard'>
          ${viewSidebar()}
-         ${viewContent(await this.getCategoriesExpenses())}
+         ${viewContent(await this.getCategoriesExpenses(), flatmates)}
       </div>
     `;
   }
@@ -84,8 +84,7 @@ const DashboardExpenses = class {
     const user = await this.getUser();
     if (user) {
       const flatmates = await this.getFlatMates(user);
-      console.log(flatmates);
-      this.el.innerHTML = await this.render();
+      this.el.innerHTML = await this.render(flatmates);
       this.toggleModal();
       this.closeToggleModal();
     }

@@ -1,4 +1,4 @@
-export default () => (`
+export default (categoryItems, flatmates) => (`
   <div id="crud-modal" tabindex="-1" aria-hidden="true" class="modal-task hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
   <div class="relative p-4 w-full max-w-md max-h-full">
     <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
@@ -22,11 +22,13 @@ export default () => (`
               <div class="col-span-2 sm:col-span-1">
                 <label for="flatmates" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Colocataire</label>
                 <select id="flatmates" name='flatmates' class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                  ${flatmates.map((element) => `<option value="${element.firstname}">${element.firstname}</option>`).join('')}
                 </select>
               </div>
               <div class="col-span-2 sm:col-span-1">
                 <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Catégorie</label>
                 <select id="category" name='category' class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                  ${categoryItems.map((element) => `<option value="${element.name}">${element.name}</option>`).join('')}
                 </select>
               </div>
               <div class="col-span-2">
