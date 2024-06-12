@@ -6,19 +6,17 @@ use \PDO;
 use stdClass;
 
 class MessageModel extends SqlConnect {
-    public function add($name, $description, $created_at, $date_limit, $status, $priority, $category_id) {
-      $query = 'INSERT INTO tasks (name, description, created_at, date_limit, status, priority, category_id)
-                VALUES (:name, :description, :created_at, :date_limit, :status, :priority, :category_id)';
+    public function add(string $title, string $message, $created_at, int $user_id, int $home_id) {
+      $query = 'INSERT INTO messages (title, content, created_at, user_id, home_id)
+                VALUES (:title, :content, :created_at, :user_id, :home_id)';
 
       $stmt = $this->db->prepare($query);
       $stmt->execute([
-        ':name' => $name,
-        ':description' => $description,
+        ':title' => $title,
+        ':content' => $message,
         ':created_at' => $created_at,
-        ':date-limit' => $date_limit,
-        ':status' => $status,
-        ':priority' => $priority,
-        ':category_id' => $category_id,
+        ':user_id' => $user_id,
+        ':home_id' => $home_id
       ]);
     }
 

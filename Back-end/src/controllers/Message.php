@@ -18,18 +18,16 @@ class Message extends Controller {
 
   public function postMessage() {
     $this->formControl = new FormControl();
-    $email = $this->formControl->verifyEmail($this->body['email']);
-    $firstname = $this->formControl->cleanInput($this->body['firstname']);
-    $lastname = $this->formControl->cleanInput($this->body['lastname']);
     
-      if ($email) {
-      $passwordHashed = $this->formControl->hashPassword($this->body['password']);
-      $this->message->add($firstname, $lastname, $email, $passwordHashed);
-
-      return $this->message->getLast();
-    } else {
-      return false;
+    if (in_array('add', $this->params)) {
+      $title = $this->formControl->cleanInput($this->body['title']);
+      $message = $this->formControl->cleanInput($this->body['message']);
+      $created_at = date('Y-m-d H:i:s');
+      $userId = intval($this->body['idUser']);
+      $homeId = intval($this->body['idHome']);
+      return $this->message->add($title, $message, $created_at, $userId, $homeId);
     }
+    
   }
 
   public function deleteMessage() {
@@ -38,5 +36,9 @@ class Message extends Controller {
 
   public function getMessage() {
     return $this->message->getAll();
+  }
+
+  public function buildDataMessage() {
+    
   }
 }

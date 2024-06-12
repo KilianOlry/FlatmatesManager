@@ -10,6 +10,7 @@ use App\Controllers\Category;
 use App\Controllers\CategoryExpenses;
 use App\Controllers\Expense;
 use App\Controllers\Home;
+use App\Controllers\Message;
 
 new Router([
   'user/:id' => User::class,
@@ -31,4 +32,5 @@ new Router([
   'expense/:id' => Expense::class,
   'expense/:add' => Expense::class,
   'expense/:update' => Expense::class,
+  'message/:add' => Message::class
 ]);

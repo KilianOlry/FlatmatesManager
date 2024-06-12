@@ -7,6 +7,7 @@ use App\Models\CategoryModel;
 use App\Services\FormControl;
 
 class Category extends Controller {
+
   protected object $category;
   public $formControl;
 
