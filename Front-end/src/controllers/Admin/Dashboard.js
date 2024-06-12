@@ -3,9 +3,7 @@ import toastr from 'toastr';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import { Calendar } from '@fullcalendar/core';
-import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import listPlugin from '@fullcalendar/list';
 import viewNav from '../../views/global/nav';
 import viewSidebar from '../../views/admin/global/sidebar';
 import viewContent from '../../views/admin/dashboard/dashboard';
@@ -44,9 +42,10 @@ const Dashboard = class extends AuthService {
   }
 
   buildCalendar(task) {
+    console.log(task);
     const calendarEl = document.getElementById('calendar');
     const calendar = new Calendar(calendarEl, {
-      plugins: [dayGridPlugin, timeGridPlugin, listPlugin],
+      plugins: [timeGridPlugin],
       initialView: 'timeGridDay',
       headerToolbar: {
         right: 'next',
@@ -59,9 +58,7 @@ const Dashboard = class extends AuthService {
         id: item.id,
         title: item.title,
         start: item.start
-      })),
-      nowIndicator: true, // Indicateur pour l'heure actuelle
-      initialDate: new Date() // Afficher la date d'aujourd'hui par défaut
+      }))
     });
     calendar.render();
   }
@@ -115,7 +112,6 @@ const Dashboard = class extends AuthService {
       form.addEventListener('submit', (e) => {
         e.preventDefault();
         const input = form.querySelector('.test');
-        console.log(input);
         this.sendDataTask(input.value);
       });
     });
@@ -140,12 +136,10 @@ const Dashboard = class extends AuthService {
         'Content-Type': 'application/json'
       }
     })
-      .then((response) => {
-        console.log(response);
+      .then(() => {
         toastr.success('Tâches terminé Félicitations !!');
       })
-      .catch((response) => {
-        console.log(response);
+      .catch(() => {
         toastr.error('Erreur lors de la mise à jour de la tâche');
       });
   }

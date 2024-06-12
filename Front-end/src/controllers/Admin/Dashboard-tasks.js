@@ -17,7 +17,7 @@ const DashboardTask = class {
     return `
       ${viewNav()}
       <div class='sm:flex container_dashboard p-3 md:pl-6 gap-4'>
-         ${viewSidebar()}
+         ${viewSidebar(flatmates)}
          ${viewContent(await this.getCategorys(), flatmates)}
       </div>
     `;
@@ -118,12 +118,15 @@ const DashboardTask = class {
 
   async run() {
     const user = await this.getUser();
-    const flatmates = await this.getFlatMates(user);
 
-    this.el.innerHTML = await this.render(flatmates);
-    await this.toggleModel();
-    await this.closeToggleModal();
-    this.getDataForm();
+    if (user) {
+      const flatmates = await this.getFlatMates(user);
+
+      this.el.innerHTML = await this.render(flatmates);
+      this.getDataForm();
+      await this.toggleModel();
+      await this.closeToggleModal();
+    }
   }
 };
 

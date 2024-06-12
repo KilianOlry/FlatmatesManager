@@ -60,7 +60,7 @@ export default (flatmates) => (`
         </a>
       </li>
 
-      <section class='mt-18 p-3'>
+      <section class='absolute bottom-0 right-20 p-3'>
         ${flatmates.map((item) => member(item)).join('')}
       </section>
 

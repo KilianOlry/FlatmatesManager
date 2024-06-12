@@ -3,7 +3,7 @@ import tasksUser from './tasks/tasks';
 import expensesUser from './expenses/expenses';
 
 export default (tasks, expenses) => `
-  <section class='w-full px-8'>
+  <section class='w-full pr-8 pl-14'>
 
     <div class='flex justify-between'>
 
@@ -25,7 +25,7 @@ export default (tasks, expenses) => `
 
       </div>
       
-      <div class='bg-white p-5 rounded-md shadow-sm'>
+      <div class='bg-white p-5 rounded-lg shadow-sm'>
         <div id='calendar'></div>
       </div>
 

@@ -56,14 +56,16 @@
   .fc-header-toolbar{
     width: 300px;
   }
-}
-::-webkit-scrollbar {
-  width: 0.6rem;
-  background-color: #f0fdf9;
-  border-radius: 0.5rem;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: #ccfbed;
-  border-radius: 0.5rem;
+  .fc-view-harness{
+    ::-webkit-scrollbar {
+      width: 0.6rem;
+      background-color: #ccfbed;
+      border-radius: 0.5rem;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background-color: #5eeac8;
+      border-radius: 0.5rem;
+    }
+  }
 }
