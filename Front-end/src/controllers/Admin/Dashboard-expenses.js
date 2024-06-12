@@ -16,7 +16,7 @@ const DashboardExpenses = class {
     return `
       ${viewNav()}
       <div class='sm:flex container_dashboard p-3 md:pl-6 gap-4'>
-         ${viewSidebar()}
+         ${viewSidebar(flatmates)}
          ${viewContent(await this.getCategoriesExpenses(), flatmates)}
       </div>
     `;
