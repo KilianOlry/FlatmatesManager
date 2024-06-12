@@ -46,7 +46,6 @@ const Dashboard = class {
   }
 
   buildCalendar(task) {
-    console.log(task);
     const calendarEl = document.getElementById('calendar');
     const calendar = new Calendar(calendarEl, {
       plugins: [dayGridPlugin, timeGridPlugin, listPlugin],
@@ -62,16 +61,16 @@ const Dashboard = class {
         start: item.date_limit
       })),
       eventColor: '#5eeac8',
-      backgroundColor: '5eeac8'
+      backgroundColor: ''
     });
     calendar.render();
   }
 
-  render() {
+  render(task) {
     return `
       ${viewNav()}
       <div class='sm:flex green-50'>
-         ${viewSidebar()}
+         ${viewSidebar(task)}
          ${viewContent()}
       </div>
     `;
@@ -85,7 +84,8 @@ const Dashboard = class {
       // get task about user
       const task = await this.getTasks(user);
       // render the display
-      this.el.innerHTML = this.render();
+      this.el.innerHTML = this.render(task);
+
       this.buildCalendar(task);
     }
   }

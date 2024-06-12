@@ -48,3 +48,22 @@
 .ok{
   display: flex;
 }
+#calendar{
+  button {
+    background-color: #14b898;
+    border: none;
+  }
+  .fc-header-toolbar{
+    width: 300px;
+  }
+}
+::-webkit-scrollbar {
+  width: 0.6rem;
+  background-color: #f0fdf9;
+  border-radius: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ccfbed;
+  border-radius: 0.5rem;
+}

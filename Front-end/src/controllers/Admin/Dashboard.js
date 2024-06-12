@@ -2,6 +2,10 @@
 import toastr from 'toastr';
 import Cookies from 'js-cookie';
 import axios from 'axios';
+import { Calendar } from '@fullcalendar/core';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import listPlugin from '@fullcalendar/list';
 import viewNav from '../../views/global/nav';
 import viewSidebar from '../../views/admin/global/sidebar';
 import viewContent from '../../views/admin/dashboard/dashboard';
@@ -14,12 +18,12 @@ const Dashboard = class extends AuthService {
     this.run();
   }
 
-  render(members, tasks, expenses) {
+  render(members, tasks, expenses, calendar) {
     return `
       ${viewNav(this.currentlyCookie)}
       <div class='p-3 md:pl-6 flex container_dashboard'>
-        ${viewSidebar()}
-        ${viewContent(members, tasks, expenses)}
+        ${viewSidebar(members)}
+        ${viewContent(tasks, expenses, calendar)}
       </div>
     `;
   }
@@ -37,6 +41,29 @@ const Dashboard = class extends AuthService {
       console.error('Error fetching user:', error);
       return null;
     }
+  }
+
+  buildCalendar(task) {
+    const calendarEl = document.getElementById('calendar');
+    const calendar = new Calendar(calendarEl, {
+      plugins: [dayGridPlugin, timeGridPlugin, listPlugin],
+      initialView: 'timeGridDay',
+      headerToolbar: {
+        right: 'next',
+        left: 'prev',
+        center: 'title'
+      },
+      locale: 'fr',
+      height: 735,
+      events: task.map((item) => ({
+        id: item.id,
+        title: item.title,
+        start: item.start
+      })),
+      nowIndicator: true, // Indicateur pour l'heure actuelle
+      initialDate: new Date() // Afficher la date d'aujourd'hui par défaut
+    });
+    calendar.render();
   }
 
   async getTasks(dataUser) {
@@ -146,8 +173,10 @@ const Dashboard = class extends AuthService {
       const tasks = await this.getTasks(user);
       // Get expenses about user
       const expenses = await this.getExpenses(user);
-      // render view with all data
+      // Render view with all data
+
       this.el.innerHTML = this.render(members, tasks, expenses);
+      this.buildCalendar(tasks);
       this.getStatusTask();
       this.getStatusExpense();
     } else {

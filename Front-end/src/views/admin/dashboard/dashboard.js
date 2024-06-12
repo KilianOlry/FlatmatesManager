@@ -1,11 +1,11 @@
-import members from './members/members';
+// import members from '../global/members/members';
 import tasksUser from './tasks/tasks';
 import expensesUser from './expenses/expenses';
 
-export default (dataMembres, tasks, expenses) => `
-  <section class='w-full px-10'>
+export default (tasks, expenses) => `
+  <section class='w-full px-8'>
 
-    <div class='flex justify-between items-center'>
+    <div class='flex justify-between'>
 
       <div>
 
@@ -24,10 +24,13 @@ export default (dataMembres, tasks, expenses) => `
         </div>
 
       </div>
+      
+      <div class='bg-white p-5 rounded-md shadow-sm'>
+        <div id='calendar'></div>
+      </div>
 
-      ${members(dataMembres)}
-
-    </div>
-
+      </div>
+      
+      
   </section>
 `;

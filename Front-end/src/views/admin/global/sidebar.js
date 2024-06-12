@@ -1,3 +1,4 @@
+import member from './members/member';
 import iconProfil from '../../../assets/icons/sidebar/profil.svg';
 import iconCalendar from '../../../assets/icons/sidebar/calendar.svg';
 import iconTalk from '../../../assets/icons/sidebar/talk.svg';
@@ -5,7 +6,7 @@ import iconMoney from '../../../assets/icons/sidebar/money.svg';
 import iconTask from '../../../assets/icons/sidebar/task.svg';
 import iconDashboard from '../../../assets/icons/sidebar/dashboard.svg';
 
-export default () => (`
+export default (flatmates) => (`
 <button data-drawer-target="sidebar-multi-level-sidebar" data-drawer-toggle="sidebar-multi-level-sidebar" aria-controls="sidebar-multi-level-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
   <span class="sr-only">Open sidebar</span>
   <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -58,6 +59,10 @@ export default () => (`
           <span class="flex-1 ms-3 whitespace-nowrap">Mon profil</span>
         </a>
       </li>
+
+      <section class='mt-18 p-3'>
+        ${flatmates.map((item) => member(item)).join('')}
+      </section>
 
     </ul>
   </div>
