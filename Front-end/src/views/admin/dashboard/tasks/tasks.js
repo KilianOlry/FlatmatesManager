@@ -1,7 +1,7 @@
 import task from './task';
 
 const renderComponent = (dataTasks) => `
-  <section class='flex p-3'>
+  <section class='flex gap-7 p-3'>
     ${dataTasks.map((item) => task(item)).join('')}
   </section>
   `;

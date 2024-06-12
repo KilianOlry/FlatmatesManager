@@ -1,5 +1,5 @@
 export default () => (`
-  <section class='w-full md:w-1/2 px-10 m-auto'>
+  <section class='w-full p-10 m-auto bg-white'>
     <div id='calendar' class=''></div>
   </section>
     `

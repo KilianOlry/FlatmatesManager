@@ -1,3 +1,5 @@
+import axios from 'axios';
+import Cookies from 'js-cookie';
 import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -14,7 +16,37 @@ const Dashboard = class {
     this.run();
   }
 
-  buildCalendar() {
+  async getUser() {
+    try {
+      const data = JSON.parse(Cookies.get('Session'));
+      const response = await axios.post('http://localhost:50/user/:get', data, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching user:', error);
+      return null;
+    }
+  }
+
+  async getTasks(dataUser) {
+    try {
+      const response = await axios.get(`http://localhost:50/task/${dataUser.id}`, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching user:', error);
+      return null;
+    }
+  }
+
+  buildCalendar(task) {
+    console.log(task);
     const calendarEl = document.getElementById('calendar');
     const calendar = new Calendar(calendarEl, {
       plugins: [dayGridPlugin, timeGridPlugin, listPlugin],
@@ -23,7 +55,14 @@ const Dashboard = class {
         right: 'prev,next today',
         center: 'title',
         left: 'dayGridMonth,timeGridWeek,listWeek'
-      }
+      },
+      height: 750,
+      events: task.map((item) => ({
+        title: item.name,
+        start: item.date_limit
+      })),
+      eventColor: '#5eeac8',
+      backgroundColor: '5eeac8'
     });
     calendar.render();
   }
@@ -31,16 +70,24 @@ const Dashboard = class {
   render() {
     return `
       ${viewNav()}
-      <div class='sm:flex'>
+      <div class='sm:flex green-50'>
          ${viewSidebar()}
          ${viewContent()}
       </div>
     `;
   }
 
-  run() {
-    this.el.innerHTML = this.render();
-    this.buildCalendar();
+  async run() {
+    // get currently user
+    const user = await this.getUser();
+
+    if (user) {
+      // get task about user
+      const task = await this.getTasks(user);
+      // render the display
+      this.el.innerHTML = this.render();
+      this.buildCalendar(task);
+    }
   }
 };
 
