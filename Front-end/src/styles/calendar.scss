@@ -1,0 +1,21 @@
+#calendar{
+  button {
+    background-color: $green-500;
+    border: none;
+  }
+  .fc-header-toolbar{
+    width: 300px;
+  }
+  .fc-view-harness{
+    ::-webkit-scrollbar {
+      width: 0.6rem;
+      background-color: $green-100;
+      border-radius: 0.5rem;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background-color: $green-300;
+      border-radius: 0.5rem;
+    }
+  }
+}

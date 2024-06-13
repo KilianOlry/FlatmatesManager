@@ -7,87 +7,54 @@
 @import './styles/banner';
 @import './styles/login';
 @import './styles/tags';
+@import './styles/calendar';
+@import './styles/admin';
 
-.container_dashboard{
-  height: calc(100vh - 160px);
-}
-.sidebar{
-  height: calc(100vh - 160px);
-  background-color: #ccfbed;
-}
-.btn-modal{
-    position: absolute; /* postulat de départ */
-    top: 53%; left: 50%; /* à 50%/50% du parent référent */
-    transform: translate(-50%, -50%); /* décalage de 50% de sa propre taille */
-}
 .green-50{
-  background-color: #f0fdf9;
+  background-color: $green-50;
 }
 .green-100{
-  background-color: #ccfbed;
+  background-color: $green-100;
 }
 .green-300{
-  background-color: #5eeac8;
+  background-color: $green-300;
 }
-
 .green-600{
-  background-color: #0d947d;
+  background-color: $green-600;
 }
 .green-500{
-  background-color: #14b898;
+  background-color: $green-500;
 }
 .text-green-950{
-  color: #042f2a;
+  color: $green-950;
 }
 .text-green-900{
-  color: #134e45;
+  color: $green-900;
 }
 .blue-100{
-  background-color: #94c5fc;
+  background-color: $blue-100;
 }
 .blue-200{
-  background-color: #c0dbfd;
+  background-color: $blue-200;
 }
 .text-blue-200{
-  color: #94c5fc;
+  color: $blue-300;
 }
 .text-blue-500{
-  color: #2864e8;
+  color: $blue-500;
 }
 .orange-300{
-  background-color: #f9b778;
+  background-color: $orange-300;
 }
 .orange-200{
-  background-color: #fbd5ad;
+  background-color: $orange-200;
 }
 .orange-500{
-  background-color: #f27322;
+  background-color: $orange-500;
 }
 .text-orange-700{
-  // background-color: #fbd5ad;
-  color: #bc4012;
+  color: $orange-700;
 }
 .ok{
   display: flex;
-}
-#calendar{
-  button {
-    background-color: #14b898;
-    border: none;
-  }
-  .fc-header-toolbar{
-    width: 300px;
-  }
-  .fc-view-harness{
-    ::-webkit-scrollbar {
-      width: 0.6rem;
-      background-color: #ccfbed;
-      border-radius: 0.5rem;
-    }
-    
-    ::-webkit-scrollbar-thumb {
-      background-color: #5eeac8;
-      border-radius: 0.5rem;
-    }
-  }
 }
