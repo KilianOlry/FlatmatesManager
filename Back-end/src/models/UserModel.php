@@ -26,7 +26,7 @@ class UserModel extends SqlConnect {
     }
 
     public function get(int $id) {
-      $req = $this->db->prepare("SELECT * FROM users WHERE id = :id");
+      $req = $this->db->prepare("SELECT id, firstname, lastname, email, role, token, home_id FROM users WHERE id = :id");
       $req->execute(["id" => $id]);
 
       return $req->rowCount() > 0 ? $req->fetch(PDO::FETCH_ASSOC) : new stdClass();

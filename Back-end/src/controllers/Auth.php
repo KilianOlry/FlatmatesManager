@@ -42,6 +42,7 @@ class Auth extends Controller {
           session_start();
 
           $_SESSION['user'] = [
+            'id' => $user['id'],
             'firstname' => $user['firstname'],
             'lastname' => $user['lastname'],
             'email' => $user['email'],
