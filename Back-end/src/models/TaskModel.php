@@ -6,7 +6,8 @@ use \PDO;
 use stdClass;
 
 class TaskModel extends SqlConnect {
-    public function add ($message, $createdAt, $dateLimit, $priority, $categoryId, $worker, $homeId) {
+
+  public function add ($message, $createdAt, $dateLimit, $priority, $categoryId, $worker, $homeId) {
       $query = 'INSERT INTO tasks (description, created_at, date_limit, priority, category_id, user_id, home_id)
                 VALUES (:message, :created_at, :date_limit, :priority, :category_id, :worker, :home_id)';
 
@@ -28,9 +29,9 @@ class TaskModel extends SqlConnect {
     }
 
     public function get(int $id) {
-      $req = $this->db->prepare("SELECT tasks.*, categorys_task.* FROM tasks
+      $req = $this->db->prepare("SELECT tasks.id AS task_id, tasks.*, categorys_task.* FROM tasks
                                 INNER JOIN categorys_task ON tasks.category_id = categorys_task.id
-                                WHERE tasks.user_id = :id AND tasks.status != :status 
+                                WHERE tasks.user_id = :id AND tasks.status != :status
                                 ORDER BY tasks.date_limit DESC");
       $req->execute(["id" => $id, "status" => "Terminé"]);
 
@@ -52,11 +53,10 @@ class TaskModel extends SqlConnect {
     }
 
     public function update(int $id) {
-        $query = "UPDATE tasks SET status = 'Terminé' WHERE category_id = :id";
+        $query = "UPDATE tasks SET status = 'Terminé' WHERE id = :id";
         $stmt = $this->db->prepare($query);
         $stmt->execute([
           ':id' => $id,
         ]);
-        return 'ok';
     }
 }

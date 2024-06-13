@@ -32,5 +32,6 @@ new Router([
   'expense/:id' => Expense::class,
   'expense/:add' => Expense::class,
   'expense/:update' => Expense::class,
-  'message/:add' => Message::class
+  'message/:id' => Message::class,
+  'message/:add' => Message::class,
 ]);

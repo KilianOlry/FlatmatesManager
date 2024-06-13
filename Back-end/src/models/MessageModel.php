@@ -32,9 +32,10 @@ class MessageModel extends SqlConnect {
       return $req->rowCount() > 0 ? $req->fetch(PDO::FETCH_ASSOC) : new stdClass();
     }
 
-    public function getAll() {
-      $req = $this->db->prepare("SELECT * FROM categorys_task");
-      $req->execute();
+    public function getAll(int $homeId) {
+      $req = $this->db->prepare("SELECT * FROM messages WHERE home_id = :home_id");
+
+      $req->execute(['home_id' => $homeId]);
 
       return $req->rowCount() > 0 ? $req->fetchAll(PDO::FETCH_ASSOC) : new stdClass();
     }

@@ -35,15 +35,24 @@ class Task extends Controller {
       $categoryId = $this->category->getByName($category);
       $user = $this->user->ifExist($this->body['tokenUser']);
       $flatmate = $this->formControl->cleanInput($this->body['flatmates']);
-      $workerflatmate = $this->user->getByName($flatmate);
-      return $this->task->add($message, $createdAt, $dateLimit, $priority, $categoryId['id'], $workerflatmate['id'], $user['home_id']);
+      $payor = $this->user->getByName($flatmate);
+
+      $data = [
+        'message' => $message,
+        'created_at' => $createdAt,
+        'priority' => $priority,
+        'category' => $category,
+        'l\'id de la catégorie : ' => $categoryId,
+        'colocation numéro : ' => $user['home_id'],
+        'coloc' => $flatmate,
+        'payor' => $payor 
+      ];
+      return $this->task->add($message, $createdAt, $dateLimit, $priority, $categoryId['id'], $payor['id'], $user['home_id']);
     
     } elseif (in_array('update', $this->params)) {
-      return $this->params['id'];
       return $this->task->update($this->body[0]);
 
     }
-
 
   }
 
