@@ -85,8 +85,7 @@ const Homepage = class extends Auth {
         'Content-Type': 'application/json'
       }
     })
-      .then((responseApi) => {
-        console.log(responseApi);
+      .then(() => {
         toastr.success('Bienvenue dans la colocation');
       })
       .catch(() => {

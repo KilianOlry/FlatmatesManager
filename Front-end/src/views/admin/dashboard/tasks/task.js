@@ -2,7 +2,7 @@ export default (item) => {
   // eslint-disable-next-line @typescript-eslint/naming-convention
   const {
     // eslint-disable-next-line @typescript-eslint/naming-convention
-    description, date_limit, name, priority, id
+    description, date_limit, name, priority, task_id
   } = item;
 
   function formatDate(date) {
@@ -31,7 +31,7 @@ export default (item) => {
   </div>
     <div class='flex items-center justify-between px-4 pb-2'>
       <form action="" class='change-status-task'>
-        <input type='hidden' value='${id}' name='task' class='test'>
+        <input type='hidden' value='${task_id}' name='task' class='test'>
         <span id="badge-dismiss-green" class="inline-flex items-center px-2 py-1 me-2 text-sm font-medium text-green-800 bg-green-100 rounded dark:bg-green-900 dark:text-green-300">
           Terminer
           <button type="submit" class="inline-flex items-center p-1 ms-2 text-sm text-green-400 bg-transparent rounded-sm hover:bg-green-200 hover:text-green-900 dark:hover:bg-green-800 dark:hover:text-green-300" data-dismiss-target="#badge-dismiss-green" aria-label="Remove">

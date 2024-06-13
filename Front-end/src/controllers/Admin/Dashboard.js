@@ -184,10 +184,11 @@ const Dashboard = class extends AuthService {
       const tasks = await this.getTasks(user);
       // Get expenses about user
       const expenses = await this.getExpenses(user);
-      // Get all messages avout flatmate
+      // Get all messages about flatmate
       const messages = await this.getMessages(user);
       // Render view with all data
       this.el.innerHTML = this.render(members, tasks, expenses, messages);
+      // Build calendar with tasks Users
       this.buildCalendar(tasks);
       this.getStatusTask();
       this.getStatusExpense();

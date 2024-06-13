@@ -72,12 +72,10 @@ const DashboardMessage = class {
         'Content-Type': 'application/json'
       }
     })
-      .then((response) => {
-        console.log(response);
+      .then(() => {
         toastr.success('Message publié au sein de la colocation');
       })
       .catch(() => {
-        console.log(error);
         toastr.error('Erreur lors de l\'envoi du message');
       });
   }

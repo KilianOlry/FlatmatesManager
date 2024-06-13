@@ -2,7 +2,7 @@ export default (item) => {
   // eslint-disable-next-line @typescript-eslint/naming-convention
   const {
     // eslint-disable-next-line @typescript-eslint/naming-convention
-    title, content, user_id, created_at
+    title, content, created_at
   } = item;
 
   function formatDate(date) {
@@ -29,20 +29,6 @@ export default (item) => {
   <div class="border-t border-blue-gray-50 p-4">
     <p class="block antialiased font-sans text-base leading-relaxed font-normal text-blue-gray-600">${content}</p>
   </div>
-    <div class='flex items-center justify-between px-4 mb-2'>
-    <form action="" class='change-status-expense'>
-      <input type='hidden' value='${user_id}' name='expense' class='test'>
-      <span id="badge-dismiss-green" class="inline-flex items-center px-2 py-1 me-2 text-sm font-medium text-orange-700 orange-200 rounded dark:bg-green-900 dark:text-green-300">
-          Terminer
-          <button type="submit" class="inline-flex items-center p-1 ms-2 text-sm text-orange-400 bg-transparent rounded-sm hover:bg-orange-300 hover:text-orange-900" data-dismiss-target="#badge-dismiss-green" aria-label="Remove">
-            <svg class="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-            </svg>
-            <span class="sr-only">Remove badge</span>
-          </button>
-        </span>
-    </form>
-    </div>
 </div>
     `;
 };

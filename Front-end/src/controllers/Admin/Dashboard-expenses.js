@@ -90,12 +90,11 @@ const DashboardExpenses = class {
         'Content-Type': 'application/json'
       }
     })
-      .then((response) => {
-        console.log(response);
-        // toastr.success('Félicitation Votre compte est créer !! Veuillez vous connecter');
+      .then(() => {
+        toastr.success('Dépense crée avec succès');
       })
       .catch(() => {
-        toastr.error('Erreur lors de la création de votre compte');
+        toastr.error('Erreur lors de la création de la dépense');
       });
   }
 
