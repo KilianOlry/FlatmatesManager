@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import viewNav from '../../views/global/nav';

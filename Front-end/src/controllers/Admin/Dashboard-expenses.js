@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import toastr from 'toastr';
 import Cookies from 'js-cookie';
 import axios from 'axios';
@@ -79,7 +80,6 @@ const DashboardExpenses = class {
         description: formData.get('description'),
         price: formData.get('price')
       };
-      console.log(data);
       this.sendData(data);
     });
   }

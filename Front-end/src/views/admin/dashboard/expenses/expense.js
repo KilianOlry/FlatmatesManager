@@ -38,7 +38,7 @@ export default (item) => {
       <input type='hidden' value='${expense_id}' name='expense' class='test'>
       <span id="badge-dismiss-green" class="inline-flex items-center px-2 py-1 me-2 text-sm font-medium text-blue-500 blue-200 rounded dark:bg-green-900 dark:text-green-300">
           Terminer
-          <button type="submit" class="inline-flex items-center p-1 ms-2 text-sm text-blue-200 bg-transparent rounded-sm hover:bg-blue-200 hover:text-blue-900" data-dismiss-target="#badge-dismiss-green" aria-label="Remove">
+          <button type="submit" class="inline-flex items-center p-1 ms-2 text-sm text-blue-200 bg-transparent rounded-sm hover:bg-blue-300 hover:text-blue-900" data-dismiss-target="#badge-dismiss-green" aria-label="Remove">
             <svg class="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
             </svg>

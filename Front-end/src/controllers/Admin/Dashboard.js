@@ -16,12 +16,12 @@ const Dashboard = class extends AuthService {
     this.run();
   }
 
-  render(members, tasks, expenses, calendar) {
+  render(members, tasks, expenses, calendar, messages) {
     return `
       ${viewNav(this.currentlyCookie)}
       <div class='p-3 md:pl-6 flex container_dashboard'>
         ${viewSidebar(members)}
-        ${viewContent(tasks, expenses, calendar)}
+        ${viewContent(tasks, expenses, calendar, messages)}
       </div>
     `;
   }
@@ -42,7 +42,6 @@ const Dashboard = class extends AuthService {
   }
 
   buildCalendar(task) {
-    console.log(task);
     const calendarEl = document.getElementById('calendar');
     const calendar = new Calendar(calendarEl, {
       plugins: [timeGridPlugin],
@@ -137,7 +136,7 @@ const Dashboard = class extends AuthService {
       }
     })
       .then(() => {
-        toastr.success('Tâches terminé Félicitations !!');
+        this.regarcheDom();
       })
       .catch(() => {
         toastr.error('Erreur lors de la mise à jour de la tâche');
@@ -151,11 +150,29 @@ const Dashboard = class extends AuthService {
       }
     })
       .then(() => {
-        toastr.success('Tâches terminé Félicitations !!');
+        this.regarcheDom();
       })
       .catch(() => {
         toastr.error('Erreur lors de la mise à jour de la tâche');
       });
+  }
+
+  async getMessages(dataUser) {
+    try {
+      const response = await axios.get(`http://localhost:50/message/${dataUser.home_id}`, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching members:', error);
+      return null;
+    }
+  }
+
+  regarcheDom() {
+    window.location.href = '/dashboard';
   }
 
   async run() {
@@ -167,9 +184,10 @@ const Dashboard = class extends AuthService {
       const tasks = await this.getTasks(user);
       // Get expenses about user
       const expenses = await this.getExpenses(user);
+      // Get all messages avout flatmate
+      const messages = await this.getMessages(user);
       // Render view with all data
-
-      this.el.innerHTML = this.render(members, tasks, expenses);
+      this.el.innerHTML = this.render(members, tasks, expenses, messages);
       this.buildCalendar(tasks);
       this.getStatusTask();
       this.getStatusExpense();

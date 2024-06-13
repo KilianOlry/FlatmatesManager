@@ -4,7 +4,7 @@ const renderComponent = (dataTasks) => {
   const hasExpenses = Object.keys(dataTasks).length > 0;
 
   const content = hasExpenses
-    ? `<section class='flex gap-7 p-3'>
+    ? `<section class='flex gap-10 p-3'>
         ${dataTasks.map(task).join('')}
        </section>`
 

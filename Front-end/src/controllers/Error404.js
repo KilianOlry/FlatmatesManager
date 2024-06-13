@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const Quatre04 = class {
   constructor() {
     this.el = document.querySelector('#root');

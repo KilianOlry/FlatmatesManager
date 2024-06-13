@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import toastr from 'toastr';
 import axios from 'axios';
 import Cookies from 'js-cookie';

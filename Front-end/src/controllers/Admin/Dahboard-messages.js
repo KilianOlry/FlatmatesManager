@@ -1,4 +1,6 @@
+/* eslint-disable no-console */
 import axios from 'axios';
+import toastr, { error } from 'toastr';
 import Cookies from 'js-cookie';
 import viewNav from '../../views/global/nav';
 import viewSidebar from '../../views/admin/global/sidebar';
@@ -30,7 +32,7 @@ const DashboardMessage = class {
         }
       });
       return response.data;
-    } catch (error) {
+    } catch (response) {
       return null;
     }
   }
@@ -43,10 +45,41 @@ const DashboardMessage = class {
         }
       });
       return response.data;
-    } catch (error) {
+    } catch (response) {
       console.error('Error fetching members:', error);
       return null;
     }
+  }
+
+  getDataForm(user) {
+    const formCreateMessage = document.querySelector('.form-create-message');
+    formCreateMessage.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const formData = new FormData(formCreateMessage);
+      const data = {
+        title: formData.get('title'),
+        message: formData.get('message'),
+        idUser: user.id,
+        idHome: user.home_id
+      };
+      this.sendMessage(data);
+    });
+  }
+
+  sendMessage(message) {
+    axios.post('http://localhost:50/message/add', message, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then((response) => {
+        console.log(response);
+        toastr.success('Message publié au sein de la colocation');
+      })
+      .catch(() => {
+        console.log(error);
+        toastr.error('Erreur lors de l\'envoi du message');
+      });
   }
 
   async run() {
@@ -55,6 +88,7 @@ const DashboardMessage = class {
     if (user) {
       const flatmates = await this.getFlatMates(user);
       this.el.innerHTML = await this.render(flatmates);
+      this.getDataForm(user);
     }
   }
 };
