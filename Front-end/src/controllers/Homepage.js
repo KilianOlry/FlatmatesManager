@@ -3,8 +3,8 @@ import toastr from 'toastr';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import viewNav from '../views/global/nav';
-import viewBanner from '../views/global/banner';
-import viewFooter from '../views/global/footer';
+import viewBanner from '../views/homepage/banner';
+import viewFooter from '../views/homepage/footer';
 import containerCard from '../views/homepage/container-cards';
 import Auth from '../services/Auth';
 
@@ -20,7 +20,7 @@ const Homepage = class extends Auth {
       ${viewNav(this.currentlyCookie)}
 
       <main>
-      
+    
         ${viewBanner()}
         ${containerCard(this.ifAdmin())}
 
