@@ -86,7 +86,10 @@ const Homepage = class extends Auth {
       }
     })
       .then(() => {
-        toastr.success('Bienvenue dans la colocation');
+        toastr.success('Bienvenue dans la colocation. Vous serez dirigé dans 5secs dans votre Dashboard');
+        setTimeout(() => {
+          window.location.href = '/dashboard';
+        }, 5000);
       })
       .catch(() => {
         toastr.error('Erreur token incorrect');
