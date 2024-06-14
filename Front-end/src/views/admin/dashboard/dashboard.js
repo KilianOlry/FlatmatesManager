@@ -5,26 +5,26 @@ import expensesUser from './expenses/expenses';
 export default (tasks, expenses, messages) => `
   <section class='w-full pr-8 pl-14'>
 
-    <div class='flex justify-between'>
+    <div class='flex flex-col-reverse lg:flex-row justify-between'>
 
       <div>
 
         <div>
-          <h1 class="tracking-in-expand my-4 text-2xl capitalize font-extrabold text-green-900 dark:text-white md:text-5xl lg:text-4xl">
+          <h1 class="tracking-in-expand my-4 text-4xl capitalize font-extrabold text-green-900">
             <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-700 from-sky-400">Tâches à</span> faire
           </h1>
           ${tasksUser(tasks)}
         </div>
 
         <div>
-          <h1 class="tracking-in-expand my-4 text-2xl capitalize font-extrabold text-green-900 dark:text-white md:text-5xl lg:text-4xl">
+          <h1 class="tracking-in-expand my-4 text-4xl capitalize font-extrabold text-green-900 dark:text-white">
             <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-700 from-sky-400">Factures </span>à payer
           </h1>
           ${expensesUser(expenses)}
         </div>
 
         <div>
-          <h1 class="tracking-in-expand my-4 text-2xl capitalize font-extrabold text-green-900 dark:text-white md:text-5xl lg:text-4xl">
+          <h1 class="tracking-in-expand my-4 text-4xl capitalize font-extrabold text-green-900 dark:text-white">
             <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-700 from-sky-400">Messages </span>important
           </h1>
           ${messageFlatmates(messages)}

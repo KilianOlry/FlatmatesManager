@@ -46,6 +46,20 @@ const Dashboard = class {
     }
   }
 
+  async getMembers(user) {
+    try {
+      const response = await axios.post('http://localhost:50/home/get', user, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching members:', error);
+      return null;
+    }
+  }
+
   buildCalendar(task) {
     const calendarEl = document.getElementById('calendar');
     const calendar = new Calendar(calendarEl, {
@@ -56,22 +70,22 @@ const Dashboard = class {
         center: 'title',
         left: 'dayGridMonth,timeGridWeek,listWeek'
       },
-      height: 750,
+      height: 700,
+      locale: 'fr',
       events: task.map((item) => ({
         title: item.name,
         start: item.date_limit
       })),
-      eventColor: '#5eeac8',
-      backgroundColor: ''
+      eventColor: '#5eeac8'
     });
     calendar.render();
   }
 
-  render(task) {
+  async render(members) {
     return `
       ${viewNav()}
-      <div class='sm:flex green-50'>
-         ${viewSidebar(task)}
+      <div class='p-3 md:pl-6 flex'>
+         ${viewSidebar(members)}
          ${viewContent()}
       </div>
     `;
@@ -82,10 +96,12 @@ const Dashboard = class {
     const user = await this.getUser();
 
     if (user) {
+      // get members
+      const members = await this.getMembers(user);
       // get task about user
       const task = await this.getTasks(user);
       // render the display
-      this.el.innerHTML = this.render(task);
+      this.el.innerHTML = await this.render(members);
 
       this.buildCalendar(task);
     }

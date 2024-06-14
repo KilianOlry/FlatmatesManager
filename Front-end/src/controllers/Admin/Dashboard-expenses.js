@@ -5,6 +5,7 @@ import axios from 'axios';
 import viewNav from '../../views/global/nav';
 import viewSidebar from '../../views/admin/global/sidebar';
 import viewContent from '../../views/admin/expenses/expenses';
+import Utiles from '../../services/Utiles';
 
 const DashboardExpenses = class {
   constructor() {
@@ -16,7 +17,7 @@ const DashboardExpenses = class {
   async render(flatmates) {
     return `
       ${viewNav()}
-      <div class='sm:flex container_dashboard p-3 md:pl-6 gap-4'>
+      <div class='flex flex-col xl:flex-row container_dashboard p-3 md:pl-6 gap-4'>
          ${viewSidebar(flatmates)}
          ${viewContent(await this.getCategoriesExpenses(), flatmates)}
       </div>
@@ -124,6 +125,7 @@ const DashboardExpenses = class {
       this.getDataForm();
       this.toggleModal();
       this.closeToggleModal();
+      this.toggleSidebar = new Utiles();
     }
   }
 };

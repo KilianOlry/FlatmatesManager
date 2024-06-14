@@ -7,15 +7,15 @@ import iconTask from '../../../assets/icons/sidebar/task.svg';
 import iconDashboard from '../../../assets/icons/sidebar/dashboard.svg';
 
 export default (flatmates) => (`
-<button data-drawer-target="sidebar-multi-level-sidebar" data-drawer-toggle="sidebar-multi-level-sidebar" aria-controls="sidebar-multi-level-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
-  <span class="sr-only">Open sidebar</span>
-  <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-  <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
-  </svg>
+<button class="sidebar-btn w-8 items-center text-sm text-gray-500 rounded-lg xl:hidden focus:outline-none focus:ring-2 focus:ring-gray-200">
+  <svg xmlns="http://www.w3.org/2000/svg" class='w-6 h-6' viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-panel-right-close"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M15 3v18"/><path d="m8 9 3 3-3 3"/></svg>
 </button>
 
-<aside id="sidebar-multi-level-sidebar" class="fixed top-0 left-0 sm:relative z-40 w-64 transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
-  <div class="sidebar px-3 py-4 overflow-y-auto bg-white md:rounded-2xl shadow-sm dark:bg-gray-800">
+<aside class="sidebar-multi-level-sidebar fixed top-0 left-0 xl:relative z-40 w-64 transition-transform -translate-x-full xl:translate-x-0">
+  <div class="sidebar px-3 py-4 relative md:rounded-2xl shadow-sm dark:bg-gray-800">
+    <button class='absolute close-sidebar -right-0 green-100 p-2 text-gray-500 rounded-lg shadow-sm xl:hidden'>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-panel-left-close"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m16 15-3-3 3-3"/></svg>
+    </button>
     <ul class="space-y-2 font-medium">
 
       <li>

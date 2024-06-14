@@ -8,6 +8,7 @@ import viewNav from '../../views/global/nav';
 import viewSidebar from '../../views/admin/global/sidebar';
 import viewContent from '../../views/admin/dashboard/dashboard';
 import AuthService from '../../services/Auth';
+import Utiles from '../../services/Utiles';
 
 const Dashboard = class extends AuthService {
   constructor() {
@@ -19,7 +20,7 @@ const Dashboard = class extends AuthService {
   render(members, tasks, expenses, calendar, messages) {
     return `
       ${viewNav(this.currentlyCookie)}
-      <div class='p-3 md:pl-6 flex container_dashboard'>
+      <div class='flex flex-col xl:flex-row p-3 md:pl-6 flex container_dashboard'>
         ${viewSidebar(members)}
         ${viewContent(tasks, expenses, calendar, messages)}
       </div>
@@ -192,6 +193,7 @@ const Dashboard = class extends AuthService {
       this.buildCalendar(tasks);
       this.getStatusTask();
       this.getStatusExpense();
+      this.toggleSidebar = new Utiles();
     } else {
       this.el.innerHTML = '<p>Error loading dashboard. Please try again later.</p>';
     }
