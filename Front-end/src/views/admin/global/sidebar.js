@@ -20,42 +20,42 @@ export default (flatmates) => (`
 
       <li>
         <a href="/dashboard" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-          <img src='${iconDashboard}' class='flex-shrink-0 size-8 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white'>
+          <img src='${iconDashboard}' alt='icone' class='flex-shrink-0 size-8 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white'>
           <span class="ms-3">Tableau de bord</span>
         </a>
       </li>
 
       <li>
         <a href="/dashboard-tasks" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-          <img src='${iconTask}' class='flex-shrink-0 size-8 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white'>
+          <img src='${iconTask}' alt='icone' class='flex-shrink-0 size-8 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white'>
           <span class="ms-3">Tâches</span>
         </a>
       </li>
 
       <li>
         <a href="/dashboard-expenses" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-          <img src='${iconMoney}' class='flex-shrink-0 size-8 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white'>
+          <img src='${iconMoney}' alt='icone' class='flex-shrink-0 size-8 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white'>
           <span class="ms-3">Dépenses</span>
         </a>
       </li>
 
       <li>
         <a href="/dashboard-messages" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-          <img src='${iconTalk}' class='flex-shrink-0 size-8 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white'>
+          <img src='${iconTalk}' alt='icone' class='flex-shrink-0 size-8 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white'>
           <span class="flex-1 ms-3 whitespace-nowrap">Messages</span>
         </a>
       </li>
 
       <li>
         <a href="/dashboard-calendar" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-          <img src='${iconCalendar}' class='flex-shrink-0 size-8 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white'>
+          <img src='${iconCalendar}' alt='icone' class='flex-shrink-0 size-8 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white'>
           <span class="flex-1 ms-3 whitespace-nowrap">Calendrier</span>
         </a>
       </li>
 
       <li>
         <a href="/dashboard-myprofil" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-          <img src='${iconProfil}' class='flex-shrink-0 size-8 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white'>
+          <img src='${iconProfil}' alt='icone' class='flex-shrink-0 size-8 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white'>
           <span class="flex-1 ms-3 whitespace-nowrap">Mon profil</span>
         </a>
       </li>

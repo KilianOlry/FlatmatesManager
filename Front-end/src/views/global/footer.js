@@ -1,4 +1,4 @@
-import logo from '../../assets/logo.webp';
+import logo from '../../assets/icons/favicon.svg';
 
 export default () => (`
 <footer class="bg-white dark:bg-gray-900">
