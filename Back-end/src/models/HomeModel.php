@@ -30,13 +30,12 @@ class HomeModel extends SqlConnect {
     }
 
     public function getMembersHome($id) {
-      $req = $this->db->prepare("SELECT * FROM users 
-                                INNER JOIN homes ON users.home_id = homes.id
+      $req = $this->db->prepare("SELECT * FROM users  INNER JOIN homes ON users.home_id = homes.id
                                 WHERE homes.id = :home_id");
       $req->execute([
         ':home_id' => $id
       ]);
-      // return $id;
+      
       return $req->rowCount() > 0 ? $req->fetchAll(PDO::FETCH_ASSOC) : new stdClass();
     }
 

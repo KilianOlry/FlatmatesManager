@@ -31,6 +31,18 @@ class Home extends Controller {
     }
   }
 
+  public function deleteHome() {
+    return $this->home->delete(intval($this->params['id']));
+  }
+
+  public function getHome() {
+    return $this->home->get(intval($this->params['id']));
+  }
+
+  public function putHome() {
+    return $this->home->update();
+  }
+
   public function joinHome () {
     $formControl = new FormControl();
     $ifgrantedService = new ifGranted();
@@ -59,18 +71,4 @@ class Home extends Controller {
     return $this->home->getLast();
   }
 
-  public function deleteHome() {
-    return $this->home->delete(intval($this->params['id']));
   }
-
-  public function getHome() {
-
-    return $this->home->get(intval($this->params['id']));
-  }
-
-
-    public function putHome() {
-      return $this->home->update();
-    }
-  }
-
