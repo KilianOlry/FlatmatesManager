@@ -11,7 +11,7 @@ export default (userInformation) => (`
     <div class='flex items-center'>
       <div class="sm:mt-40 mt-24 my-auto max-w-md border-2 border-gray-200 rounded-[20px] p-3 bg-gray-800"> 
         <div class="text-center m-6">
-          <h1 class="text-3xl font-semibold text-gray-100">Vos informations personnel</h1>
+          <h1 class="text-3xl font-semibold text-gray-100">Vos informations personnelles</h1>
         </div>
 
         <div class="m-6">

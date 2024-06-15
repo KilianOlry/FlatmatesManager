@@ -92,7 +92,7 @@ const DashboardExpenses = class {
       }
     })
       .then(() => {
-        toastr.success('Dépense crée avec succès');
+        toastr.success('Dépense Ajoutée');
       })
       .catch(() => {
         toastr.error('Erreur lors de la création de la dépense');

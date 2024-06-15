@@ -13,42 +13,52 @@ import './index.scss';
 
 const routes = [{
   url: '/',
+  requireCookie: false,
   controller: Homepage
 },
 {
   url: '/login',
+  requireCookie: false,
   controller: Login
 },
 {
   url: '/logout',
+  requireCookie: false,
   controller: Logout
 },
 {
   url: '/register',
+  requireCookie: false,
   controller: Register
 },
 {
   url: '/dashboard',
+  requireCookie: true,
   controller: Dashboard
 },
 {
   url: '/dashboard-myprofil',
+  requireCookie: true,
   controller: DashboardMyProfil
 },
 {
   url: '/dashboard-calendar',
+  requireCookie: true,
   controller: DashboardCalendar
 },
 {
   url: '/dashboard-tasks',
+  requireCookie: true,
   controller: DashboardTask
 },
 {
   url: '/dashboard-expenses',
+  requireCookie: true,
   controller: DashboardExpenses
 },
 {
   url: '/dashboard-messages',
+  requireCookie: true,
   controller: DashboardMessage
 }
 ];
