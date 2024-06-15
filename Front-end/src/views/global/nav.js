@@ -4,7 +4,7 @@ import favicon from '../../assets/icons/favicon.svg';
 
 export default (stmtUser) => `
 <nav class="border-gray-200 dark:bg-gray-900 border-solid border-gray-200 border-b">
-  <div class="container flex flex-wrap items-center justify-between mx-auto px-4">
+  <div class="container flex flex-wrap items-center justify-between mx-auto px-4 md:px-12">
     <a href="/" class="">
       <img src='${favicon}' alt='logo de la colocation'>
     </a>

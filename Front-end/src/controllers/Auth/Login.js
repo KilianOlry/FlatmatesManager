@@ -55,8 +55,8 @@ const Login = class {
         Cookies.set('Session', JSON.stringify(this.buildCookie(responseApi.data)));
         window.location.href = '/';
       })
-      .catch(() => {
-        toastr.error("L'adresse mail et ou le mode de passe est incorrect");
+      .catch((response) => {
+        toastr.error(response.response.data);
       });
   }
 

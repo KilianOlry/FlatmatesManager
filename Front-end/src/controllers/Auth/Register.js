@@ -36,14 +36,15 @@ const Register = class {
         'Content-Type': 'application/json'
       }
     })
-      .then(() => {
-        toastr.success('Félicitation Votre compte est créer !! Veuillez vous connecter');
+      .then((response) => {
+        toastr.success(response.data);
         setTimeout(() => {
           window.location.href = '/login';
         }, 3000);
       })
-      .catch(() => {
-        toastr.error('Erreur lors de la création de votre compte');
+      .catch((response) => {
+        console.log();
+        toastr.error(response.response.data);
       });
   }
 
