@@ -6,7 +6,7 @@ export default (ifAdmin) => (`
   <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-700 from-sky-400">Nous Vous</span> 
   Proposons 
 </h1>
-<div class='flex px-2 flex-wrap container mx-auto gap-16 justify-center my-12'>
+<div class='flex px-2 flex-wrap container mx-auto gap-16 justify-center my-12' id='flatmate'>
   ${card('Rejoindre une colocation', connect)}
 
   ${ifAdmin ? `
