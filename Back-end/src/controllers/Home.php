@@ -65,10 +65,20 @@ class Home extends Controller {
 
     $name = $formControl->cleanInput($body['name']);
     $adress = $formControl->cleanInput($body['adress']);
-    $token = bin2hex($adress);
+    $token = $this->generateRandomToken();
 
     $this->home->add($adress, $name, $token);
+
     return $this->home->getLast();
   }
 
+  function generateRandomToken($length = 6) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
   }
