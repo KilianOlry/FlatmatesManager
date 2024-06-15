@@ -18,13 +18,14 @@ const Homepage = class extends Auth {
 
   renderSkeleton() {
     return `
+
       ${viewNav(this.currentlyCookie)}
 
       <main>
-    
+
         ${viewFirstSection()}
         ${viewSecondSection()}
-        ${containerCard(this.ifAdmin())}
+        ${this.currentlyCookie ? `${containerCard(this.ifAdmin())}` : ''}
 
       </main>
 

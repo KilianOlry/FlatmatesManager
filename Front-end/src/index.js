@@ -13,22 +13,19 @@ import './index.scss';
 
 const routes = [{
   url: '/',
-  requireCookie: false,
   controller: Homepage
 },
 {
   url: '/login',
-  requireCookie: false,
   controller: Login
 },
 {
   url: '/logout',
-  requireCookie: false,
+  requireCookie: true,
   controller: Logout
 },
 {
   url: '/register',
-  requireCookie: false,
   controller: Register
 },
 {
