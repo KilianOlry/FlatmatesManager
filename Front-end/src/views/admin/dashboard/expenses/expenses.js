@@ -7,7 +7,7 @@ const renderComponent = (dataExpense) => {
         ${dataExpense.map(expense).join('')}
        </section>`
 
-    : "<h2 class='text-xl'>Vous n'avez pas de dépenses de prévu<h2>";
+    : "<h2 class='text-xl'>Aucune dépense prévue.<h2>";
 
   return content;
 };
