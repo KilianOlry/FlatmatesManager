@@ -10,7 +10,7 @@ export default () => (`
   </div>
 
   <div class="order-1 flex justify-center md:justify-end items-center md:order-2">
-    <img class='w-[310px] h-[200px] sm:w-[380px] sm:h-[300px] lg:sm:w-[480px] lg:h-[400px] object-contain order-1 md:order-2' src="https://blush.design/api/download?shareUri=nkISswa8wcWpfJdN&c=Hair_0%7E878787-0.1%7E0f0f0f-0.2%7Ec38741-0.3%7E878787_Skin_0%7E7d4439-0.1%7Eecafa3-0.2%7Ef6cbc3-0.3%7Ef6cbc3&w=800&h=800&fm=png" alt="Image Description">
+    <img class='jello-horizontal w-[310px] h-[200px] sm:w-[380px] sm:h-[300px] lg:sm:w-[480px] lg:h-[400px] object-contain order-1 md:order-2' src="https://blush.design/api/download?shareUri=nkISswa8wcWpfJdN&c=Hair_0%7E878787-0.1%7E0f0f0f-0.2%7Ec38741-0.3%7E878787_Skin_0%7E7d4439-0.1%7Eecafa3-0.2%7Ef6cbc3-0.3%7Ef6cbc3&w=800&h=800&fm=png" alt="Image Description">
   </div>
 </div>
 `);

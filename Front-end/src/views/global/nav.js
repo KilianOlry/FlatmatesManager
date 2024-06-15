@@ -1,5 +1,3 @@
-// import logo from '../../assets/logo.webp';
-// import toggleBtn from '../../assets/icons/toggleBtn.svg';
 import favicon from '../../assets/icons/favicon.svg';
 
 export default (stmtUser) => `

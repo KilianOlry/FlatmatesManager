@@ -4,12 +4,12 @@ import iconEmail from '../../assets/icons/@.svg';
 
 export default () => (`
 <div class="h-screen md:flex">
-  <div class="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-green-400 to-green-500 i justify-around items-center hidden">
+  <div class="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-green-300 to-green-400 justify-around items-center hidden">
 
     <div>
       <h1 class="text-white font-bold text-6xl font-sans tracking-widest">Colocation</h1>
       <p class="text-white mt-1">Gestion de la colocation</p>
-      <button type="submit" class="block w-28 bg-white text-indigo-800 mt-4 py-2 rounded-2xl font-bold mb-2">
+      <button type="submit" class="block w-28 bg-white text-green-800 mt-4 py-2 rounded-2xl font-bold mb-2">
       <a href="/register">S'inscrire</a>
       </button>
     </div>
@@ -21,7 +21,7 @@ export default () => (`
 
   </div>
 
-  <div class="flex md:w-1/2 justify-center py-10 items-center bg-white">
+  <div class="flex md:w-1/2 h-screen sm:screen-auto justify-center py-10 items-center bg-white">
     <form class="login-form bg-white">
       <h1 class="text-gray-800 font-bold text-2xl mb-1">Se connecter</h1>
       <p class="text-sm font-normal text-gray-600 mb-7">Pour accéder à votre espace personnel</p>
