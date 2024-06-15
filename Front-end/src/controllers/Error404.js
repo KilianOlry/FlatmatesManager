@@ -1,13 +1,17 @@
-/* eslint-disable no-console */
-const Quatre04 = class {
+const Error404 = class {
   constructor() {
-    this.el = document.querySelector('#root');
+    this.el = document.getElementById('root');
 
     this.run();
   }
 
   render() {
-    return '<h1>404</h1>';
+    return `
+      <div class="main-error">
+        <div class="fof">
+          <h1>Error 404</h1>
+        </div>
+      </div>`;
   }
 
   run() {
@@ -15,4 +19,4 @@ const Quatre04 = class {
   }
 };
 
-export default Quatre04;
+export default Error404;
