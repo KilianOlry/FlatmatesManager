@@ -17,6 +17,7 @@ class Auth extends Controller {
   }
 
   public function postAuth() {
+
       if (in_array('login', $this->params)) {
         
         return $this->login($this->body);

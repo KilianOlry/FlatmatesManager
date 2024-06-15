@@ -58,4 +58,5 @@ class Expense extends Controller {
       return $this->expense->get(intval($this->params['id']));
     }
   }
+
 }
