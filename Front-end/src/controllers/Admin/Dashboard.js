@@ -43,24 +43,41 @@ const Dashboard = class extends AuthService {
   }
 
   buildCalendar(task) {
+    const hasExpenses = Object.keys(task).length > 0;
     const calendarEl = document.getElementById('calendar');
-    const calendar = new Calendar(calendarEl, {
-      plugins: [timeGridPlugin],
-      initialView: 'timeGridDay',
-      headerToolbar: {
-        right: 'next',
-        left: 'prev',
-        center: 'title'
-      },
-      locale: 'fr',
-      height: 735,
-      events: task.map((item) => ({
-        id: item.id,
-        title: item.title,
-        start: item.start
-      }))
-    });
-    calendar.render();
+
+    if (hasExpenses) {
+      const calendar = new Calendar(calendarEl, {
+        plugins: [timeGridPlugin],
+        initialView: 'timeGridDay',
+        headerToolbar: {
+          right: 'next',
+          left: 'prev',
+          center: 'title'
+        },
+        locale: 'fr',
+        height: 735,
+        events: task.map((item) => ({
+          id: item.id,
+          title: item.title,
+          start: item.start
+        }))
+      });
+      calendar.render();
+    } else {
+      const calendar = new Calendar(calendarEl, {
+        plugins: [timeGridPlugin],
+        initialView: 'timeGridDay',
+        headerToolbar: {
+          right: 'next',
+          left: 'prev',
+          center: 'title'
+        },
+        locale: 'fr',
+        height: 735
+      });
+      calendar.render();
+    }
   }
 
   async getTasks(dataUser) {
