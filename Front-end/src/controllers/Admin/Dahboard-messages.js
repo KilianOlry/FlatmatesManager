@@ -6,6 +6,7 @@ import viewNav from '../../views/global/nav';
 import viewSidebar from '../../views/admin/global/sidebar';
 import viewContent from '../../views/admin/messages/dashboard';
 import AuthService from '../../services/Auth';
+import Utiles from '../../services/Utiles';
 
 const DashboardMessage = class extends AuthService {
   constructor() {
@@ -17,7 +18,7 @@ const DashboardMessage = class extends AuthService {
   async render(flatmates) {
     return `
       ${viewNav(this.currentlyCookie)}
-      <div class='sm:flex container_dashboard'>
+      <div class='flex flex-col xl:flex-row p-3 md:pl-6 flex container_dashboard'>
          ${viewSidebar(flatmates)}
          ${viewContent()}
       </div>
@@ -88,6 +89,7 @@ const DashboardMessage = class extends AuthService {
       const flatmates = await this.getFlatMates(user);
       this.el.innerHTML = await this.render(flatmates);
       this.getDataForm(user);
+      this.toggleSidebar = new Utiles();
     }
   }
 };

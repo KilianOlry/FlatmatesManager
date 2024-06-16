@@ -10,6 +10,7 @@ import viewNav from '../../views/global/nav';
 import viewSidebar from '../../views/admin/global/sidebar';
 import viewContent from '../../views/admin/calendar';
 import AuthService from '../../services/Auth';
+import Utiles from '../../services/Utiles';
 
 const Dashboard = class extends AuthService {
   constructor() {
@@ -100,7 +101,7 @@ const Dashboard = class extends AuthService {
   async render(members) {
     return `
       ${viewNav(this.currentlyCookie)}
-      <div class='p-3 md:pl-6 flex'>
+      <div class='flex flex-col xl:flex-row p-3 md:pl-6 flex container_dashboard'>
          ${viewSidebar(members)}
          ${viewContent()}
       </div>
@@ -120,6 +121,7 @@ const Dashboard = class extends AuthService {
       this.el.innerHTML = await this.render(members);
 
       this.buildCalendar(task);
+      this.toggleSidebar = new Utiles();
     }
   }
 };

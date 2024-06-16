@@ -20,7 +20,7 @@
   }
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1025px) {
   #calendar__dashboard {
     height: 400px !important;
   }
@@ -43,4 +43,16 @@
       border-radius: 0.5rem;
     }
   }
+}
+
+::-webkit-scrollbar {
+  width: 0.6rem;
+  background-color: $green-100;
+  border-radius: 0.5rem;
+  height: .3rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $green-300;
+  border-radius: 0.5rem;
 }

@@ -5,6 +5,7 @@ import viewNav from '../../views/global/nav';
 import viewSidebar from '../../views/admin/global/sidebar';
 import viewContent from '../../views/admin/account';
 import AuthService from '../../services/Auth';
+import Utiles from '../../services/Utiles';
 
 const Dashboard = class extends AuthService {
   constructor() {
@@ -58,6 +59,7 @@ const Dashboard = class extends AuthService {
     if (user) {
       const flatmates = await this.getFlatMates(user);
       this.el.innerHTML = this.render(flatmates);
+      this.toggleSidebar = new Utiles();
     }
   }
 };

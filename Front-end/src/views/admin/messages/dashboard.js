@@ -1,7 +1,7 @@
 import form from './form';
 
 export default () => `
-<div class='p-8 h-full w-full flex justify-between'>
+<div class='p-8 gap-5 sm:gap-2 h-full w-full flex flex-col md:flex-row justify-between'>
 
   ${form()}
 
