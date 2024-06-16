@@ -59,8 +59,8 @@ const Dashboard = class extends AuthService {
         height: 735,
         events: task.map((item) => ({
           id: item.id,
-          title: item.title,
-          start: item.start
+          title: item.name,
+          start: item.date_limit
         }))
       });
       calendar.render();

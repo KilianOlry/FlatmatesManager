@@ -61,11 +61,11 @@ const Dashboard = class {
   buildCalendar(task) {
     const hasExpenses = Object.keys(task).length > 0;
     const calendarEl = document.getElementById('calendar');
-
+    console.log(task);
     if (hasExpenses) {
       const calendar = new Calendar(calendarEl, {
         plugins: [dayGridPlugin, timeGridPlugin, listPlugin],
-        initialView: 'timeGridDay',
+        initialView: 'dayGridMonth',
         headerToolbar: {
           right: 'next',
           left: 'prev',
@@ -73,10 +73,11 @@ const Dashboard = class {
         },
         locale: 'fr',
         height: 735,
+
         events: task.map((item) => ({
           id: item.id,
-          title: item.title,
-          start: item.start
+          title: item.name,
+          start: item.date_limit
         }))
       });
       calendar.render();
