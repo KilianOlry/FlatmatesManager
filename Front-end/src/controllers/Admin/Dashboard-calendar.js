@@ -9,11 +9,12 @@ import listPlugin from '@fullcalendar/list';
 import viewNav from '../../views/global/nav';
 import viewSidebar from '../../views/admin/global/sidebar';
 import viewContent from '../../views/admin/calendar';
+import AuthService from '../../services/Auth';
 
-const Dashboard = class {
+const Dashboard = class extends AuthService {
   constructor() {
+    super();
     this.el = document.querySelector('#root');
-
     this.run();
   }
 
@@ -59,10 +60,9 @@ const Dashboard = class {
   }
 
   buildCalendar(task) {
-    const hasExpenses = Object.keys(task).length > 0;
+    const hasTasks = Object.keys(task).length > 0;
     const calendarEl = document.getElementById('calendar');
-    console.log(task);
-    if (hasExpenses) {
+    if (hasTasks) {
       const calendar = new Calendar(calendarEl, {
         plugins: [dayGridPlugin, timeGridPlugin, listPlugin],
         initialView: 'dayGridMonth',
@@ -99,7 +99,7 @@ const Dashboard = class {
 
   async render(members) {
     return `
-      ${viewNav()}
+      ${viewNav(this.currentlyCookie)}
       <div class='p-3 md:pl-6 flex'>
          ${viewSidebar(members)}
          ${viewContent()}

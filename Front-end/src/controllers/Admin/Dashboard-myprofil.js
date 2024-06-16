@@ -4,17 +4,19 @@ import axios from 'axios';
 import viewNav from '../../views/global/nav';
 import viewSidebar from '../../views/admin/global/sidebar';
 import viewContent from '../../views/admin/account';
+import AuthService from '../../services/Auth';
 
-const Dashboard = class {
+const Dashboard = class extends AuthService {
   constructor() {
-    this.el = document.querySelector('#root');
+    super();
     this.userInformation = JSON.parse(Cookies.get('Session'));
+    this.el = document.querySelector('#root');
     this.run();
   }
 
   render(flatmates) {
     return `
-      ${viewNav()}
+      ${viewNav(this.currentlyCookie)}
       <div class='sm:flex'>
          ${viewSidebar(flatmates)}
          ${viewContent(this.userInformation)}

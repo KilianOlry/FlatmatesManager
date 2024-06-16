@@ -5,17 +5,18 @@ import Cookies from 'js-cookie';
 import viewNav from '../../views/global/nav';
 import viewSidebar from '../../views/admin/global/sidebar';
 import viewContent from '../../views/admin/messages/dashboard';
+import AuthService from '../../services/Auth';
 
-const DashboardMessage = class {
+const DashboardMessage = class extends AuthService {
   constructor() {
+    super();
     this.el = document.querySelector('#root');
-
     this.run();
   }
 
   async render(flatmates) {
     return `
-      ${viewNav()}
+      ${viewNav(this.currentlyCookie)}
       <div class='sm:flex container_dashboard'>
          ${viewSidebar(flatmates)}
          ${viewContent()}
