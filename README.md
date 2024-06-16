@@ -18,9 +18,16 @@
 ## :checkered_flag: Identifiants ##
 
 ```bash
-#IDENTIFIANTS
+#IDENTIFIANTS ADMIN AVEC COLOCATION
 email : admin@admin.com
 password: Pa$$w0rd!
+
+#IDENTIFIANTS USER SANS COLOCATION
+email: pyvihem@mailinator.com
+password: Pa$$w0rd!
+
+#TOKEN POUR REJOINDRE UNE COLOCATION
+password : home5
 ```
 
 Made with :heart: by <a href="https://github.com/KilianOlry" target="_blank">Kilian</a>

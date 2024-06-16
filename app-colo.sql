@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : dim. 16 juin 2024 à 17:01
+-- Généré le : dim. 16 juin 2024 à 22:23
 -- Version du serveur : 8.0.36-0ubuntu0.22.04.1
 -- Version de PHP : 8.1.2-1ubuntu2.17
 
@@ -187,7 +187,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `password`, `token`, `role`, `home_id`) VALUES
 (8, 'Jeanette', 'Cooke', 'rado@mailinator.com', '$argon2id$v=19$m=65536,t=4,p=1$dFBWOU9ZeEJkeEVqWEwvNg$whL3sBlr5gtE2NRxbJgKhncCeGuHGtyooprQ78NqeL4', '7261646f406d61696c696e61746f722e636f6d', 'USER', 1),
 (9, 'Laetitia', 'admin', 'admin@admin.com', '$argon2id$v=19$m=65536,t=4,p=1$dFBWOU9ZeEJkeEVqWEwvNg$whL3sBlr5gtE2NRxbJgKhncCeGuHGtyooprQ78NqeL4', 'admin', 'ADMIN', 5),
-(10, 'Kilian', 'test', 'kilian.olry@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$dFBWOU9ZeEJkeEVqWEwvNg$whL3sBlr5gtE2NRxbJgKhncCeGuHGtyooprQ78NqeL4', 'srerzer', 'USER', 5);
+(10, 'Kilian', 'test', 'kilian.olry@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$dFBWOU9ZeEJkeEVqWEwvNg$whL3sBlr5gtE2NRxbJgKhncCeGuHGtyooprQ78NqeL4', 'srerzer', 'USER', 5),
+(21, 'Cedric', 'Ayala', 'pyvihem@mailinator.com', '$argon2id$v=19$m=65536,t=4,p=1$cUxIQTdZN2JkRW5mODN5Yw$MdECX5gNVM08xtkmyYlKUj40sNkc4FTPKUgSrngS7ac', '7079766968656d406d61696c696e61746f722e636f6d', 'USER', NULL);
 
 --
 -- Index pour les tables déchargées
@@ -289,7 +290,7 @@ ALTER TABLE `tasks`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Contraintes pour les tables déchargées
