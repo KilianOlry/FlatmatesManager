@@ -44,7 +44,7 @@ const Dashboard = class extends AuthService {
 
   buildCalendar(task) {
     const hasExpenses = Object.keys(task).length > 0;
-    const calendarEl = document.getElementById('calendar');
+    const calendarEl = document.getElementById('calendar__dashboard');
 
     if (hasExpenses) {
       const calendar = new Calendar(calendarEl, {

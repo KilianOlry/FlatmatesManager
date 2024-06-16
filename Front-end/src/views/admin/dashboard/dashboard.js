@@ -33,7 +33,7 @@ export default (tasks, expenses, messages) => `
       </div>
       
       <div class='bg-white p-5 rounded-lg shadow-sm'>
-        <div id='calendar'></div>
+        <div id='calendar__dashboard'></div>
       </div>
 
       </div>

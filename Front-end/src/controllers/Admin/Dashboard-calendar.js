@@ -27,7 +27,6 @@ const Dashboard = class {
       });
       return response.data;
     } catch (error) {
-      console.error('Error fetching user:', error);
       return null;
     }
   }
@@ -41,7 +40,6 @@ const Dashboard = class {
       });
       return response.data;
     } catch (error) {
-      console.error('Error fetching user:', error);
       return null;
     }
   }
@@ -61,24 +59,41 @@ const Dashboard = class {
   }
 
   buildCalendar(task) {
+    const hasExpenses = Object.keys(task).length > 0;
     const calendarEl = document.getElementById('calendar');
-    const calendar = new Calendar(calendarEl, {
-      plugins: [dayGridPlugin, timeGridPlugin, listPlugin],
-      initialView: 'dayGridMonth',
-      headerToolbar: {
-        right: 'prev,next today',
-        center: 'title',
-        left: 'dayGridMonth,timeGridWeek,listWeek'
-      },
-      height: 700,
-      locale: 'fr',
-      events: task.map((item) => ({
-        title: item.name,
-        start: item.date_limit
-      })),
-      eventColor: '#5eeac8'
-    });
-    calendar.render();
+
+    if (hasExpenses) {
+      const calendar = new Calendar(calendarEl, {
+        plugins: [dayGridPlugin, timeGridPlugin, listPlugin],
+        initialView: 'timeGridDay',
+        headerToolbar: {
+          right: 'next',
+          left: 'prev',
+          center: 'title'
+        },
+        locale: 'fr',
+        height: 735,
+        events: task.map((item) => ({
+          id: item.id,
+          title: item.title,
+          start: item.start
+        }))
+      });
+      calendar.render();
+    } else {
+      const calendar = new Calendar(calendarEl, {
+        plugins: [dayGridPlugin, timeGridPlugin, listPlugin],
+        initialView: 'dayGridMonth',
+        headerToolbar: {
+          right: 'dayGridMonth,timeGridWeek,listWeek',
+          left: 'prev, next',
+          center: 'title'
+        },
+        locale: 'fr',
+        height: 705
+      });
+      calendar.render();
+    }
   }
 
   async render(members) {

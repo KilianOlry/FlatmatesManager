@@ -1,4 +1,4 @@
-#calendar{
+#calendar__dashboard{
   button {
     background-color: $green-500;
     border: none;
@@ -21,7 +21,26 @@
 }
 
 @media screen and (max-width: 1280px) {
-  #calendar {
+  #calendar__dashboard {
     height: 400px !important;
+  }
+}
+
+#calendar{
+  button {
+    background-color: $green-500;
+    border: none;
+  }
+  .fc-view-harness{
+    ::-webkit-scrollbar {
+      width: 0.6rem;
+      background-color: $green-100;
+      border-radius: 0.5rem;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background-color: $green-300;
+      border-radius: 0.5rem;
+    }
   }
 }
