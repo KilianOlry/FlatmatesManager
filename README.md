@@ -1,5 +1,5 @@
 <div align="center" id="top"> 
-  <img src="./Front-End/src/assets/icons/favicon.svg" alt="logo Flatmatesmanager" />
+  <img src="" alt="logo Flatmatesmanager" />
 
   &#xa0;
 
@@ -18,15 +18,31 @@
 ## :checkered_flag: Identifiants ##
 
 ```bash
-#IDENTIFIANTS ADMIN AVEC COLOCATION
+# Pour le FRONT-END
+cd app-colo/Front-end
+npm i
+npm start ou npm run start
+
+# Pour le BACK-END
+composer install
+composer dump-autolad
+
+# Pour changer les informations de connexion à la bdd par les votres
+cd BACK-END/src/models/SqlConnect.php
+```
+
+## :checkered_flag: Identifiants ##
+
+```bash
+# IDENTIFIANTS ADMIN AVEC COLOCATION
 email : admin@admin.com
 password: Pa$$w0rd!
 
-#IDENTIFIANTS USER SANS COLOCATION
+# IDENTIFIANTS USER SANS COLOCATION
 email: pyvihem@mailinator.com
 password: Pa$$w0rd!
 
-#TOKEN POUR REJOINDRE UNE COLOCATION
+# TOKEN POUR REJOINDRE UNE COLOCATION
 password : home5
 ```
 
