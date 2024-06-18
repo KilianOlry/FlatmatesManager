@@ -51,7 +51,7 @@ export default () => (`
             <img src='${iconVisibility}' class='visibility size-5 cursor-pointer'>
           </div>
           <div class='message-status-match-password'></div>
-          <button type="submit" class="block w-full bg-green-500 mt-4 py-2 rounded-2xl text-white font-semibold mb-2">Inscrivez vous</button>
+          <button type="submit" class="btn-submit block w-full bg-green-500 mt-4 py-2 rounded-2xl text-white font-semibold mb-2" disabled>Inscrivez vous</button>
           <p class ='text-sm ml-2 '>Vous avez déjà un compte ?<a href="/login" class='text-green-500 hover:text-green-600 cursor-pointer font-bold'> Connectez-vous !</a></p>
       </form>
   </div>

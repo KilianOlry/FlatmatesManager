@@ -58,10 +58,24 @@ const Register = class {
   }
 
   FormControl() {
-    this.formControl.checkEmail();
-    this.formControl.checkPassword();
-    this.formControl.matchPassword();
-    this.formControl.visibilityPassword();
+    const inputPassword = document.querySelector('.password-input');
+    const inputEmail = document.querySelector('.email-input');
+    const inputVerifyPassword = document.querySelector('.verify-password');
+    const elMessageStatusEmail = document.querySelector('.message-status-email');
+    const elMessageStatusPassword = document.querySelector('.message-status-password');
+    const elMessageStatusVerifypassword = document.querySelector('.message-status-match-password');
+    const btnSubmit = document.querySelector('.btn-submit');
+
+    this.formControl.matchPassword(
+      inputPassword,
+      inputVerifyPassword,
+      elMessageStatusVerifypassword,
+      btnSubmit
+    );
+
+    this.formControl.visibilityPassword(inputPassword);
+    this.formControl.checkEmail(inputEmail, elMessageStatusEmail);
+    this.formControl.checkPasswordLenght(inputPassword, elMessageStatusPassword, btnSubmit);
   }
 
   run() {

@@ -24,9 +24,15 @@ const Login = class {
   }
 
   FormControl() {
-    this.formControl.checkEmail();
-    this.formControl.checkPassword();
-    this.formControl.visibilityPassword();
+    const inputPassword = document.querySelector('.password-input');
+    const inputEmail = document.querySelector('.email-input');
+    const elMessageStatusEmail = document.querySelector('.message-status-email');
+    const elMessageStatusPassword = document.querySelector('.message-status-password');
+    const btnSubmit = document.querySelector('.btn-submit');
+
+    this.formControl.visibilityPassword(inputPassword);
+    this.formControl.checkEmail(inputEmail, elMessageStatusEmail);
+    this.formControl.checkPasswordLenght(inputPassword, elMessageStatusPassword, btnSubmit);
   }
 
   getDataForm() {
