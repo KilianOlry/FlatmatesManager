@@ -16,9 +16,13 @@ export default (stmtUser) => `
           <a href="/" class="block text-lg py-2 px-3 text-gray-500 rounded md:bg-transparent md:p-0 dark:text-white md:dark:text-blue-500" aria-current="page">Accueil</a>
         </li>
         ${stmtUser ? `
+
+        ${stmtUser.home_id ? `
         <li>
           <a href="/dashboard" class="block text-lg py-2 px-3 text-gray-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-600 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Tableau de bord</a>
         </li>
+        ` : ''}
+  
         <li>
           <a href="/logout" class="block text-lg py-2 px-3 text-gray-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-600 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Déconnexion</a>
         </li>

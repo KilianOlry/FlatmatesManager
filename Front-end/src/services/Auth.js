@@ -1,5 +1,3 @@
-// import axios from 'axios';
-// import toastr from 'toastr';
 import Cookies from 'js-cookie';
 
 class AuthService {
@@ -9,8 +7,18 @@ class AuthService {
   }
 
   getCookie() {
-    const cookie = Cookies.get('Session');
-    return !!cookie;
+    let cookie = Cookies.get('Session');
+    if (cookie) {
+      cookie = this.cookieToJson(cookie);
+    } else {
+      return false;
+    }
+    return cookie;
+  }
+
+  cookieToJson(cookie) {
+    const cookieJson = JSON.parse(cookie);
+    return cookieJson;
   }
 
   ifAdmin() {
@@ -26,34 +34,6 @@ class AuthService {
     } catch (error) {
       return false;
     }
-  }
-
-  // async checkUser() {
-  //   const cookie = JSON.parse(Cookies.get('Session'));
-  //   let isGranted = '';
-  //   if (cookie) {
-  //     await axios.post('http://localhost:50/user/granted', cookie.token, {
-  //       headers: {
-  //         'Content-Type': 'application/json'
-  //       }
-  //     })
-  //       .then(() => {
-  //         toastr.success('Autorisée');
-  //         isGranted = true;
-  //       })
-  //       .catch(() => {
-  //         toastr.error('Les tokens ne correspondent pas');
-  //         isGranted = false;
-  //       });
-  //   } else {
-  //     isGranted = false;
-  //   }
-  //   return isGranted;
-  // }
-
-  async runAuth() {
-    // this.isGranted = await this.checkUser();
-    this.getCookie();
   }
 }
 

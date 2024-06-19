@@ -1,5 +1,5 @@
 <div align="center" id="top"> 
-  <img src="" alt="logo Flatmatesmanager" />
+  <img src="./Front-end/src/assets/icons/favicon.svg" alt="logo Flatmatesmanager" />
 
   &#xa0;
 

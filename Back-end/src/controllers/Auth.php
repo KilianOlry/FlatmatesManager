@@ -48,6 +48,7 @@ class Auth extends Controller {
             'email' => $user['email'],
             'token' => $user['token'],
             'role' => $user['role'],
+            'home_id' => $user['home_id']
           ];
           
           header("HTTP/1.0 200 OK");
