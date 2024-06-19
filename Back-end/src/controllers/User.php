@@ -5,6 +5,8 @@ namespace App\Controllers;
 use App\Controllers\Controller;
 use App\Models\AuthModel;
 use App\Models\UserModel;
+use App\Services\FormControl;
+use App\Services\IfGranted;
 
 class User extends Controller {
   protected object $user;
@@ -14,14 +16,17 @@ class User extends Controller {
   public function __construct($param) {
     $this->user = new UserModel();
     $this->auth = new AuthModel();
+    $this->formControl = new FormControl;
     parent::__construct($param);
   }
 
   public function postUser() {
     if (in_array('getbymail', $this->params)) {
+
       return $this->auth->ifExist($this->body['home_id']);
+
     } else {
-      
+
       return $this->user->ifExist($this->body['token']);
     }
   }
@@ -34,8 +39,26 @@ class User extends Controller {
     return $this->user->get(intval($this->params['id']));
     }
 
-    public function putUser() {
-      return $this->user->update();
+  public function putUser() {
+    $ifGranted = new ifGranted();
+
+    $cleanData = $this->formControl->sanitizeInput($this->body);
+
+    $homeToken = $ifGranted->verifyTokenHome($cleanData['token']);
+    $user = $ifGranted->ifExist($cleanData['userEmail']);
+
+    if ($user && $homeToken) {
+
+      header("HTTP/1.0 200 OK");
+      return $this->user->updateUserJoinHome($user['id'], $homeToken);
+
+    } else {
+
+      return header("HTTP/1.0 401 Unauthorized");
+
     }
+
   }
+
+}
 

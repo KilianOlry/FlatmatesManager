@@ -39,9 +39,6 @@ class Task extends Controller {
 
       return $this->task->add($message, $createdAt, $dateLimit, $priority, $categoryId['id'], $payor['id'], $user['home_id']);
     
-    } elseif (in_array('update', $this->params)) {
-      return $this->task->update($this->body[0]);
-
     }
 
   }
@@ -56,5 +53,9 @@ class Task extends Controller {
     } else {
       return $this->task->get(intval($this->params['id']));
     }
+  }
+
+  public function putTask() {
+    return $this->task->update($this->body[0]);
   }
 }

@@ -15,9 +15,9 @@ class ifGranted extends SqlConnect {
     }
 
     public function verifyTokenHome($homeToken) {
-      $req = $this->db->prepare('SELECT token, id FROM homes WHERE token = :token');
+      $req = $this->db->prepare('SELECT id FROM homes WHERE token = :token');
       $req->execute(['token' => $homeToken]);
-      $home = $req->fetch(PDO::FETCH_ASSOC);
-      return $home ?: false;
+      $home = $req->fetch();
+      return $home['id'] ?: false;
     }
 }

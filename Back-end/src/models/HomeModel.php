@@ -18,17 +18,6 @@ class HomeModel extends SqlConnect {
       ]);
     }
 
-    public function join($userId ,$homeId) {
-      $query = "UPDATE users
-                SET home_id = :homeId WHERE id = :userId";
-      $stmt = $this->db->prepare($query);
-      $stmt->execute([
-        ':homeId' => $homeId,
-        ':userId' => $userId,
-      ]);
-
-    }
-
     public function getMembersHome($id) {
       $req = $this->db->prepare("SELECT * FROM users  INNER JOIN homes ON users.home_id = homes.id
                                 WHERE homes.id = :home_id");

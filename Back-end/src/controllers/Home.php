@@ -22,12 +22,10 @@ class Home extends Controller {
       
       $this->createHome($this->body);
 
-    } elseif (in_array('join', $this->params)) {
-
-      $this->joinHome($this->body);
-    
     } elseif (in_array('get', $this->params)) {
+
       return $this->home->getMembersHome($this->body['home_id']);
+    
     }
   }
 
@@ -43,23 +41,6 @@ class Home extends Controller {
     return $this->home->update();
   }
 
-  public function joinHome () {
-    $formControl = new FormControl();
-    $ifgrantedService = new ifGranted();
-    // CLEAN INPUT
-    $email = $formControl->verifyEmail($this->body['userEmail']);
-    $token = $formControl->cleanInput($this->body['token']);
-    // CHECK IF EXIST
-    $homeToken = $ifgrantedService->verifyTokenHome($token);
-    $userAdmin = $ifgrantedService->ifExist($email);
-
-    if ($userAdmin && $homeToken) {
-      $this->home->join($userAdmin['id'], $homeToken['id']);
-    } else {
-      return header("HTTP/1.0 401 Unauthorized");
-    }
-  }
-
   public function createHome($body) {
     $formControl = new FormControl();
 
@@ -72,7 +53,7 @@ class Home extends Controller {
     return $this->home->getLast();
   }
 
-  function generateRandomToken($length = 6) {
+  function generateRandomToken(int $length = 6): string {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()';
     $charactersLength = strlen($characters);
     $randomString = '';

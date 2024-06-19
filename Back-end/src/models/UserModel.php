@@ -53,7 +53,13 @@ class UserModel extends SqlConnect {
       return $user ?: false;
     }
 
-    public function update() {
-      return 'bonjour';
+    public function updateUserJoinHome(int $userId, int $homeId) {
+      $query = "UPDATE users SET home_id = :homeId WHERE id = :userId";
+      $stmt = $this->db->prepare($query);
+      $stmt->execute([
+        ':homeId' => $homeId,
+        ':userId' => $userId,
+      ]);
+
     }
 }
