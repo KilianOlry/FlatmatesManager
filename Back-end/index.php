@@ -31,7 +31,7 @@ new Router([
   'category-expenses/:getAll' => CategoryExpenses::class,
   'expense/:id' => Expense::class,
   'expense/:add' => Expense::class,
-  'expense/:update' => Expense::class,
+  'expense/update' => Expense::class,
   'message/:id' => Message::class,
   'message/:add' => Message::class,
 ]);

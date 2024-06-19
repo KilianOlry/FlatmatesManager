@@ -32,16 +32,9 @@ class ExpenseModel extends SqlConnect {
                                 INNER JOIN categorys_expense ON expenses.category_id = categorys_expense.id
                                 WHERE expenses.user_id = :id AND expenses.status = :status
                                 ORDER BY expenses.date_limit DESC");
-      $req->execute(["id" => $id, 'status' => 'Impayé']);
+      $req->execute(["id" => $id, 'status' => 0]);
 
       return $req->rowCount() > 0 ? $req->fetchAll(PDO::FETCH_ASSOC) : new stdClass();
-    }
-
-    public function getAll() {
-      $req = $this->db->prepare("SELECT COLUMN_TYPE FROM INFORMATION_SHEMA.COLUMNS WHERE TABLE_NAME = 'tasks' AND COLUMN_NAME = 'priority'");
-      $req->execute();
-
-      return $req->rowCount() > 0 ? $req->fetch(PDO::FETCH_ASSOC) : new stdClass();
     }
 
     public function getLast() {
@@ -52,7 +45,7 @@ class ExpenseModel extends SqlConnect {
     }
 
     public function update(int $id) {
-        $query = "UPDATE expenses SET status = 'Payé' WHERE id = :id";
+        $query = "UPDATE expenses SET status = 1 WHERE id = :id";
         $stmt = $this->db->prepare($query);
         $stmt->execute([
           ':id' => $id,
