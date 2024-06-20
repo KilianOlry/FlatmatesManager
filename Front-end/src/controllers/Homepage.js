@@ -1,6 +1,4 @@
 /* eslint-disable no-console */
-import toastr from 'toastr';
-import axios from 'axios';
 import Cookies from 'js-cookie';
 import viewNav from '../views/global/nav';
 import viewFirstSection from '../views/homepage/first-section';
@@ -8,11 +6,13 @@ import viewSecondSection from '../views/homepage/second-section';
 import viewFooter from '../views/homepage/footer';
 import containerCard from '../views/homepage/container-cards';
 import Auth from '../services/Auth';
+import AxiosQuery from '../services/AxiosQuery';
 
 const Homepage = class extends Auth {
   constructor() {
     super();
     this.el = document.querySelector('#root');
+    this.axiosQuery = new AxiosQuery();
     this.run();
   }
 
@@ -68,36 +68,11 @@ const Homepage = class extends Auth {
   }
 
   sendDataFormCreate(dataForm) {
-    axios.post('http://localhost:50/home/create', dataForm, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(() => {
-        toastr.success('colocation crée');
-      })
-      .catch(() => {
-        toastr.error('erreur lors de la création de la colocation');
-      });
+    this.axiosQuery.Post('http://localhost:50/home/create', dataForm);
   }
 
   sendDataFormJoin(dataForm) {
-    axios.put('http://localhost:50/user/update', dataForm, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then((response) => {
-        if (response.status === 200) {
-          toastr.success('Bienvenue dans la colocation. Vous serez dirigé dans 5secs dans votre Dashboard');
-          setTimeout(() => {
-            window.location.href = '/dashboard';
-          }, 5000);
-        }
-      })
-      .catch(() => {
-        toastr.error('Erreur token incorrect');
-      });
+    this.axiosQuery.Put('http://localhost:50/user/update', dataForm);
   }
 
   async run() {

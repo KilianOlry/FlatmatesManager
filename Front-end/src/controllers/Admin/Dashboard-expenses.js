@@ -1,16 +1,15 @@
 /* eslint-disable no-console */
-import toastr from 'toastr';
 import Cookies from 'js-cookie';
-import axios from 'axios';
 import viewNav from '../../views/global/nav';
 import viewSidebar from '../../views/admin/global/sidebar';
 import viewContent from '../../views/admin/expenses/expenses';
 import Utiles from '../../services/Utiles';
+import AxiosQuery from '../../services/AxiosQuery';
 
 const DashboardExpenses = class {
   constructor() {
     this.el = document.querySelector('#root');
-
+    this.axiosQuery = new AxiosQuery();
     this.run();
   }
 
@@ -25,43 +24,19 @@ const DashboardExpenses = class {
   }
 
   async getUser() {
-    try {
-      const data = JSON.parse(Cookies.get('Session'));
-      const response = await axios.post('http://localhost:50/user/:get', data, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching user:', error);
-      return null;
-    }
+    const data = JSON.parse(Cookies.get('Session'));
+    const user = await this.axiosQuery.Post('http://localhost:50/user/:get', data);
+    return user;
   }
 
   async getCategoriesExpenses() {
-    const apiUrl = 'http://localhost:50/category-expenses/getAll';
-    try {
-      const response = await axios.get(apiUrl);
-      const datas = response.data;
-      return datas;
-    } catch (error) {
-      return error;
-    }
+    const categories = await this.axiosQuery.Get('http://localhost:50/category-expenses/getAll');
+    return categories;
   }
 
   async getFlatMates(user) {
-    try {
-      const response = await axios.post('http://localhost:50/home/get', user, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching members:', error);
-      return null;
-    }
+    const flatmates = this.axiosQuery.Post('http://localhost:50/home/get', user);
+    return flatmates;
   }
 
   getDataForm() {
@@ -86,17 +61,7 @@ const DashboardExpenses = class {
   }
 
   sendData(data) {
-    axios.post('http://localhost:50/expense/add', data, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(() => {
-        toastr.success('Dépense Ajoutée');
-      })
-      .catch(() => {
-        toastr.error('Erreur lors de la création de la dépense');
-      });
+    this.axiosQuery.Post('http://localhost:50/expense/add', data);
   }
 
   toggleModal() {

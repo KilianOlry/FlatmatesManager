@@ -42,6 +42,26 @@ const AxiosQuery = class {
         throw error;
       });
   }
+
+  Put(url, data) {
+    console.log(data);
+    return axios.put(url, data, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          console.log(response);
+          return response.data;
+        }
+        throw new Error(`Erreur: Réponse inattendue, statut ${response.status}`);
+      })
+      .catch((error) => {
+        toastr.error('Erreur lors de la création de la tâche');
+        throw error;
+      });
+  }
 };
 
 export default AxiosQuery;
