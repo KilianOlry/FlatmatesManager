@@ -82,16 +82,18 @@ const Homepage = class extends Auth {
   }
 
   sendDataFormJoin(dataForm) {
-    axios.post('http://localhost:50/home/join', dataForm, {
+    axios.put('http://localhost:50/user/update', dataForm, {
       headers: {
         'Content-Type': 'application/json'
       }
     })
-      .then(() => {
-        toastr.success('Bienvenue dans la colocation. Vous serez dirigé dans 5secs dans votre Dashboard');
-        setTimeout(() => {
-          window.location.href = '/dashboard';
-        }, 5000);
+      .then((response) => {
+        if (response.status === 200) {
+          toastr.success('Bienvenue dans la colocation. Vous serez dirigé dans 5secs dans votre Dashboard');
+          setTimeout(() => {
+            window.location.href = '/dashboard';
+          }, 5000);
+        }
       })
       .catch(() => {
         toastr.error('Erreur token incorrect');

@@ -149,7 +149,7 @@ const Dashboard = class extends AuthService {
   }
 
   sendDataExpense(id) {
-    axios.post('http://localhost:50/expense/update', id, {
+    axios.put('http://localhost:50/expense/update', id, {
       headers: {
         'Content-Type': 'application/json'
       }
@@ -158,17 +158,18 @@ const Dashboard = class extends AuthService {
         this.regarcheDom();
       })
       .catch(() => {
-        toastr.error('Erreur lors de la mise à jour de la tâche');
+        toastr.error('Erreur lors de la mise à jour de la dépense');
       });
   }
 
   sendDataTask(id) {
-    axios.post('http://localhost:50/task/update', id, {
+    axios.put('http://localhost:50/task/update', id, {
       headers: {
         'Content-Type': 'application/json'
       }
     })
       .then(() => {
+        console.log();
         this.regarcheDom();
       })
       .catch(() => {
@@ -208,9 +209,9 @@ const Dashboard = class extends AuthService {
       // Render view with all data
       this.el.innerHTML = this.render(members, tasks, expenses, messages);
       // Build calendar with tasks Users
-      this.buildCalendar(tasks);
-      this.getStatusTask();
       this.getStatusExpense();
+      this.getStatusTask();
+      this.buildCalendar(tasks);
       this.toggleSidebar = new Utiles();
     } else {
       this.el.innerHTML = '<p>Error loading dashboard. Please try again later.</p>';

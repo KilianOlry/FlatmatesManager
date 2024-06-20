@@ -1,16 +1,16 @@
 /* eslint-disable no-console */
-import toastr from 'toastr';
+// import toastr from 'toastr';
 import Cookies from 'js-cookie';
-import axios from 'axios';
 import viewNav from '../../views/global/nav';
 import viewSidebar from '../../views/admin/global/sidebar';
 import viewContent from '../../views/admin/tasks/tasks';
 import Utiles from '../../services/Utiles';
+import AxiosQuery from '../../services/AxiosQuery';
 
 const DashboardTask = class {
   constructor() {
     this.el = document.querySelector('#root');
-
+    this.axiosQuery = new AxiosQuery();
     this.run();
   }
 
@@ -19,9 +19,43 @@ const DashboardTask = class {
       ${viewNav()}
       <div class='flex flex-col xl:flex-row container_dashboard p-3 md:pl-6 gap-4'>
          ${viewSidebar(flatmates)}
-         ${viewContent(await this.getCategorys(), flatmates)}
+         ${viewContent(await this.getCategoriesTask(), flatmates)}
       </div>
     `;
+  }
+
+  async getCategoriesTask() {
+    const categoriesTask = await this.axiosQuery.Get('http://localhost:50/categorys');
+    return categoriesTask;
+  }
+
+  async getUser() {
+    const data = JSON.parse(Cookies.get('Session'));
+    const user = await this.axiosQuery.Post('http://localhost:50/user/:get', data);
+    return user;
+  }
+
+  async getFlatMates(user) {
+    const flatmates = await this.axiosQuery.Post('http://localhost:50/home/get', user);
+    return flatmates;
+  }
+
+  toggleModalForm() {
+    const btn = document.querySelector('.btn-modal');
+    const btnModal = document.querySelector('.modal-task');
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      btnModal.classList.toggle('ok');
+    });
+  }
+
+  closeToggleModal() {
+    const closeModal = document.querySelector('.close-modal');
+    const btnModal = document.querySelector('.modal-task');
+    closeModal.addEventListener('click', (e) => {
+      e.preventDefault();
+      btnModal.classList.remove('ok');
+    });
   }
 
   getDataForm() {
@@ -46,75 +80,7 @@ const DashboardTask = class {
   }
 
   sendData(data) {
-    axios.post('http://localhost:50/task/add', data, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(() => {
-        toastr.success('Tâches ajouté');
-      })
-      .catch(() => {
-        toastr.error('Erreur lors de la création de la tâche');
-      });
-  }
-
-  async getCategorys() {
-    const apiUrl = 'http://localhost:50/categorys';
-    try {
-      const response = await axios.get(apiUrl);
-      const datas = response.data;
-      return datas;
-    } catch (error) {
-      return error;
-    }
-  }
-
-  async getUser() {
-    try {
-      const data = JSON.parse(Cookies.get('Session'));
-      const response = await axios.post('http://localhost:50/user/:get', data, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching user:', error);
-      return null;
-    }
-  }
-
-  async getFlatMates(user) {
-    try {
-      const response = await axios.post('http://localhost:50/home/get', user, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching members:', error);
-      return null;
-    }
-  }
-
-  toggleModel() {
-    const btn = document.querySelector('.btn-modal');
-    const btnModal = document.querySelector('.modal-task');
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      btnModal.classList.add('ok');
-    });
-  }
-
-  closeToggleModal() {
-    const closeModal = document.querySelector('.close-modal');
-    const btnModal = document.querySelector('.modal-task');
-    closeModal.addEventListener('click', (e) => {
-      e.preventDefault();
-      btnModal.classList.remove('ok');
-    });
+    this.axiosQuery.Post('http://localhost:50/task/add', data);
   }
 
   async run() {
@@ -124,8 +90,9 @@ const DashboardTask = class {
       const flatmates = await this.getFlatMates(user);
 
       this.el.innerHTML = await this.render(flatmates);
+
       this.getDataForm();
-      await this.toggleModel();
+      await this.toggleModalForm();
       await this.closeToggleModal();
       this.toggleSidebar = new Utiles();
     }
