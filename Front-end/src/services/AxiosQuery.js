@@ -44,7 +44,6 @@ const AxiosQuery = class {
   }
 
   Put(url, data) {
-    console.log(data);
     return axios.put(url, data, {
       headers: {
         'Content-Type': 'application/json'
@@ -52,7 +51,6 @@ const AxiosQuery = class {
     })
       .then((response) => {
         if (response.status === 200) {
-          console.log(response);
           return response.data;
         }
         throw new Error(`Erreur: Réponse inattendue, statut ${response.status}`);

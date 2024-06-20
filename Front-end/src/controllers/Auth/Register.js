@@ -43,7 +43,6 @@ const Register = class {
         }, 3000);
       })
       .catch((response) => {
-        console.log();
         toastr.error(response.response.data);
       });
   }

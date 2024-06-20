@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-import axios from 'axios';
 import Cookies from 'js-cookie';
 import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -11,53 +10,30 @@ import viewSidebar from '../../views/admin/global/sidebar';
 import viewContent from '../../views/admin/calendar';
 import AuthService from '../../services/Auth';
 import Utiles from '../../services/Utiles';
+import AxiosQuery from '../../services/AxiosQuery';
 
 const Dashboard = class extends AuthService {
   constructor() {
     super();
     this.el = document.querySelector('#root');
+    this.axiosQuery = new AxiosQuery();
     this.run();
   }
 
   async getUser() {
-    try {
-      const data = JSON.parse(Cookies.get('Session'));
-      const response = await axios.post('http://localhost:50/user/:get', data, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-      return response.data;
-    } catch (error) {
-      return null;
-    }
+    const data = JSON.parse(Cookies.get('Session'));
+    const user = await this.axiosQuery.Post('http://localhost:50/user/:get', data);
+    return user;
   }
 
   async getTasks(dataUser) {
-    try {
-      const response = await axios.get(`http://localhost:50/task/${dataUser.id}`, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-      return response.data;
-    } catch (error) {
-      return null;
-    }
+    const tasks = await this.axiosQuery.Get(`http://localhost:50/task/${dataUser.id}`);
+    return tasks;
   }
 
-  async getMembers(user) {
-    try {
-      const response = await axios.post('http://localhost:50/home/get', user, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching members:', error);
-      return null;
-    }
+  async getFlatMates(user) {
+    const flatmates = await this.axiosQuery.Post('http://localhost:50/home/get', user);
+    return flatmates;
   }
 
   buildCalendar(task) {
@@ -98,11 +74,11 @@ const Dashboard = class extends AuthService {
     }
   }
 
-  async render(members) {
+  async render(flatmates) {
     return `
       ${viewNav(this.currentlyCookie)}
       <div class='flex flex-col xl:flex-row p-3 md:pl-6 flex container_dashboard'>
-         ${viewSidebar(members)}
+         ${viewSidebar(flatmates)}
          ${viewContent()}
       </div>
     `;
@@ -114,11 +90,11 @@ const Dashboard = class extends AuthService {
 
     if (user) {
       // get members
-      const members = await this.getMembers(user);
+      const flatmates = await this.getFlatMates(user);
       // get task about user
       const task = await this.getTasks(user);
       // render the display
-      this.el.innerHTML = await this.render(members);
+      this.el.innerHTML = await this.render(flatmates);
 
       this.buildCalendar(task);
       this.toggleSidebar = new Utiles();

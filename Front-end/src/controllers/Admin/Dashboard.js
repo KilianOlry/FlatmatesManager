@@ -1,7 +1,5 @@
 /* eslint-disable no-console */
-import toastr from 'toastr';
 import Cookies from 'js-cookie';
-import axios from 'axios';
 import { Calendar } from '@fullcalendar/core';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import viewNav from '../../views/global/nav';
@@ -9,11 +7,13 @@ import viewSidebar from '../../views/admin/global/sidebar';
 import viewContent from '../../views/admin/dashboard/dashboard';
 import AuthService from '../../services/Auth';
 import Utiles from '../../services/Utiles';
+import AxiosQuery from '../../services/AxiosQuery';
 
 const Dashboard = class extends AuthService {
   constructor() {
     super();
     this.el = document.querySelector('#root');
+    this.axiosQuery = new AxiosQuery();
     this.run();
   }
 
@@ -28,18 +28,9 @@ const Dashboard = class extends AuthService {
   }
 
   async getUser() {
-    try {
-      const data = JSON.parse(Cookies.get('Session'));
-      const response = await axios.post('http://localhost:50/user/:get', data, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching user:', error);
-      return null;
-    }
+    const data = JSON.parse(Cookies.get('Session'));
+    const user = await this.axiosQuery.Post('http://localhost:50/user/:get', data);
+    return user;
   }
 
   buildCalendar(task) {
@@ -82,45 +73,18 @@ const Dashboard = class extends AuthService {
   }
 
   async getTasks(dataUser) {
-    try {
-      const response = await axios.get(`http://localhost:50/task/${dataUser.id}`, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching user:', error);
-      return null;
-    }
+    const tasks = await this.axiosQuery.Get(`http://localhost:50/task/${dataUser.id}`);
+    return tasks;
   }
 
   async getExpenses(dataUser) {
-    try {
-      const response = await axios.get(`http://localhost:50/expense/${dataUser.id}`, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching user:', error);
-      return null;
-    }
+    const expenses = await this.axiosQuery.Get(`http://localhost:50/expense/${dataUser.id}`);
+    return expenses;
   }
 
-  async getMembers(user) {
-    try {
-      const response = await axios.post('http://localhost:50/home/get', user, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching members:', error);
-      return null;
-    }
+  async getFlatMates(user) {
+    const flatmates = await this.axiosQuery.Post('http://localhost:50/home/get', user);
+    return flatmates;
   }
 
   getStatusTask() {
@@ -149,46 +113,16 @@ const Dashboard = class extends AuthService {
   }
 
   sendDataExpense(id) {
-    axios.put('http://localhost:50/expense/update', id, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(() => {
-        this.regarcheDom();
-      })
-      .catch(() => {
-        toastr.error('Erreur lors de la mise à jour de la dépense');
-      });
+    this.axiosQuery.Put('http://localhost:50/expense/update', id);
   }
 
   sendDataTask(id) {
-    axios.put('http://localhost:50/task/update', id, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(() => {
-        console.log();
-        this.regarcheDom();
-      })
-      .catch(() => {
-        toastr.error('Erreur lors de la mise à jour de la tâche');
-      });
+    this.axiosQuery.Put('http://localhost:50/task/update', id);
   }
 
   async getMessages(dataUser) {
-    try {
-      const response = await axios.get(`http://localhost:50/message/${dataUser.home_id}`, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching members:', error);
-      return null;
-    }
+    const messages = await this.axiosQuery.Get(`http://localhost:50/message/${dataUser.home_id}`);
+    return messages;
   }
 
   regarcheDom() {
@@ -199,7 +133,7 @@ const Dashboard = class extends AuthService {
     const user = await this.getUser();
     if (user) {
       // Get members on flatmate
-      const members = await this.getMembers(user);
+      const members = await this.getFlatMates(user);
       // Get tasks about user
       const tasks = await this.getTasks(user);
       // Get expenses about user
