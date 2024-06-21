@@ -5,7 +5,7 @@ namespace App\Models;
 use \PDO;
 use stdClass;
 
-class CategoryModel extends SqlConnect {
+class CategorieTasksModel extends SqlConnect {
 
     public function getByName(string $name) {
       $req = $this->db->prepare("SELECT id FROM categorys_task WHERE name = :name");

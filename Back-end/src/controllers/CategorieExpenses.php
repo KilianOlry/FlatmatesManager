@@ -3,13 +3,13 @@
 namespace App\Controllers;
 
 use App\Controllers\Controller;
-use App\Models\CategoryExpensesModel;
+use App\Models\CategorieExpensesModel;
 
 class CategoryExpenses extends Controller {
   protected object $category;
 
   public function __construct($param) {
-    $this->category = new CategoryExpensesModel();
+    $this->category = new CategorieExpensesModel();
 
     parent::__construct($param);
   }

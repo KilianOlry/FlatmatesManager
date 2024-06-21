@@ -3,14 +3,14 @@
 namespace App\Controllers;
 
 use App\Controllers\Controller;
-use App\Models\CategoryModel;
+use App\Models\CategorieTasksModel;
 
-class Category extends Controller {
+class CategorieTasks extends Controller {
 
   protected object $category;
 
   public function __construct($param) {
-    $this->category = new CategoryModel();
+    $this->category = new CategorieTasksModel();
 
     parent::__construct($param);
   }

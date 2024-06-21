@@ -41,9 +41,9 @@ class User extends Controller {
 
   public function putUser() {
     $ifGranted = new ifGranted();
-
+    
     $cleanData = $this->formControl->sanitizeInput($this->body);
-
+    
     $homeToken = $ifGranted->verifyTokenHome($cleanData['token']);
     $user = $ifGranted->ifExist($cleanData['userEmail']);
 

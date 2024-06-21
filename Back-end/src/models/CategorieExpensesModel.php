@@ -5,7 +5,7 @@ namespace App\Models;
 use \PDO;
 use stdClass;
 
-class CategoryExpensesModel extends SqlConnect {
+class CategorieExpensesModel extends SqlConnect {
     public function add($name, $description, $created_at, $date_limit, $status, $priority, $category_id) {
       $query = 'INSERT INTO tasks (name, description, created_at, date_limit, status, priority, category_id)
                 VALUES (:name, :description, :created_at, :date_limit, :status, :priority, :category_id)';
@@ -20,11 +20,6 @@ class CategoryExpensesModel extends SqlConnect {
         ':priority' => $priority,
         ':category_id' => $category_id,
       ]);
-    }
-
-    public function delete(int $id) {
-      $req = $this->db->prepare("DELETE FROM tasks WHERE id = :id");
-      $req->execute(["id" => $id]);
     }
 
     public function get(int $id) {

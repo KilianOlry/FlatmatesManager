@@ -20,11 +20,6 @@ class MessageModel extends SqlConnect {
       ]);
     }
 
-    public function delete(int $id) {
-      $req = $this->db->prepare("DELETE FROM tasks WHERE id = :id");
-      $req->execute(["id" => $id]);
-    }
-
     public function get(int $id) {
       $req = $this->db->prepare("SELECT * FROM categorys_task WHERE id = :id");
       $req->execute(["id" => $id]);

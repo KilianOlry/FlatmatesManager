@@ -22,11 +22,6 @@ class ExpenseModel extends SqlConnect {
       ]);
     }
 
-    public function delete(int $id) {
-      $req = $this->db->prepare("DELETE FROM tasks WHERE id = :id");
-      $req->execute(["id" => $id]);
-    }
-
     public function get(int $id) {
       $req = $this->db->prepare("SELECT expenses.id AS expense_id, expenses.*, categorys_expense.* FROM expenses
                                 INNER JOIN categorys_expense ON expenses.category_id = categorys_expense.id

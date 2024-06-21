@@ -22,23 +22,19 @@ class Home extends Controller {
       
       $this->createHome($this->body);
 
-    } elseif (in_array('get', $this->params)) {
-
-      return $this->home->getMembersHome($this->body['home_id']);
-    
     }
   }
 
   public function deleteHome() {
+
     return $this->home->delete(intval($this->params['id']));
+
   }
 
   public function getHome() {
-    return $this->home->get(intval($this->params['id']));
-  }
 
-  public function putHome() {
-    return $this->home->update();
+    return $this->home->getFlatmates($this->params['id']);
+ 
   }
 
   public function createHome($body) {

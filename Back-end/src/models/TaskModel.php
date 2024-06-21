@@ -21,11 +21,7 @@ class TaskModel extends SqlConnect {
         ':worker' => $worker,
         ':home_id' => $homeId,
       ]);
-    }
-
-    public function delete(int $id) {
-      $req = $this->db->prepare("DELETE FROM tasks WHERE id = :id");
-      $req->execute(["id" => $id]);
+      return $stmt->rowCount() > 0;
     }
 
     public function get(int $id) {
@@ -58,5 +54,6 @@ class TaskModel extends SqlConnect {
         $stmt->execute([
           ':id' => $id,
         ]);
+      return $stmt->rowCount() > 0;
     }
 }

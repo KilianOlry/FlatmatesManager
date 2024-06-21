@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Controllers\Controller;
 use App\Services\FormControl;
 use App\Models\TaskModel;
-use App\Models\CategoryExpensesModel;
+use App\Models\CategorieExpensesModel;
 use App\Models\ExpenseModel;
 use App\Models\UserModel;
 
@@ -17,7 +17,7 @@ class Expense extends Controller {
 
   public function __construct($param) {
     $this->expense = new ExpenseModel();
-    $this->category = new CategoryExpensesModel();
+    $this->category = new CategorieExpensesModel();
     $this->user = new UserModel;
 
     parent::__construct($param);

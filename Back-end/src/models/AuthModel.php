@@ -20,11 +20,6 @@ class AuthModel extends SqlConnect {
       ]);
     }
 
-    public function delete(int $id) {
-      $req = $this->db->prepare("DELETE FROM users WHERE id = :id");
-      $req->execute(["id" => $id]);
-    }
-
     public function get(int $id) {
       $req = $this->db->prepare("SELECT * FROM users WHERE id = :id");
       $req->execute(["id" => $id]);

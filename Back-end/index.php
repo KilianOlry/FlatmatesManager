@@ -6,7 +6,7 @@ use App\Router;
 use App\Controllers\User;
 use App\Controllers\Auth;
 use App\Controllers\Task;
-use App\Controllers\Category;
+use App\Controllers\CategorieTasks;
 use App\Controllers\CategoryExpenses;
 use App\Controllers\Expense;
 use App\Controllers\Home;
@@ -24,8 +24,8 @@ new Router([
   'auth/:register' => Auth::class,
   
   # categoryTask actions
-  'category/:id' => Category::class,
-  'categorys/' => Category::class,
+  'category/:id' => CategorieTasks::class,
+  'categorys/' => CategorieTasks::class,
   
   # task actions
   'task/:id' => Task::class,
@@ -34,8 +34,8 @@ new Router([
   'task/update' => Task::class,
   
   # home actions
+  'home/:id' => Home::class,
   'home/:create' => Home::class,
-  'home/:get' => Home::class,
 
   # categoryExpense actions
   'category-expenses/:getAll' => CategoryExpenses::class,

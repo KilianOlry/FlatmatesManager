@@ -20,11 +20,6 @@ class UserModel extends SqlConnect {
       ]);
     }
 
-    public function delete(int $id) {
-      $req = $this->db->prepare("DELETE FROM users WHERE id = :id");
-      $req->execute(["id" => $id]);
-    }
-
     public function get(int $id) {
       $req = $this->db->prepare("SELECT id, firstname, lastname, email, role, token, home_id FROM users WHERE id = :id");
       $req->execute(["id" => $id]);
@@ -60,6 +55,5 @@ class UserModel extends SqlConnect {
         ':homeId' => $homeId,
         ':userId' => $userId,
       ]);
-
     }
 }

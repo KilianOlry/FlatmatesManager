@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Controllers\Controller;
 use App\Services\FormControl;
 use App\Models\TaskModel;
-use App\Models\CategoryModel;
+use App\Models\CategorieTasksModel;
 use App\Models\UserModel;
 
 class Task extends Controller {
@@ -16,7 +16,7 @@ class Task extends Controller {
 
   public function __construct($param) {
     $this->task = new TaskModel();
-    $this->category = new CategoryModel();
+    $this->category = new CategorieTasksModel();
     $this->user = new UserModel;
 
     parent::__construct($param);
@@ -37,8 +37,15 @@ class Task extends Controller {
       $flatmate = $this->formControl->cleanInput($this->body['flatmates']);
       $payor = $this->user->getByName($flatmate);
 
-      return $this->task->add($message, $createdAt, $dateLimit, $priority, $categoryId['id'], $payor['id'], $user['home_id']);
-    
+      $task = $this->task->add($message, $createdAt, $dateLimit, $priority, $categoryId['id'], $payor['id'], $user['home_id']);
+      
+      if ($task) {
+        header("HTTP/1.0 200 OK");
+        return 'Tâche Crée avec succès';
+      } else {
+        header("HTTP/1.0 400 Bad Request");
+        return 'Erreur lors de la création de la tâche';
+      }
     }
 
   }
@@ -56,6 +63,13 @@ class Task extends Controller {
   }
 
   public function putTask() {
-    return $this->task->update($this->body[0]);
+    $task = $this->task->update($this->body[0]);
+    if ($task) {
+      header("HTTP/1.0 200 OK");
+      return 'Tâche mise à jour';
+    } else {
+      header("HTTP/1.0 400 Bad Request");
+      return 'Erreur lors de la mise à jour de la tâche';
+    }
   }
 }
