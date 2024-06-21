@@ -32,12 +32,6 @@ class ExpenseModel extends SqlConnect {
       return $req->rowCount() > 0 ? $req->fetchAll(PDO::FETCH_ASSOC) : new stdClass();
     }
 
-    public function getLast() {
-      $req = $this->db->prepare("SELECT * FROM tasks ORDER BY id DESC LIMIT 1");
-      $req->execute();
-
-      return $req->rowCount() > 0 ? $req->fetch(PDO::FETCH_ASSOC) : new stdClass();
-    }
 
     public function update(int $id) {
         $query = "UPDATE expenses SET status = 1 WHERE id = :id";

@@ -34,20 +34,6 @@ class TaskModel extends SqlConnect {
       return $req->rowCount() > 0 ? $req->fetchAll(PDO::FETCH_ASSOC) : new stdClass();
     }
 
-    public function getAll() {
-      $req = $this->db->prepare("SELECT COLUMN_TYPE FROM INFORMATION_SHEMA.COLUMNS WHERE TABLE_NAME = 'tasks' AND COLUMN_NAME = 'priority'");
-      $req->execute();
-
-      return $req->rowCount() > 0 ? $req->fetch(PDO::FETCH_ASSOC) : new stdClass();
-    }
-
-    public function getLast() {
-      $req = $this->db->prepare("SELECT * FROM tasks ORDER BY id DESC LIMIT 1");
-      $req->execute();
-
-      return $req->rowCount() > 0 ? $req->fetch(PDO::FETCH_ASSOC) : new stdClass();
-    }
-
     public function update(int $id) {
         $query = "UPDATE tasks SET status = 'Terminé' WHERE id = :id";
         $stmt = $this->db->prepare($query);

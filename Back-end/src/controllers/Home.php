@@ -46,7 +46,6 @@ class Home extends Controller {
 
     $this->home->add($adress, $name, $token);
 
-    return $this->home->getLast();
   }
 
   function generateRandomToken(int $length = 6): string {

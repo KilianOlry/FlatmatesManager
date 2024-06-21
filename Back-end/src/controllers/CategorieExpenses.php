@@ -4,19 +4,22 @@ namespace App\Controllers;
 
 use App\Controllers\Controller;
 use App\Models\CategorieExpensesModel;
+use App\Services\QuerySql;
 
-class CategoryExpenses extends Controller {
+class CategorieExpenses extends Controller {
   protected object $category;
+  protected object $querySql;
 
   public function __construct($param) {
     $this->category = new CategorieExpensesModel();
+    $this->querySql = new QuerySql();
 
     parent::__construct($param);
   }
 
-  public function getCategoryExpenses() {
-    if (in_array('getAll', $this->params)) {
-    return $this->category->getAll();
-    }
+  public function getCategorieExpenses() {
+
+      return $this->querySql->getAll('categorys_expense');
+    
   }
 }

@@ -27,13 +27,6 @@ class AuthModel extends SqlConnect {
       return $req->rowCount() > 0 ? $req->fetch(PDO::FETCH_ASSOC) : new stdClass();
     }
 
-    public function getLast() {
-      $req = $this->db->prepare("SELECT * FROM users ORDER BY id DESC LIMIT 1");
-      $req->execute();
-
-      return $req->rowCount() > 0 ? $req->fetch(PDO::FETCH_ASSOC) : new stdClass();
-    }
-
     public function ifExist($email) {
       $req = $this->db->prepare('SELECT * FROM users WHERE email = :email');
       $req->execute(['email' => $email]);

@@ -7,16 +7,19 @@ use App\Services\FormControl;
 use App\Models\TaskModel;
 use App\Models\CategorieTasksModel;
 use App\Models\UserModel;
+use App\Services\QuerySql;
 
 class Task extends Controller {
   protected object $task;
   protected object $category;
   protected object $user;
+  protected object $serviceQuerySql;
   public $formControl;
 
   public function __construct($param) {
     $this->task = new TaskModel();
     $this->category = new CategorieTasksModel();
+    $this->serviceQuerySql = new QuerySql();
     $this->user = new UserModel;
 
     parent::__construct($param);
@@ -55,10 +58,14 @@ class Task extends Controller {
   }
 
   public function getTask() {
-    if (in_array('getAll', $this->params)) {
-      return $this->task->getAll();
+
+    if (in_array('', $this->params)) {
+      return $this->serviceQuerySql->getAll('categorys_task');
+
     } else {
+
       return $this->task->get(intval($this->params['id']));
+
     }
   }
 

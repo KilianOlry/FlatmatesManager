@@ -14,10 +14,4 @@ class CategorieTasksModel extends SqlConnect {
       return $req->rowCount() > 0 ? $req->fetch(PDO::FETCH_ASSOC) : new stdClass();
     }
 
-    public function getAll() {
-      $req = $this->db->prepare("SELECT * FROM categorys_task");
-      $req->execute();
-
-      return $req->rowCount() > 0 ? $req->fetchAll(PDO::FETCH_ASSOC) : new stdClass();
-    }
 }
