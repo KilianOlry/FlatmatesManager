@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
-import toastr from 'toastr';
-import axios from 'axios';
 import FormControl from '../../services/FormControl';
+import AxiosQuery from '../../services/AxiosQuery';
 
 import viewNav from '../../views/global/nav';
 import viewRegister from '../../views/auth/register';
@@ -10,6 +9,7 @@ const Register = class {
   constructor() {
     this.el = document.querySelector('#root');
     this.formControl = new FormControl();
+    this.axiosQuery = new AxiosQuery();
     this.run();
   }
 
@@ -30,21 +30,8 @@ const Register = class {
     });
   }
 
-  sendData(data) {
-    axios.post('http://localhost:50/auth/register', data, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then((response) => {
-        toastr.success(response.data);
-        setTimeout(() => {
-          window.location.href = '/login';
-        }, 3000);
-      })
-      .catch((response) => {
-        toastr.error(response.response.data);
-      });
+  async sendData(data) {
+    this.axiosQuery.Post('http://localhost:50/auth/register', data);
   }
 
   renderSkeleton() {

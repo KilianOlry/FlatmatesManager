@@ -25,7 +25,7 @@ const DashboardTask = class {
   }
 
   async getCategoriesTask() {
-    const categoriesTask = await this.axiosQuery.Get('http://localhost:50/categorys');
+    const categoriesTask = await this.axiosQuery.Get('http://localhost:50/categories-tasks/');
     return categoriesTask;
   }
 
@@ -36,7 +36,7 @@ const DashboardTask = class {
   }
 
   async getFlatMates(user) {
-    const flatmates = await this.axiosQuery.Post('http://localhost:50/home/get', user);
+    const flatmates = await this.axiosQuery.Get(`http://localhost:50/home/${user.home_id}`);
     return flatmates;
   }
 

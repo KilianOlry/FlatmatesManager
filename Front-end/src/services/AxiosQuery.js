@@ -1,7 +1,5 @@
 /* eslint-disable no-console */
 
-// import axios from "axios';
-
 import axios from 'axios';
 import toastr from 'toastr';
 
@@ -13,15 +11,17 @@ const AxiosQuery = class {
       }
     })
       .then((response) => {
+        console.log(response);
         if (response.status === 200) {
+          console.log(response);
           return response.data;
         }
         toastr.error('Erreur innatendu');
         throw new Error(`Erreur: Réponse inattendue, statut ${response.status}`);
       })
-      .catch((error) => {
+      .catch((response) => {
+        console.log(response);
         toastr.error('Erreur lors de la création de la tâche');
-        throw error;
       });
   }
 
@@ -37,9 +37,8 @@ const AxiosQuery = class {
         }
         throw new Error(`Erreur: Réponse inattendue, statut ${response.status}`);
       })
-      .catch((error) => {
-        toastr.error('Erreur lors de la création de la tâche');
-        throw error;
+      .catch((response) => {
+        toastr.error(response.response.data);
       });
   }
 
@@ -51,13 +50,12 @@ const AxiosQuery = class {
     })
       .then((response) => {
         if (response.status === 200) {
-          return response.data;
+          return toastr.success(response.data);
         }
         throw new Error(`Erreur: Réponse inattendue, statut ${response.status}`);
       })
-      .catch((error) => {
-        toastr.error('Erreur lors de la création de la tâche');
-        throw error;
+      .catch((response) => {
+        toastr.error(response.response.data);
       });
   }
 };
