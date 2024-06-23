@@ -14,6 +14,7 @@ use App\Controllers\Message;
 
 new Router([
   # user actions
+  'user/:byName' => User::class,
   'user/:id' => User::class,
   'user/:getbymail' => User::class,
   'user/:update' => User::class,
@@ -25,7 +26,7 @@ new Router([
   
   # categoryTask actions
   'category/:id' => CategorieTasks::class,
-  'categories-tasks/:get' => CategorieTasks::class,
+  'categories-tasks/' => CategorieTasks::class,
   
   # task actions
   'task/:id' => Task::class,

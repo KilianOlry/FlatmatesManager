@@ -36,4 +36,12 @@ class QuerySql extends SqlConnect {
       return $req->rowCount() > 0 ? $req->fetch(PDO::FETCH_ASSOC) : new stdClass();
     }
 
+    public function getByString(string $table, string $word) {
+      $query = "SELECT * FROM " . $table . " WHERE firstname LIKE :word";
+      $req = $this->db->prepare($query);
+      $req->execute(["word" => $word . '%']);
+
+      return $req->rowCount() > 0 ? $req->fetchAll(PDO::FETCH_ASSOC) : new stdClass();
+    }
+
 }

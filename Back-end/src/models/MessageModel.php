@@ -20,13 +20,6 @@ class MessageModel extends SqlConnect {
       ]);
     }
 
-    public function get(int $id) {
-      $req = $this->db->prepare("SELECT * FROM categorys_task WHERE id = :id");
-      $req->execute(["id" => $id]);
-
-      return $req->rowCount() > 0 ? $req->fetch(PDO::FETCH_ASSOC) : new stdClass();
-    }
-
     public function getAll(int $homeId) {
       $req = $this->db->prepare("SELECT * FROM messages WHERE home_id = :home_id");
 

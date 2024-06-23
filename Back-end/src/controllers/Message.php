@@ -38,7 +38,4 @@ class Message extends Controller {
     return $this->message->getAll($this->params['id']);
   }
 
-  public function buildDataMessage() {
-    
-  }
 }
