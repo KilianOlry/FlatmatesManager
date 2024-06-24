@@ -20,6 +20,7 @@ const Homepage = class extends Auth {
     return `
 
       ${viewNav(this.currentlyCookie)}
+
       <main>
 
         ${viewFirstSection()}

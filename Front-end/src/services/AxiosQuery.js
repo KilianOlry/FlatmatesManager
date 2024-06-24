@@ -33,11 +33,13 @@ const AxiosQuery = class {
     })
       .then((response) => {
         if (response.status === 200) {
+          console.log(response);
           return response.data;
         }
         throw new Error(`Erreur: Réponse inattendue, statut ${response.status}`);
       })
       .catch((response) => {
+        console.log(response);
         toastr.error(response.response.data);
       });
   }
