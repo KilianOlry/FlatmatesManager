@@ -10,21 +10,21 @@ export default (tasks, expenses, messages) => `
       <div>
 
         <div>
-          <h1 class="tracking-in-expand my-4 text-4xl capitalize font-extrabold text-green-900">
+          <h1 class="tracking-in-expand my-4 text-4xl capitalize font-extrabold text-customGreen-900">
             <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-700 from-sky-400">Tâches à</span> faire
           </h1>
           ${tasksUser(tasks)}
         </div>
 
         <div>
-          <h1 class="tracking-in-expand my-4 text-4xl capitalize font-extrabold text-green-900 dark:text-white">
+          <h1 class="tracking-in-expand my-4 text-4xl capitalize font-extrabold text-customGreen-900 dark:text-white">
             <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-700 from-sky-400">Factures </span>à payer
           </h1>
           ${expensesUser(expenses)}
         </div>
 
         <div>
-          <h1 class="tracking-in-expand my-4 text-4xl capitalize font-extrabold text-green-900 dark:text-white">
+          <h1 class="tracking-in-expand my-4 text-4xl capitalize font-extrabold text-customGreen-900 dark:text-white">
             <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-700 from-sky-400">Messages </span>importants
           </h1>
           ${messageFlatmates(messages)}

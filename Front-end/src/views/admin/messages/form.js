@@ -14,7 +14,7 @@ export default () => `
       </div>
       
       <div class='message-status-match-password'></div>
-      <button type="submit" class="block w-full bg-green-500 mt-4 py-2 rounded-2xl text-white font-semibold mb-2">Envoyer</button>
+      <button type="submit" class="block w-full bg-customGreen-500 mt-4 py-2 rounded-2xl text-white font-semibold mb-2">Envoyer</button>
       <p class ='text-sm ml-2 '>Vous pourrez supprimer votre message par la suite</p>
   </form>
 </div>

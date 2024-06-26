@@ -1,7 +1,7 @@
 import logo from '../../assets/icons/favicon.svg';
 
 export default () => (`
-<footer class="bg-white dark:bg-gray-900">
+<footer class="dark:bg-gray-900">
   <div class="container px-6 py-4 mx-auto">
     <div class="flex flex-col items-center text-center">
       <a href="#">

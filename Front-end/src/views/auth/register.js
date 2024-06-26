@@ -5,7 +5,7 @@ import iconProfil from '../../assets/icons/profil.svg';
 
 export default () => (`
 <div class="h-screen md:flex">
-  <div class="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-green-300 to-green-400 justify-around items-center hidden">
+  <div class="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-customGreen-300 to-green-400 justify-around items-center hidden">
     
       <div>
         <h1 class="text-white font-bold text-6xl font-sans tracking-widest">Colocation</h1>
@@ -51,8 +51,8 @@ export default () => (`
             <img src='${iconVisibility}' class='visibility size-5 cursor-pointer'>
           </div>
           <div class='message-status-match-password'></div>
-          <button type="submit" class="btn-submit block w-full bg-green-500 mt-4 py-2 rounded-2xl text-white font-semibold mb-2" disabled>Inscrivez vous</button>
-          <p class ='text-sm ml-2 '>Vous avez déjà un compte ?<a href="/login" class='text-green-500 hover:text-green-600 cursor-pointer font-bold'> Connectez-vous !</a></p>
+          <button type="submit" class="btn-submit block w-full bg-customGreen-500 mt-4 py-2 rounded-2xl text-white font-semibold mb-2" disabled>Inscrivez vous</button>
+          <p class ='text-sm ml-2 '>Vous avez déjà un compte ?<a href="/login" class='text-customGreen-500 hover:text-customGreen-600 cursor-pointer font-bold'> Connectez-vous !</a></p>
       </form>
   </div>
 </div>

@@ -6,7 +6,7 @@ import iconProfil from '../../assets/icons/profil.svg';
 export default (userInformation) => (`
 
 <div class="w-full md:flex">
-  <div class="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-green-400 to-green-500 i justify-around items-center hidden">
+  <div class="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-green-400 to-customGreen-500 i justify-around items-center hidden">
    
     <div class='flex items-center'>
       <div class="sm:mt-40 mt-24 my-auto max-w-md border-2 border-gray-200 rounded-[20px] p-3 bg-gray-800"> 
@@ -63,7 +63,7 @@ export default (userInformation) => (`
             <img src='${iconVisibility}' class='visibility size-5 cursor-pointer'>
           </div>
           <div class='message-status-match-password'></div>
-          <button type="submit" class="block w-full bg-green-500 mt-4 py-2 rounded-2xl text-white font-semibold mb-2">Modifier votre profil</button>
+          <button type="submit" class="block w-full bg-customGreen-500 mt-4 py-2 rounded-2xl text-white font-semibold mb-2">Modifier votre profil</button>
       </form>
   </div>
 </div>

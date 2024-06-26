@@ -30,7 +30,7 @@ class AuthService {
 
     try {
       const cookieJson = JSON.parse(sessionCookie);
-      return cookieJson.role === 'SUPERADMIN';
+      return cookieJson.role === 'ADMIN';
     } catch (error) {
       return false;
     }
