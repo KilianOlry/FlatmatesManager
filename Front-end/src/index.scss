@@ -1,11 +1,12 @@
 @charset "utf-8";
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import './styles/variables';
 @import './styles/animation';
 @import './styles/global';
-@import './styles/nav';
-@import './styles/login';
-@import './styles/tags';
 @import './styles/calendar';
 @import './styles/admin';
 @import './styles/error-404';

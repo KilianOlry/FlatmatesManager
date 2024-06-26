@@ -24,7 +24,7 @@ export default (item) => {
         <path d="M2.25 18a.75.75 0 000 1.5c5.4 0 10.63.722 15.6 2.075 1.19.324 2.4-.558 2.4-1.82V18.75a.75.75 0 00-.75-.75H2.25z"></path>
       </svg>
     </div>
-    <p class="absolute right-0 top-3 antialiased inline font-sans text-right text-sm blue-200 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">${date}</p>
+    <p class="absolute right-0 top-3 antialiased inline font-sans text-right text-sm bg-customBlue-200 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-customGreen-300">${date}</p>
   </div>
 
   <div class="mt-4 px-3">
@@ -35,10 +35,10 @@ export default (item) => {
   </div>
     <div class='flex items-center justify-between px-4 mb-2'>
     <form action="" class='change-status-expense'>
-      <input type='hidden' value='${expense_id}' name='expense' class='test'>
-      <span id="badge-dismiss-green" class="inline-flex items-center px-2 py-1 me-2 text-sm font-medium text-blue-500 blue-200 rounded dark:bg-green-900 dark:text-green-300">
+      <input type='hidden' value='${expense_id}' name='expense' class='bg-button-btn-bg'>
+      <span id="badge-dismiss-green" class="inline-flex items-center px-2 py-1 me-2 text-sm font-medium text-customBlue-500 blue-200 rounded dark:bg-green-900 dark:text-customGreen-300">
           Marqué comme Payé
-          <button type="submit" class="inline-flex items-center p-1 ms-2 text-sm text-blue-200 bg-transparent rounded-sm hover:bg-blue-300 hover:text-blue-900" data-dismiss-target="#badge-dismiss-green" aria-label="Remove">
+          <button type="submit" class="inline-flex items-center p-1 ms-2 text-sm text-customBlue-200 bg-transparent rounded-sm hover:bg-blue-300 hover:text-blue-900" data-dismiss-target="#badge-dismiss-green" aria-label="Remove">
             <svg class="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
             </svg>

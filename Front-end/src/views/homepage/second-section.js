@@ -6,7 +6,7 @@ export default () => (`
   </div>
 
   <div class='px-5 md:px-0 md:text-left'>
-    <h1 class="tracking-wider my-10 text-2xl text-center md:text-left font-extrabold text-green-900 dark:text-white md:text-4xl xl:text-5xl">
+    <h1 class="tracking-wider my-10 text-2xl text-center md:text-left font-extrabold text-customGreen-900 dark:text-white md:text-4xl xl:text-5xl">
       <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-700 from-sky-400">Comment ça </span> 
       <span class='italic'>fonctionne<span>
     </h1>

@@ -44,8 +44,11 @@
     "@fullcalendar/daygrid": "^6.1.11",
     "@fullcalendar/list": "^6.1.11",
     "@fullcalendar/timegrid": "^6.1.11",
+    "autoprefixer": "^10.4.19",
     "axios": "^1.7.2",
     "js-cookie": "^3.0.5",
+    "postcss-loader": "^8.1.1",
+    "tailwindcss": "^3.4.4",
     "toastr": "^2.1.4"
   }
 }
