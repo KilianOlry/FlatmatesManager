@@ -4,9 +4,9 @@ const renderComponent = (dataTasks) => {
   const hasExpenses = Object.keys(dataTasks).length > 0;
 
   const content = hasExpenses
-    ? `<section class='overflow-x-auto flex gap-10 p-3'>
+    ? `<div class='overflow-x-auto max-w-screen-sm lg:max-w-screen-md flex gap-10 p-3'>
         ${dataTasks.map(task).join('')}
-       </section>`
+       </div>`
 
     : "<h2 class='text-xl'>Aucune tâche prévue.<h2>";
 

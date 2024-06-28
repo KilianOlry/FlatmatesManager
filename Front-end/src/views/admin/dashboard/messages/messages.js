@@ -4,9 +4,9 @@ const renderComponent = (messageFlatmates) => {
   const hasMessages = Object.keys(messageFlatmates).length > 0;
 
   const content = hasMessages
-    ? `<section class='overflow-x-auto max-w-screen-md flex gap-7 p-3'>
+    ? `<div class='overflow-x-auto max-w-screen-sm lg:max-w-screen-md flex gap-7 p-3'>
         ${messageFlatmates.map(message).join('')}
-       </section>`
+       </div>`
 
     : "<h2 class='text-xl'>Vous n'avez pas de nouveaux messages<h2>";
 

@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-import Cookies from 'js-cookie';
 import { Calendar } from '@fullcalendar/core';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import viewNav from '../../views/global/nav';
@@ -8,12 +7,14 @@ import viewContent from '../../views/admin/dashboard/dashboard';
 import AuthService from '../../services/Auth';
 import Utiles from '../../services/Utiles';
 import AxiosQuery from '../../services/AxiosQuery';
+import AdminService from '../../services/Admin';
 
 const Dashboard = class extends AuthService {
   constructor() {
     super();
     this.el = document.querySelector('#root');
     this.axiosQuery = new AxiosQuery();
+    this.adminService = new AdminService();
     this.run();
   }
 
@@ -25,12 +26,6 @@ const Dashboard = class extends AuthService {
         ${viewContent(tasks, expenses, calendar, messages)}
       </div>
     `;
-  }
-
-  async getUser() {
-    const data = JSON.parse(Cookies.get('Session'));
-    const user = await this.axiosQuery.Post('http://localhost:50/user/:get', data);
-    return user;
   }
 
   buildCalendar(task) {
@@ -72,21 +67,6 @@ const Dashboard = class extends AuthService {
     }
   }
 
-  async getTasks(dataUser) {
-    const tasks = await this.axiosQuery.Get(`http://localhost:50/task/${dataUser.id}`);
-    return tasks;
-  }
-
-  async getExpenses(dataUser) {
-    const expenses = await this.axiosQuery.Get(`http://localhost:50/expense/${dataUser.id}`);
-    return expenses;
-  }
-
-  async getFlatMates(user) {
-    const flatmates = await this.axiosQuery.Get(`http://localhost:50/home/${user.home_id}`);
-    return flatmates;
-  }
-
   getStatusTask() {
     const formStatusTasks = document.querySelectorAll('.change-status-task');
 
@@ -105,8 +85,7 @@ const Dashboard = class extends AuthService {
     formStatusTasks.forEach((form) => {
       form.addEventListener('submit', (e) => {
         e.preventDefault();
-        const input = form.querySelector('.test');
-
+        const input = form.querySelector('.input-expense');
         this.sendDataExpense(input.value);
       });
     });
@@ -120,26 +99,22 @@ const Dashboard = class extends AuthService {
     this.axiosQuery.Put('http://localhost:50/task/update', id);
   }
 
-  async getMessages(dataUser) {
-    const messages = await this.axiosQuery.Get(`http://localhost:50/message/${dataUser.home_id}`);
-    return messages;
-  }
-
   regarcheDom() {
     window.location.href = '/dashboard';
   }
 
   async run() {
-    const user = await this.getUser();
+    const user = await this.adminService.getUser();
+
     if (user) {
       // Get members on flatmate
-      const members = await this.getFlatMates(user);
+      const members = await this.adminService.getFlatMates();
       // Get tasks about user
-      const tasks = await this.getTasks(user);
+      const tasks = await this.adminService.getTasks();
       // Get expenses about user
-      const expenses = await this.getExpenses(user);
+      const expenses = await this.adminService.getExpenses();
       // Get all messages about flatmate
-      const messages = await this.getMessages(user);
+      const messages = await this.adminService.getMessages();
       // Render view with all data
       this.el.innerHTML = this.render(members, tasks, expenses, messages);
       // Build calendar with tasks Users
