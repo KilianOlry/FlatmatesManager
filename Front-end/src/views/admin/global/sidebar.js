@@ -1,5 +1,4 @@
 import member from './members/member';
-import iconProfil from '../../../assets/icons/sidebar/profil.svg';
 import iconCalendar from '../../../assets/icons/sidebar/calendar.svg';
 import iconTalk from '../../../assets/icons/sidebar/talk.svg';
 import iconMoney from '../../../assets/icons/sidebar/money.svg';
@@ -50,13 +49,6 @@ export default (flatmates) => (`
         <a href="/dashboard-calendar" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
           <img src='${iconCalendar}' alt='icone' class='flex-shrink-0 size-8 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white'>
           <span class="flex-1 ms-3 whitespace-nowrap">Calendrier</span>
-        </a>
-      </li>
-
-      <li>
-        <a href="/dashboard-myprofil" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-          <img src='${iconProfil}' alt='icone' class='flex-shrink-0 size-8 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white'>
-          <span class="flex-1 ms-3 whitespace-nowrap">Mon profil</span>
         </a>
       </li>
 

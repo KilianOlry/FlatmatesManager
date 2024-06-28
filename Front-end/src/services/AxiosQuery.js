@@ -33,7 +33,7 @@ const AxiosQuery = class {
     })
       .then((response) => {
         if (response.status === 200) {
-          console.log(response);
+          toastr.success(response.data);
           return response.data;
         }
         throw new Error(`Erreur: Réponse inattendue, statut ${response.status}`);

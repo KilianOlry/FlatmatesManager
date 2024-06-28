@@ -2,7 +2,7 @@
 import favicon from '../../assets/icons/favicon.svg';
 
 export default (stmtUser) => `
-<nav class="bg-white border-gray-200 dark:bg-gray-900">
+<nav class="bg-white border-gray-200 dark:bg-gray-900 shadow-sm">
   <div class="container flex flex-wrap items-center justify-between mx-auto px-4 md:px-12">
     <a href="/" class="flex items-center space-x-3">
       <img src="${favicon}" alt="logo site internet" />

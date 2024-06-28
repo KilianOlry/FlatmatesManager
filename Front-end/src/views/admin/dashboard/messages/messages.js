@@ -4,7 +4,7 @@ const renderComponent = (messageFlatmates) => {
   const hasMessages = Object.keys(messageFlatmates).length > 0;
 
   const content = hasMessages
-    ? `<section class='overflow-x-auto flex gap-7 p-3'>
+    ? `<section class='overflow-x-auto max-w-screen-md flex gap-7 p-3'>
         ${messageFlatmates.map(message).join('')}
        </section>`
 

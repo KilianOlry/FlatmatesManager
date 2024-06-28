@@ -3,7 +3,6 @@ import Homepage from './controllers/Homepage';
 import Login from './controllers/Auth/Login';
 import Register from './controllers/Auth/Register';
 import Dashboard from './controllers/Admin/Dashboard';
-import DashboardMyProfil from './controllers/Admin/Dashboard-myprofil';
 import DashboardCalendar from './controllers/Admin/Dashboard-calendar';
 import DashboardMessage from './controllers/Admin/Dahboard-messages';
 import DashboardExpenses from './controllers/Admin/Dashboard-expenses';
@@ -32,11 +31,6 @@ const routes = [{
   url: '/dashboard',
   requireCookie: true,
   controller: Dashboard
-},
-{
-  url: '/dashboard-myprofil',
-  requireCookie: true,
-  controller: DashboardMyProfil
 },
 {
   url: '/dashboard-calendar',

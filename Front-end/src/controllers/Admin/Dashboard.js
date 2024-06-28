@@ -20,7 +20,7 @@ const Dashboard = class extends AuthService {
   render(members, tasks, expenses, calendar, messages) {
     return `
       ${viewNav(this.currentlyCookie)}
-      <div class='flex flex-col xl:flex-row p-3 md:pl-6 flex container_dashboard'>
+      <div class='flex flex-col xl:flex-row p-3 md:pl-6 container_dashboard'>
         ${viewSidebar(members)}
         ${viewContent(tasks, expenses, calendar, messages)}
       </div>
@@ -35,7 +35,7 @@ const Dashboard = class extends AuthService {
 
   buildCalendar(task) {
     const hasExpenses = Object.keys(task).length > 0;
-    const calendarEl = document.getElementById('calendar__dashboard');
+    const calendarEl = document.querySelector('.calendar__dashboard');
 
     if (hasExpenses) {
       const calendar = new Calendar(calendarEl, {
