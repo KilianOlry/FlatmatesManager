@@ -14,8 +14,11 @@ class FormControl
 }
 
   public function cleanInput(string $inputValue) {
-    $cleanInput = htmlspecialchars($inputValue);
-    return $cleanInput;
+    if (!empty($inputValue)) {
+      $cleanInput = htmlspecialchars($inputValue);
+      return $cleanInput;
+    }
+    return false;
   }
 
   public function verifyEmail(string $email)

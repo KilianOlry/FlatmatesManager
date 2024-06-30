@@ -57,12 +57,12 @@ class Auth extends Controller {
         } else {
 
           header("HTTP/1.0 401 Unauthorized");
-          return 'Email ou Mot de passe inccorect';
+          return ['message' => 'Email ou Mot de passe incorect'];
         }
       }
       else{
         header("HTTP/1.0 401 Unauthorized");
-        return 'Email ou Mot de passe inccorect';
+        return ['message' => 'Email ou Mot de passe incorect'];
       }
     }
   }
@@ -79,10 +79,10 @@ class Auth extends Controller {
         $this->auth->register($firstname, $lastname, $email, $passwordHashed, $token);
 
         header("HTTP/1.0 200 OK");
-        return 'Félicitation Votre compte est créer !! Veuillez vous connecter';
+        return ['message' => 'Félicitation Votre compte est créer !! Veuillez vous connecter'];
     } else {
         header("HTTP/1.0 400 Bad Request");
-        return 'Erreur lors de la création de votre compte';
+        return ['message' => 'Erreur lors de la création de votre compte'];
     }
 }
 
