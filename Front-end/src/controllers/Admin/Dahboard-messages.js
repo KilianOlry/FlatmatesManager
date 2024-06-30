@@ -1,17 +1,18 @@
 /* eslint-disable no-console */
-import Cookies from 'js-cookie';
 import viewNav from '../../views/global/nav';
 import viewSidebar from '../../views/admin/global/sidebar';
 import viewContent from '../../views/admin/messages/dashboard';
 import AuthService from '../../services/Auth';
 import Utiles from '../../services/Utiles';
 import AxiosQuery from '../../services/AxiosQuery';
+import AdminService from '../../services/Admin';
 
 const DashboardMessage = class extends AuthService {
   constructor() {
     super();
     this.el = document.querySelector('#root');
     this.axiosQuery = new AxiosQuery();
+    this.adminService = new AdminService();
     this.run();
   }
 
@@ -23,17 +24,6 @@ const DashboardMessage = class extends AuthService {
          ${viewContent()}
       </div>
     `;
-  }
-
-  async getUser() {
-    const data = JSON.parse(Cookies.get('Session'));
-    const user = await this.axiosQuery.Post('http://localhost:50/user/:get', data);
-    return user;
-  }
-
-  async getFlatMates(user) {
-    const flatmates = await this.axiosQuery.Get(`http://localhost:50/home/${user.home_id}`);
-    return flatmates;
   }
 
   getDataForm(user) {
@@ -56,9 +46,9 @@ const DashboardMessage = class extends AuthService {
   }
 
   async run() {
-    const user = await this.getUser();
+    const user = await this.adminService.getUser();
     if (user) {
-      const flatmates = await this.getFlatMates(user);
+      const flatmates = await this.adminService.getFlatMates();
       this.el.innerHTML = await this.render(flatmates);
       this.getDataForm(user);
       this.toggleSidebar = new Utiles();

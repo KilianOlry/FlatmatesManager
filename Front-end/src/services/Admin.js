@@ -34,6 +34,16 @@ const AdminService = class {
     return messages;
   }
 
+  async getCategoriesTask() {
+    const categoriesTask = await this.axiosQuery.Get('http://localhost:50/categories-tasks/');
+    return categoriesTask;
+  }
+
+  async getCategoriesExpenses() {
+    const categories = await this.axiosQuery.Get('http://localhost:50/categories-expenses/');
+    return categories;
+  }
+
   async run() {
     this.currentUser = await this.getUser();
   }

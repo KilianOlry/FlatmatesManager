@@ -5,11 +5,13 @@ import viewSidebar from '../../views/admin/global/sidebar';
 import viewContent from '../../views/admin/expenses/expenses';
 import Utiles from '../../services/Utiles';
 import AxiosQuery from '../../services/AxiosQuery';
+import AdminService from '../../services/Admin';
 
 const DashboardExpenses = class {
   constructor() {
     this.el = document.querySelector('#root');
     this.axiosQuery = new AxiosQuery();
+    this.adminService = new AdminService();
     this.run();
   }
 
@@ -21,22 +23,6 @@ const DashboardExpenses = class {
          ${viewContent(categoriesExpenses, flatmates)}
       </div>
     `;
-  }
-
-  async getUser() {
-    const data = JSON.parse(Cookies.get('Session'));
-    const user = await this.axiosQuery.Post('http://localhost:50/user/:get', data);
-    return user;
-  }
-
-  async getCategoriesExpenses() {
-    const categories = await this.axiosQuery.Get('http://localhost:50/categories-expenses/');
-    return categories;
-  }
-
-  async getFlatMates(user) {
-    const flatmates = await this.axiosQuery.Get(`http://localhost:50/home/${user.home_id}`);
-    return flatmates;
   }
 
   getDataForm() {
@@ -83,10 +69,11 @@ const DashboardExpenses = class {
   }
 
   async run() {
-    const user = await this.getUser();
+    const user = await this.adminService.getUser();
+
     if (user) {
-      const flatmates = await this.getFlatMates(user);
-      const categoriesExpenses = await this.getCategoriesExpenses();
+      const flatmates = await this.adminService.getFlatMates();
+      const categoriesExpenses = await this.adminService.getCategoriesExpenses();
       this.el.innerHTML = await this.render(categoriesExpenses, flatmates);
       this.getDataForm();
       this.toggleModal();

@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-import Cookies from 'js-cookie';
 import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -11,29 +10,15 @@ import viewContent from '../../views/admin/calendar';
 import AuthService from '../../services/Auth';
 import Utiles from '../../services/Utiles';
 import AxiosQuery from '../../services/AxiosQuery';
+import AdminService from '../../services/Admin';
 
 const Dashboard = class extends AuthService {
   constructor() {
     super();
     this.el = document.querySelector('#root');
     this.axiosQuery = new AxiosQuery();
+    this.adminService = new AdminService();
     this.run();
-  }
-
-  async getUser() {
-    const data = JSON.parse(Cookies.get('Session'));
-    const user = await this.axiosQuery.Post('http://localhost:50/user/:get', data);
-    return user;
-  }
-
-  async getTasks(dataUser) {
-    const tasks = await this.axiosQuery.Get(`http://localhost:50/task/${dataUser.id}`);
-    return tasks;
-  }
-
-  async getFlatMates(user) {
-    const flatmates = await this.axiosQuery.Get(`http://localhost:50/home/${user.home_id}`);
-    return flatmates;
   }
 
   buildCalendar(task) {
@@ -86,13 +71,13 @@ const Dashboard = class extends AuthService {
 
   async run() {
     // get currently user
-    const user = await this.getUser();
+    const user = await this.adminService.getUser();
 
     if (user) {
       // get members
-      const flatmates = await this.getFlatMates(user);
+      const flatmates = await this.adminService.getFlatMates();
       // get task about user
-      const task = await this.getTasks(user);
+      const task = await this.adminService.getTasks();
       // render the display
       this.el.innerHTML = await this.render(flatmates);
 
