@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import viewNav from '../../views/global/nav';
 import viewSidebar from '../../views/admin/global/sidebar';
-import viewContent from '../../views/admin/messages/dashboard';
+import viewContent from '../../views/admin/messages/form';
 import AuthService from '../../services/Auth';
 import Utiles from '../../services/Utiles';
 import AxiosQuery from '../../services/AxiosQuery';
@@ -19,7 +19,7 @@ const DashboardMessage = class extends AuthService {
   async render(flatmates) {
     return `
       ${viewNav(this.currentlyCookie)}
-      <div class='flex flex-col xl:flex-row p-3 md:pl-6 flex container_dashboard'>
+      <div class='flex flex-col xl:flex-row p-3 md:pl-6 container_dashboard'>
          ${viewSidebar(flatmates)}
          ${viewContent()}
       </div>

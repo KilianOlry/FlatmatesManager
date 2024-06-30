@@ -1,7 +1,7 @@
 import iconProfil from '../../../assets/icons/profil.svg';
 
 export default () => `
-<div class="flex md:w-1/2 justify-center py-10 items-center bg-white rounded-md">
+<div class="flex w-full mr-8 ml-3 sm:ml-14 justify-center py-10 items-center bg-white rounded-md">
   <form class="form-create-message bg-white" method='POST'>
     <h1 class="text-gray-800 font-bold text-2xl mb-1">Écrire un message</h1>
     <p class="text-sm font-normal text-gray-600 mb-7">Il sera visible par l'ensemble des membres de la colocation</p>
@@ -15,7 +15,7 @@ export default () => `
       
       <div class='message-status-match-password'></div>
       <button type="submit" class="block w-full bg-customGreen-500 mt-4 py-2 rounded-2xl text-white font-semibold mb-2">Envoyer</button>
-      <p class ='text-sm ml-2 '>Vous pourrez supprimer votre message par la suite</p>
+      <p class ='text-sm ml-2'>Vous pourrez supprimer votre message par la suite</p>
   </form>
 </div>
 `;
