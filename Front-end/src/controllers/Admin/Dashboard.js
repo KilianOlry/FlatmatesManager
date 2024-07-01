@@ -73,7 +73,7 @@ const Dashboard = class extends AuthService {
     formStatusTasks.forEach((form) => {
       form.addEventListener('submit', (e) => {
         e.preventDefault();
-        const input = form.querySelector('.test');
+        const input = form.querySelector('.input-task');
         this.sendDataTask(input.value);
       });
     });

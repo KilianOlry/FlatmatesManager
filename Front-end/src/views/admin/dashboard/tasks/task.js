@@ -31,7 +31,7 @@ export default (item) => {
   </div>
     <div class='flex items-center justify-between px-4 pb-2'>
       <form action="" class='change-status-task'>
-        <input type='hidden' value='${task_id}' name='task' class='bg-button-btn-bg'>
+        <input type='hidden' value='${task_id}' name='task' class='input-task bg-button-btn-bg'>
         <span id="badge-dismiss-green" class="inline-flex items-center px-2 py-1 me-2 text-sm font-medium text-green-800 bg-customGreen-100 rounded dark:bg-green-900 dark:text-green-300">
           Terminé
           <button type="submit" class="inline-flex items-center p-1 ms-2 text-sm text-green-400 bg-transparent rounded-sm hover:bg-green-200 hover:text-customGreen-900 dark:hover:bg-green-800 dark:hover:text-customGreen-300" data-dismiss-target="#badge-dismiss-green" aria-label="Remove">

@@ -1,11 +1,7 @@
-.container_dashboard{
+.container_dashboard, .sidebar{
   height: calc(100vh - 160px);
 }
 
-.sidebar{
-  height: calc(100vh - 160px);
-  background-color: $green-100;
-}
 .btn-modal{
   position: absolute;
   top: 53%; left: 50%;

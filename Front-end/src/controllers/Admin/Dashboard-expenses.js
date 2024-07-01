@@ -38,7 +38,6 @@ const DashboardExpenses = class {
         date: formData.get('date'),
         flatmates: formData.get('flatmates'),
         category: formData.get('category'),
-        priority: formData.get('priority'),
         description: formData.get('description'),
         price: formData.get('price')
       };

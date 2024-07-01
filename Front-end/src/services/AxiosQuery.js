@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-
 import axios from 'axios';
 import toastr from 'toastr';
 
@@ -13,15 +12,16 @@ const AxiosQuery = class {
       .then((response) => {
         console.log(response);
         if (response.status === 200) {
-          console.log(response);
+          if (response.data.message) {
+            toastr.success(response.data.message);
+          }
           return response.data;
         }
         toastr.error('Erreur innatendu');
         throw new Error(`Erreur: Réponse inattendue, statut ${response.status}`);
       })
-      .catch((response) => {
-        console.log(response);
-        toastr.error('Erreur lors de la création de la tâche');
+      .catch((error) => {
+        toastr.error(error.response.data.message);
       });
   }
 
@@ -32,15 +32,19 @@ const AxiosQuery = class {
       }
     })
       .then((response) => {
+        console.log(response);
         if (response.status === 200) {
-          toastr.success(response.data);
+          if (response.data.message) {
+            toastr.success(response.data.message);
+          }
           return response.data;
         }
         throw new Error(`Erreur: Réponse inattendue, statut ${response.status}`);
       })
-      .catch((response) => {
-        console.log(response);
-        toastr.error(response.response.data);
+      .catch((error) => {
+        console.log(error);
+        toastr.error(error.response.data.message);
+        return error.response;
       });
   }
 
@@ -51,13 +55,19 @@ const AxiosQuery = class {
       }
     })
       .then((response) => {
+        console.log(response);
         if (response.status === 200) {
-          return toastr.success(response.data);
+          if (response.data.message) {
+            toastr.success(response.data.message);
+          }
+          return response.data;
         }
         throw new Error(`Erreur: Réponse inattendue, statut ${response.status}`);
       })
-      .catch((response) => {
-        toastr.error(response.response.data);
+      .catch((error) => {
+        console.log(error);
+        toastr.error(error.response.data.message);
+        return error.response;
       });
   }
 };

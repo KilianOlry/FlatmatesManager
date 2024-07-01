@@ -1,16 +1,16 @@
 /* eslint-disable no-console */
 import Cookies from 'js-cookie';
-import toastr from 'toastr';
-import axios from 'axios';
 import FormControll from '../../services/FormControl';
 
 import viewNav from '../../views/global/nav';
 import viewLogin from '../../views/auth/login';
+import AxiosQuery from '../../services/AxiosQuery';
 
 const Login = class {
   constructor() {
     this.el = document.querySelector('#root');
     this.formControl = new FormControll();
+    this.axiosQuery = new AxiosQuery();
     this.run();
   }
 
@@ -47,23 +47,16 @@ const Login = class {
         password: formData.get('password')
       };
 
-      this.sendData(dataForm);
+      this.sendDatas(dataForm);
     });
   }
 
-  sendData(dataForm) {
-    axios.post('http://localhost:50/auth/login', dataForm, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then((responseApi) => {
-        Cookies.set('Session', JSON.stringify(this.buildCookie(responseApi.data)));
-        window.location.href = '/';
-      })
-      .catch((response) => {
-        toastr.error(response.response.data);
-      });
+  async sendDatas(dataForm) {
+    const logUser = await this.axiosQuery.Post('http://localhost:50/auth/login', dataForm);
+    if (!logUser.data) {
+      Cookies.set('Session', JSON.stringify(this.buildCookie(logUser)));
+      window.location.href = '/';
+    }
   }
 
   buildCookie(data) {
