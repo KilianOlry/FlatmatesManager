@@ -25,7 +25,7 @@ class Message extends Controller {
 
       if(in_array(false, $cleanBody)) {
         header("HTTP/1.0 406 Not Acceptable");
-        return 'Erreur veuillez remplir tous les champs';
+        return ['message' => 'Erreur veuillez remplir tous les champs'];
       }
 
       $created_at = date('Y-m-d H:i:s');

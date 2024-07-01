@@ -8,7 +8,7 @@ use stdClass;
 class HomeModel extends SqlConnect {
     public function add($adress, $name, $token) {
       $query = 'INSERT INTO homes (adress, name, token)
-                VALUES (:adress, :name, :token)';
+                          VALUES (:adress, :name, :token)';
 
       $stmt = $this->db->prepare($query);
       $stmt->execute([
@@ -16,6 +16,7 @@ class HomeModel extends SqlConnect {
         ':name' => $name,
         ':token' => $token,
       ]);
+      return $stmt->rowCount() > 0;
     }
 
     public function getFlatmates($id) {
