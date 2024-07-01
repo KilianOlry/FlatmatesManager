@@ -17,7 +17,7 @@ class Home extends Controller {
 
   public function postHome() {
     if (in_array('create', $this->params)) {
-
+      
       return $this->createHome($this->body);
 
     }
@@ -31,11 +31,11 @@ class Home extends Controller {
 
   public function getHome() {
 
-    return $this->home->getFlatmates($this->params['id']);
+    return $this->home->getFlatmates(intval($this->params['id']));
  
   }
 
-  public function createHome($body) {
+  public function createHome(array $body) {
     $formControl = new FormControl();
 
     $cleanBody = $formControl->sanitizeInput($body);

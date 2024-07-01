@@ -20,6 +20,7 @@ class ExpenseModel extends SqlConnect {
         ':worker' => $worker,
         ':home_id' => $homeId,
       ]);
+      return $stmt->rowCount() > 0;
     }
 
     public function get(int $id) {

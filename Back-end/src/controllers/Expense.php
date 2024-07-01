@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Controllers\Controller;
 use App\Services\FormControl;
-use App\Models\TaskModel;
 use App\Models\CategorieExpensesModel;
 use App\Models\ExpenseModel;
 use App\Models\UserModel;
@@ -27,17 +26,23 @@ class Expense extends Controller {
     $this->formControl = new FormControl();
 
     if (in_array('add', $this->params)) {
-      $price = $this->body['price'];
-      $message = $this->formControl->cleanInput($this->body['description']);
+
+      $cleanBody = $this->formControl->sanitizeInput($this->body);
       $createdAt = date('Y-m-d');
-      $dateLimit = $this->formControl->cleanInput($this->body['date']);
-      $category = $this->formControl->cleanInput($this->body['category']);
+      $category = $cleanBody['category'];
       $categoryId = $this->category->getByName($category);
-      $user = $this->user->ifExist($this->body['tokenUser']);
-      $flatmate = $this->formControl->cleanInput($this->body['flatmates']);
+      $user = $this->user->ifExist($cleanBody['tokenUser']);
+      $flatmate = $this->body['flatmates'];
       $workerflatmate = $this->user->getByName($flatmate);
-      return $this->expense->add($price, $message, $createdAt, $dateLimit, $categoryId['id'], $workerflatmate['id'], $user['home_id']);
-    
+      
+      $stmtExpense = $this->expense->add($cleanBody['price'], $cleanBody['description'], $createdAt, $cleanBody['date'], $categoryId['id'], $workerflatmate['id'], $user['home_id']);
+      
+      if ($stmtExpense) {
+        header("HTTP/1.0 200 OK");
+        return ['message' => 'dépense crée avec succès'];
+      }
+      header("HTTP/1.0 401 Unauthorized");
+      return ['message' => 'Une erreur est survenue lors de la création de la dépense'];
     } 
     
   }

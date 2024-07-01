@@ -30,17 +30,14 @@ class Task extends Controller {
     $this->formControl = new FormControl();
 
     if (in_array('add', $this->params)) {
-      $message = $this->formControl->cleanInput($this->body['description']);
+      $cleanBody = $this->formControl->sanitizeInput($this->body);
       $createdAt = date('Y-m-d H:i:s');
-      $dateLimit = $this->formControl->cleanInput($this->body['date']);
-      $priority = $this->formControl->cleanInput($this->body['priority']);
-      $category = $this->formControl->cleanInput($this->body['category']);
-      $categoryId = $this->category->getByName($category);
-      $user = $this->user->ifExist($this->body['tokenUser']);
-      $flatmate = $this->formControl->cleanInput($this->body['flatmates']);
+      $categoryId = $this->category->getByName($cleanBody['category']);
+      $user = $this->user->ifExist($cleanBody['tokenUser']);
+      $flatmate = $this->formControl->cleanInput($cleanBody['flatmates']);
       $payor = $this->user->getByName($flatmate);
 
-      $task = $this->task->add($message, $createdAt, $dateLimit, $priority, $categoryId['id'], $payor['id'], $user['home_id']);
+      $task = $this->task->add($cleanBody['description'], $createdAt, $cleanBody['date'], $cleanBody['priority'], $categoryId['id'], $payor['id'], $user['home_id']);
       
       if ($task) {
         header("HTTP/1.0 200 OK");
@@ -73,10 +70,10 @@ class Task extends Controller {
     $task = $this->task->update($this->body[0]);
     if ($task) {
       header("HTTP/1.0 200 OK");
-      return 'Tâche mise à jour';
+      return ['message' => 'Tâche mise à jour'];
     } else {
       header("HTTP/1.0 400 Bad Request");
-      return 'Erreur lors de la mise à jour de la tâche';
+      return ['message' => 'Erreur lors de la mise à jour de la tâche'];
     }
   }
 }
