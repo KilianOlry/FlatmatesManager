@@ -20,7 +20,7 @@ export default (item) => {
     <div class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-customGreen-600 to-green-400 text-white shadow-customGreen-500/40 shadow-lg absolute -top-2 -left-6 grid h-10 w-10 place-items-center">
       <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bookmark-check"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2Z"/><path d="m9 10 2 2 4-4"/></svg>
     </div>
-    <p class="absolute right-0 top-3 antialiased inline font-sans text-right text-sm bg-customGreen-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-customGreen-300">${date}</p>
+    <p class="absolute right-0 top-3 antialiased inline font-sans text-right bg-customGreen-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-customGreen-300">${date}</p>
   </div>
 
   <div class="mt-4 px-3">

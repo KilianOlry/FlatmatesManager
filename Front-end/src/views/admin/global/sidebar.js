@@ -5,6 +5,34 @@ import iconMoney from '../../../assets/icons/sidebar/money.svg';
 import iconTask from '../../../assets/icons/sidebar/task.svg';
 import iconDashboard from '../../../assets/icons/sidebar/dashboard.svg';
 
+const links = [
+  {
+    name: 'Tableau de bord',
+    link: '/dashboard',
+    icon: iconDashboard
+  },
+  {
+    name: 'Tâches',
+    link: '/dashboard-tasks',
+    icon: iconTask
+  },
+  {
+    name: 'Dépenses',
+    link: '/dashboard-expenses',
+    icon: iconMoney
+  },
+  {
+    name: 'Tâches',
+    link: '/dashboard-messages',
+    icon: iconTalk
+  },
+  {
+    name: 'Calendrier',
+    link: '/dashboard-calendar',
+    icon: iconCalendar
+  }
+];
+
 export default (flatmates) => (`
 <button class="sidebar-btn w-8 items-center text-sm text-gray-500 rounded-lg xl:hidden focus:outline-none focus:ring-2 focus:ring-gray-200">
   <svg xmlns="http://www.w3.org/2000/svg" class='w-6 h-6' viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-panel-right-close"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M15 3v18"/><path d="m8 9 3 3-3 3"/></svg>
@@ -17,40 +45,13 @@ export default (flatmates) => (`
     </button>
     <ul class="space-y-2 font-medium">
 
+      ${links.map((item) => `
       <li>
-        <a href="/dashboard" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-          <img src='${iconDashboard}' alt='icone' class='flex-shrink-0 size-8 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white'>
-          <span class="ms-3">Tableau de bord</span>
+        <a href="${item.link}" class="flex items-center p-2 ${window.location.pathname === item.link ? 'bg-white' : ''} text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+          <img src='${item.icon}' alt='icone' class='flex-shrink-0 size-8 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white'>
+          <span class="ms-3">${item.name}</span>
         </a>
-      </li>
-
-      <li>
-        <a href="/dashboard-tasks" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-          <img src='${iconTask}' alt='icone' class='flex-shrink-0 size-8 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white'>
-          <span class="ms-3">Tâches</span>
-        </a>
-      </li>
-
-      <li>
-        <a href="/dashboard-expenses" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-          <img src='${iconMoney}' alt='icone' class='flex-shrink-0 size-8 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white'>
-          <span class="ms-3">Dépenses</span>
-        </a>
-      </li>
-
-      <li>
-        <a href="/dashboard-messages" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-          <img src='${iconTalk}' alt='icone' class='flex-shrink-0 size-8 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white'>
-          <span class="flex-1 ms-3 whitespace-nowrap">Messages</span>
-        </a>
-      </li>
-
-      <li>
-        <a href="/dashboard-calendar" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-          <img src='${iconCalendar}' alt='icone' class='flex-shrink-0 size-8 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white'>
-          <span class="flex-1 ms-3 whitespace-nowrap">Calendrier</span>
-        </a>
-      </li>
+      </li>`).join('')}
 
       <section class='absolute bottom-0 w-full p-3'>
         ${flatmates.map((item) => member(item)).join('')}
