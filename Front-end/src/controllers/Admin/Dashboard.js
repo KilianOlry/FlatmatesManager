@@ -41,6 +41,7 @@ const Dashboard = class extends AuthService {
           left: 'prev',
           center: 'title'
         },
+        slotMinTime: '07:00:00',
         locale: 'fr',
         height: 735,
         events: task.map((item) => ({

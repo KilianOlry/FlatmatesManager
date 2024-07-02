@@ -53,22 +53,10 @@ const Login = class {
 
   async sendDatas(dataForm) {
     const logUser = await this.axiosQuery.Post('http://localhost:50/auth/login', dataForm);
-    if (!logUser.data) {
-      Cookies.set('Session', JSON.stringify(this.buildCookie(logUser)));
+    if (logUser.token) {
+      Cookies.set('Session', logUser.token);
       window.location.href = '/';
     }
-  }
-
-  buildCookie(data) {
-    const userSession = {
-      firstname: data.firstname,
-      lastname: data.lastname,
-      email: data.email,
-      token: data.token,
-      role: data.role,
-      home_id: data.home_id
-    };
-    return userSession;
   }
 
   run() {

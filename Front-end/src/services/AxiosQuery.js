@@ -22,6 +22,7 @@ const AxiosQuery = class {
       })
       .catch((error) => {
         toastr.error(error.response.data.message);
+        return error;
       });
   }
 
@@ -32,7 +33,6 @@ const AxiosQuery = class {
       }
     })
       .then((response) => {
-        console.log(response);
         if (response.status === 200) {
           if (response.data.message) {
             toastr.success(response.data.message);
@@ -42,7 +42,6 @@ const AxiosQuery = class {
         throw new Error(`Erreur: Réponse inattendue, statut ${response.status}`);
       })
       .catch((error) => {
-        console.log(error);
         toastr.error(error.response.data.message);
         return error.response;
       });
@@ -55,7 +54,6 @@ const AxiosQuery = class {
       }
     })
       .then((response) => {
-        console.log(response);
         if (response.status === 200) {
           if (response.data.message) {
             toastr.success(response.data.message);
@@ -65,7 +63,6 @@ const AxiosQuery = class {
         throw new Error(`Erreur: Réponse inattendue, statut ${response.status}`);
       })
       .catch((error) => {
-        console.log(error);
         toastr.error(error.response.data.message);
         return error.response;
       });

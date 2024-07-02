@@ -5,21 +5,21 @@ import viewFirstSection from '../views/homepage/first-section';
 import viewSecondSection from '../views/homepage/second-section';
 import viewFooter from '../views/homepage/footer';
 import containerCard from '../views/homepage/container-cards';
-import Auth from '../services/Auth';
-import AxiosQuery from '../services/AxiosQuery';
+import ServiceAuth from '../services/Auth';
+import ServiceAxiosQuery from '../services/AxiosQuery';
 
-const Homepage = class extends Auth {
+const Homepage = class extends ServiceAuth {
   constructor() {
     super();
+    this.axiosQuery = new ServiceAxiosQuery();
     this.el = document.querySelector('#root');
-    this.axiosQuery = new AxiosQuery();
     this.run();
   }
 
-  renderSkeleton() {
+  async renderSkeleton() {
     return `
 
-      ${viewNav(this.currentlyCookie)}
+      ${viewNav(await this.init())}
 
       <main>
 
