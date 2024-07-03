@@ -27,7 +27,14 @@ class AuthModel extends SqlConnect {
       return $req->rowCount() > 0 ? $req->fetch(PDO::FETCH_ASSOC) : new stdClass();
     }
 
-    public function ifExist($email) {
+    public function getByToken(string $token) {
+      $req = $this->db->prepare("SELECT home_id, role FROM users WHERE token = :token");
+      $req->execute(["token" => $token]);
+
+      return $req->rowCount() > 0 ? $req->fetch(PDO::FETCH_ASSOC) : new stdClass();
+    }
+
+    public function ifExist(string $email) {
       $req = $this->db->prepare('SELECT * FROM users WHERE email = :email');
       $req->execute(['email' => $email]);
       $user = $req->fetch(PDO::FETCH_ASSOC);

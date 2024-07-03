@@ -44,4 +44,12 @@ class QuerySql extends SqlConnect {
       return $req->rowCount() > 0 ? $req->fetchAll(PDO::FETCH_ASSOC) : new stdClass();
     }
 
+    public function getAllColumnWithOneWhereReturnFetch(string $table, string $column, string $value) {
+      $query = "SELECT home_id, role FROM " . $table . " WHERE " . $column . " = :value";
+      $req = $this->db->prepare($query);
+      $req->execute(["value" => $value]);
+
+      return $req->rowCount() > 0 ? $req->fetch(PDO::FETCH_ASSOC) : new stdClass();
+    }
+
 }

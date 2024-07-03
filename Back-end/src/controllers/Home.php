@@ -3,21 +3,24 @@
 namespace App\Controllers;
 
 use App\Controllers\Controller;
+use App\Models\AuthModel;
 use App\Models\HomeModel;
 use App\Services\FormControl;
 
 class Home extends Controller {
   protected object $home;
+  protected object $auth;
 
   public function __construct($param) {
     $this->home = new HomeModel();
+    $this->auth = new AuthModel();
     
     parent::__construct($param);
   }
 
   public function postHome() {
     if (in_array('create', $this->params)) {
-      
+
       return $this->createHome($this->body);
 
     }
@@ -40,12 +43,20 @@ class Home extends Controller {
 
     $cleanBody = $formControl->sanitizeInput($body);
     $token = $this->generateRandomToken();
-    $homeCreated = $this->home->add($cleanBody['adress'], $cleanBody['name'], $token);
+  
+    $tokenFind = $this->auth->getByToken($cleanBody['userToken']);
 
-    if ($homeCreated) {
-      header("HTTP/1.0 200 OK");
-      return ['message' => 'Colocation crée avec succès'];
+    if ($tokenFind) {
+
+      $homeCreated = $this->home->add($cleanBody['adress'], $cleanBody['name'], $token);
+      
+      if ($homeCreated) {
+        header("HTTP/1.0 200 OK");
+        return ['message' => 'Colocation crée avec succès'];
+      }
+
     }
+    
     header("HTTP/1.0 401 Unauthorized");
     return ['message' => 'Une erreur est survenue lors de la création'];
 

@@ -33,6 +33,9 @@ class User extends Controller {
 
       return $this->user->getUsersWithoutFlatmates($this->body[0]);
     
+    } elseif (in_array('getbytoken', $this->params)) {
+      return $this->auth->getByToken($this->body[0]);
+      
     }
     
     else {

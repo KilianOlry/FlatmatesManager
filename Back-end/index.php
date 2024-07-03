@@ -18,7 +18,7 @@ new Router([
   'user/:id' => User::class,
   'user/:getbymail' => User::class,
   'user/:update' => User::class,
-  'user/:granted' => User::class,
+  'user/getbytoken' => User::class,
 
   # auth actions
   'auth/:login' => Auth::class,

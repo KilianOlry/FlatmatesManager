@@ -69,11 +69,15 @@ class Task extends Controller {
   public function putTask() {
     $task = $this->task->update($this->body[0]);
     if ($task) {
+
       header("HTTP/1.0 200 OK");
       return ['message' => 'Tâche mise à jour'];
+
     } else {
+
       header("HTTP/1.0 400 Bad Request");
       return ['message' => 'Erreur lors de la mise à jour de la tâche'];
+      
     }
   }
 }

@@ -34,25 +34,14 @@ class Auth extends Controller {
     $email = $this->formControl->verifyEmail($this->body['email']);
 
     if ($email) {
+
       $user = $this->auth->ifExist($email);
+
       if ($user) {
 
         if (password_verify($this->body['password'], $user['password'])) {
-          
-          session_start();
-
-          $_SESSION['user'] = [
-            'id' => $user['id'],
-            'firstname' => $user['firstname'],
-            'lastname' => $user['lastname'],
-            'email' => $user['email'],
-            'token' => $user['token'],
-            'role' => $user['role'],
-            'home_id' => $user['home_id']
-          ];
-          
           header("HTTP/1.0 200 OK");
-          return $_SESSION['user'];
+          return ['token' => $user['token']];
 
         } else {
 
@@ -69,14 +58,13 @@ class Auth extends Controller {
 
   public function register() {
     $email = $this->formControl->verifyEmail($this->body['email']);
-    $firstname = $this->formControl->cleanInput($this->body['firstname']);
-    $lastname = $this->formControl->cleanInput($this->body['lastname']);
+    $cleanBody = $this->formControl->sanitizeInput($this->body);
 
     if ($email) {
-        $passwordHashed = $this->formControl->hashPassword($this->body['password']);
+        $passwordHashed = $this->formControl->hashPassword($cleanBody['password']);
         $token = bin2hex($email);
 
-        $this->auth->register($firstname, $lastname, $email, $passwordHashed, $token);
+        $this->auth->register($cleanBody['firstname'], $cleanBody['lastname'], $email, $passwordHashed, $token);
 
         header("HTTP/1.0 200 OK");
         return ['message' => 'Félicitation Votre compte est créer !! Veuillez vous connecter'];
