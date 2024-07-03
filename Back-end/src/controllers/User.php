@@ -4,15 +4,16 @@ namespace App\Controllers;
 
 use App\Controllers\Controller;
 use App\Models\AuthModel;
+use App\Models\HomeModel;
 use App\Models\UserModel;
 use App\Services\FormControl;
-use App\Services\IfGranted;
 use App\Services\QuerySql;
 
 class User extends Controller {
   protected object $user;
   protected object $auth;
   protected object $querySql;
+  protected object $home;
   public $formControl;
 
   public function __construct($param) {
@@ -20,6 +21,7 @@ class User extends Controller {
     $this->auth = new AuthModel();
     $this->formControl = new FormControl;
     $this->querySql = new QuerySql();
+    $this->home = new HomeModel();
     parent::__construct($param);
   }
 
@@ -55,23 +57,28 @@ class User extends Controller {
   }
 
   public function putUser() {
-    $ifGranted = new ifGranted();
     
     $cleanData = $this->formControl->sanitizeInput($this->body);
-    
-    $homeToken = $ifGranted->verifyTokenHome($cleanData['token']);
-    $user = $ifGranted->ifExist($cleanData['userEmail']);
 
-    if ($user && $homeToken) {
+    $user = $this->user->ifExist($cleanData['userToken']);
 
-      header("HTTP/1.0 200 OK");
-      return $this->user->updateUserJoinHome($user['id'], $homeToken);
+    if ($user) {
 
-    } else {
+      $homeId = $this->home->verifyTokenHome($cleanData['homeToken']);
 
-      return header("HTTP/1.0 401 Unauthorized");
+      if ($homeId) {
+
+        $this->user->updateUserJoinHome($user['id'], $homeId);
+        
+        header("HTTP/1.0 200 OK");
+        return ['message' => 'Colocation rejoint !!'];
+
+      }
 
     }
+
+      header("HTTP/1.0 401 Unauthorized");
+      return ['message' => 'Erreur mot de passe incorrect'];
 
   }
 }

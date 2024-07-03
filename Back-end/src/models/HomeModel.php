@@ -36,4 +36,11 @@ class HomeModel extends SqlConnect {
       return $req->rowCount() > 0 ? $req->fetch(PDO::FETCH_ASSOC) : new stdClass();
     }
 
+    public function verifyTokenHome(string $homeToken) {
+      $req = $this->db->prepare('SELECT id FROM homes WHERE token = :token');
+      $req->execute(['token' => $homeToken]);
+      $home = $req->fetch();
+      return $home['id'] ?: false;
+    }
+
 }

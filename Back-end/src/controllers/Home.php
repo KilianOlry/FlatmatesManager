@@ -51,8 +51,10 @@ class Home extends Controller {
       $homeCreated = $this->home->add($cleanBody['adress'], $cleanBody['name'], $token);
       
       if ($homeCreated) {
+
         header("HTTP/1.0 200 OK");
         return ['message' => 'Colocation crée avec succès'];
+      
       }
 
     }
