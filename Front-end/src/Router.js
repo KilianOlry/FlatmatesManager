@@ -17,7 +17,6 @@ const Router = class {
 
   startController() {
     let ifExist = false;
-
     for (let i = 0; i < this.routes.length; i += 1) {
       const route = this.routes[i];
       const ifCookieSet = this.getCookie();

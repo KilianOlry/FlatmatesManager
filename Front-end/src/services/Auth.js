@@ -4,35 +4,28 @@ import ServiceAxiosQuery from './AxiosQuery';
 class AuthService {
   constructor() {
     this.axiosQuery = new ServiceAxiosQuery();
-    this.currentlyCookie = null;
-    this.init();
+    this.user = this.init();
   }
 
   async init() {
-    this.currentlyCookie = await this.getCookie();
-    return this.currentlyCookie;
+    const token = this.getCookie();
+    const ifFlatmate = await this.checkUser(token);
+    return { userToken: token, ifFlatmate };
   }
 
-  async getCookie() {
+  getCookie() {
     const token = Cookies.get('Session');
-    if (token) {
-      try {
-        const isAdmin = await this.ifAdmin(token);
-        return isAdmin;
-      } catch (error) {
-        console.error('Error checking admin status:', error);
-        return false;
-      }
-    }
-    return false;
+    return token;
   }
 
-  async ifAdmin(token) {
+  async checkUser(token) {
     try {
       const flatmate = await this.axiosQuery.Post('http://localhost:50/user/getbytoken', token);
-      return flatmate.home_id != null;
-    } catch (error) {
-      console.error('Error fetching user data:', error);
+      return {
+        homeJoin: flatmate.home_id || false,
+        isAdmin: flatmate.role === 'ADMIN' || false
+      };
+    } catch {
       return false;
     }
   }

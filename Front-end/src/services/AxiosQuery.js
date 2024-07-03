@@ -33,6 +33,7 @@ const AxiosQuery = class {
       }
     })
       .then((response) => {
+        console.log(response);
         if (response.status === 200) {
           if (response.data.message) {
             toastr.success(response.data.message);

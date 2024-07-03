@@ -1,22 +1,25 @@
 /* eslint-disable no-console */
 import Cookies from 'js-cookie';
-import FormControll from '../../services/FormControl';
 
 import viewNav from '../../views/global/nav';
 import viewLogin from '../../views/auth/login';
-import AxiosQuery from '../../services/AxiosQuery';
 
-const Login = class {
+import ServiceFormControll from '../../services/FormControl';
+import ServiceAuth from '../../services/Auth';
+import ServiceAxiosQuery from '../../services/AxiosQuery';
+
+const Login = class extends ServiceAuth {
   constructor() {
+    super();
     this.el = document.querySelector('#root');
-    this.formControl = new FormControll();
-    this.axiosQuery = new AxiosQuery();
+    this.formControl = new ServiceFormControll();
+    this.axiosQuery = new ServiceAxiosQuery();
     this.run();
   }
 
   renderSkeleton() {
     return `
-      ${viewNav()}
+      ${viewNav(this.init())}
       <main>
         ${viewLogin()}
       </main>
