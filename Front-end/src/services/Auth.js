@@ -29,6 +29,10 @@ class AuthService {
       return false;
     }
   }
+
+  logout() {
+    Cookies.remove('Session');
+  }
 }
 
 export default AuthService;

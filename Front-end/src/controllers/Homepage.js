@@ -1,10 +1,9 @@
 /* eslint-disable no-console */
-import Cookies from 'js-cookie';
 
 import viewNav from '../views/global/nav';
-import firstSection from '../views/homepage/sections/sections';
+import viewFirstSection from '../views/homepage/sections/sections';
 import viewFooter from '../views/homepage/footer';
-import containerCard from '../views/homepage/container-cards';
+import viewContainerCard from '../views/homepage/container-cards';
 
 import ServiceAuth from '../services/Auth';
 import ServiceAxiosQuery from '../services/AxiosQuery';
@@ -24,8 +23,8 @@ const Homepage = class extends ServiceAuth {
 
       <main>
 
-        ${firstSection()}
-        ${(await this.user).ifFlatmate.isAdmin ? `${containerCard((await this.user).ifFlatmate.isAdmin)}` : ''}
+        ${viewFirstSection()}
+        ${(await this.user).userToken ? `${viewContainerCard((await this.user).ifFlatmate.isAdmin)}` : ''}
 
       </main>
 
@@ -54,14 +53,14 @@ const Homepage = class extends ServiceAuth {
   getDataFormJoin() {
     const formJoinHome = document.querySelector('.form-join-home');
 
-    formJoinHome.addEventListener('submit', (e) => {
+    formJoinHome.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const currentlyUser = JSON.parse(Cookies.get('Session'));
+      const { userToken } = await this.user;
       const formData = new FormData(formJoinHome);
 
       const dataForm = {
-        token: formData.get('token'),
-        userEmail: currentlyUser.email
+        homeToken: formData.get('token'),
+        userToken
       };
 
       this.sendDataFormJoin(dataForm);

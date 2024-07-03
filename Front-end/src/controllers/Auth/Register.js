@@ -1,15 +1,15 @@
 /* eslint-disable no-console */
-import FormControl from '../../services/FormControl';
-import AxiosQuery from '../../services/AxiosQuery';
-
 import viewNav from '../../views/global/nav';
 import viewRegister from '../../views/auth/register';
+
+import ServiceFormControll from '../../services/FormControl';
+import ServiceAxiosQuery from '../../services/AxiosQuery';
 
 const Register = class {
   constructor() {
     this.el = document.querySelector('#root');
-    this.formControl = new FormControl();
-    this.axiosQuery = new AxiosQuery();
+    this.formControl = new ServiceFormControll();
+    this.axiosQuery = new ServiceAxiosQuery();
     this.run();
   }
 
@@ -36,9 +36,13 @@ const Register = class {
 
   renderSkeleton() {
     return `
+      
       ${viewNav()}
+      
       <main>
+        
         ${viewRegister()}
+      
       </main>
     `;
   }

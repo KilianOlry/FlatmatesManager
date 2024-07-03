@@ -19,9 +19,13 @@ const Login = class extends ServiceAuth {
 
   renderSkeleton() {
     return `
+
       ${viewNav(this.init())}
+      
       <main>
+  
         ${viewLogin()}
+      
       </main>
     `;
   }
@@ -56,6 +60,7 @@ const Login = class extends ServiceAuth {
 
   async sendDatas(dataForm) {
     const logUser = await this.axiosQuery.Post('http://localhost:50/auth/login', dataForm);
+
     if (logUser.token) {
       Cookies.set('Session', logUser.token);
       window.location.href = '/';

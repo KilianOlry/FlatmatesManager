@@ -1,13 +1,15 @@
 /* eslint-disable no-console */
-import Cookies from 'js-cookie';
 
-const Logout = class {
+import ServiceAuth from '../../services/Auth';
+
+const Logout = class extends ServiceAuth {
   constructor() {
+    super();
     this.run();
   }
 
   run() {
-    Cookies.remove('Session');
+    this.logout();
     window.location.href = '/';
   }
 };
