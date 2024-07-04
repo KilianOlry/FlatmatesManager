@@ -28,23 +28,31 @@ class Expense extends Controller {
     if (in_array('add', $this->params)) {
 
       $cleanBody = $this->formControl->sanitizeInput($this->body);
-      $createdAt = date('Y-m-d');
-      $category = $cleanBody['category'];
-      $categoryId = $this->category->getByName($category);
-      $user = $this->user->ifExist($cleanBody['tokenUser']);
-      $flatmate = $this->body['flatmates'];
-      $workerflatmate = $this->user->getByName($flatmate);
-      
-      $stmtExpense = $this->expense->add($cleanBody['price'], $cleanBody['description'], $createdAt, $cleanBody['date'], $categoryId['id'], $workerflatmate['id'], $user['home_id']);
-      
-      if ($stmtExpense) {
-        header("HTTP/1.0 200 OK");
-        return ['message' => 'dépense crée avec succès'];
-      }
-      header("HTTP/1.0 401 Unauthorized");
-      return ['message' => 'Une erreur est survenue lors de la création de la dépense'];
-    } 
-    
+
+      $user = $this->user->getByTokenAllInformations($cleanBody['userToken']);
+
+      if ($user) {
+
+        $createdAt = date('Y-m-d');
+        $categoryId = $this->category->getByName($cleanBody['category']);
+  
+        $payorFlatmate = $this->user->getByName($cleanBody['flatmates']);
+        
+        $stmtExpense = $this->expense->add($cleanBody['price'],
+                                           $cleanBody['description'],
+                                           $createdAt, $cleanBody['date'],
+                                           $categoryId['id'],
+                                           $payorFlatmate['id'],
+                                           $user['home_id']);
+        
+        if ($stmtExpense) {
+          header("HTTP/1.0 200 OK");
+          return ['message' => 'dépense crée avec succès'];
+        }
+        header("HTTP/1.0 401 Unauthorized");
+        return ['message' => 'Une erreur est survenue lors de la création de la dépense'];
+      } 
+    }
   }
 
   public function deleteTask() {
@@ -59,7 +67,6 @@ class Expense extends Controller {
     } else {
 
       $userExist = $this->user->getByTokenAllInformations($this->params['id']);
-
       if ($userExist) {
 
         return $this->expense->get($userExist['id']);
