@@ -23,21 +23,26 @@ class Message extends Controller {
     $this->formControl = new FormControl();
     
     if (in_array('add', $this->params)) {
-      
+
       $cleanBody = $this->formControl->sanitizeInput($this->body);
 
-      if(in_array(false, $cleanBody)) {
+      if (in_array(false, $cleanBody)) {
+
         header("HTTP/1.0 406 Not Acceptable");
         return ['message' => 'Erreur veuillez remplir tous les champs'];
       }
 
-      $created_at = date('Y-m-d H:i:s');
-      $userId = intval($this->body['idUser']);
-      $homeId = intval($this->body['idHome']);
-      $this->message->add($cleanBody['title'], $cleanBody['message'], $created_at, $userId, $homeId);
+      $user = $this->user->getByTokenAllInformations($cleanBody['userToken']);
 
-      header("HTTP/1.0 200 OK");
-      return ['message' => 'message crée avec succès'];
+      if ($user) {
+
+        $created_at = date('Y-m-d H:i:s');
+        $this->message->add($cleanBody['title'], $cleanBody['message'], $created_at, $user['id'], $user['home_id']);
+        
+        header("HTTP/1.0 200 OK");
+        return ['message' => 'message crée avec succès'];
+      }
+
     }
     
   }
