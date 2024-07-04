@@ -27,6 +27,13 @@ class UserModel extends SqlConnect {
       return $req->rowCount() > 0 ? $req->fetch(PDO::FETCH_ASSOC) : new stdClass();
     }
 
+    public function getByName(string $firstname) {
+      $req = $this->db->prepare("SELECT id FROM users WHERE firstname = :firstname");
+      $req->execute(["firstname" => $firstname]);
+
+      return $req->rowCount() > 0 ? $req->fetch(PDO::FETCH_ASSOC) : new stdClass();
+    }
+
     public function getByTokenAllInformations(string $token) {
       $req = $this->db->prepare('SELECT * FROM users WHERE token = :token');
       $req->execute(['token' => $token]);
@@ -34,7 +41,7 @@ class UserModel extends SqlConnect {
       return $user ?: false;
     }
 
-    public function ifExist($token) {
+    public function ifExist(string $token) {
       $req = $this->db->prepare('SELECT * FROM users WHERE token = :token');
       $req->execute(['token' => $token]);
       $user = $req->fetch(PDO::FETCH_ASSOC);

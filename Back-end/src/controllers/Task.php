@@ -31,13 +31,19 @@ class Task extends Controller {
 
     if (in_array('add', $this->params)) {
       $cleanBody = $this->formControl->sanitizeInput($this->body);
-      $createdAt = date('Y-m-d H:i:s');
-      $categoryId = $this->category->getByName($cleanBody['category']);
-      $user = $this->user->ifExist($cleanBody['tokenUser']);
-      $flatmate = $this->formControl->cleanInput($cleanBody['flatmates']);
-      $payor = $this->user->getByName($flatmate);
+      $user = $this->user->ifExist($cleanBody['userToken']);
 
-      $task = $this->task->add($cleanBody['description'], $createdAt, $cleanBody['date'], $cleanBody['priority'], $categoryId['id'], $payor['id'], $user['home_id']);
+      $categoryId = $this->category->getByName($cleanBody['category']);
+      $workerId = $this->user->getByName($cleanBody['flatmates']);
+      $createdAt = date('Y-m-d H:i:s');
+
+      $task = $this->task->add($cleanBody['description'],
+                               $createdAt,
+                               $cleanBody['date'],
+                               $cleanBody['priority'],
+                               $categoryId['id'],
+                               $workerId['id'],
+                               $user['home_id']);
       
       if ($task) {
         header("HTTP/1.0 200 OK");

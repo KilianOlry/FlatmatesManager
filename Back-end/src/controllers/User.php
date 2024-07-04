@@ -31,7 +31,6 @@ class User extends Controller {
 
       $userExist = $this->user->getByTokenAllInformations($this->body[0]);
       
-      return $userExist;
       if ($userExist) {
         
         return $userExist;
