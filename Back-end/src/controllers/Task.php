@@ -60,8 +60,9 @@ class Task extends Controller {
       return $this->serviceQuerySql->getAll('categorys_task');
 
     } else {
-
-      return $this->task->get(intval($this->params['id']));
+      
+      $user = $this->user->getByTokenAllInformations($this->params['id']);
+      return $this->task->get($user['id']);
 
     }
   }

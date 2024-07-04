@@ -53,9 +53,20 @@ class Expense extends Controller {
 
   public function getExpense() {
     if (in_array('getAll', $this->params)) {
+
       return $this->expense->getAll();
+    
     } else {
-      return $this->expense->get(intval($this->params['id']));
+
+      $userExist = $this->user->getByTokenAllInformations($this->params['id']);
+
+      if ($userExist) {
+
+        return $this->expense->get($userExist['id']);
+
+      }
+
+    
     }
   }
 

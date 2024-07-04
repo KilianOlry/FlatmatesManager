@@ -27,19 +27,11 @@ class UserModel extends SqlConnect {
       return $req->rowCount() > 0 ? $req->fetch(PDO::FETCH_ASSOC) : new stdClass();
     }
 
-    public function getByName(string $name) {
-      $req = $this->db->prepare("SELECT id FROM users WHERE firstname = :firstname");
-      $req->execute(["firstname" => $name]);
-
-      return $req->rowCount() > 0 ? $req->fetch(PDO::FETCH_ASSOC) : new stdClass();
-    }
-
-    public function getUsersWithoutFlatmates($word) {
-      $query = "SELECT * FROM users WHERE firstname LIKE :word AND home_id IS NULL";
-      $req = $this->db->prepare($query);
-      $req->execute(["word" => $word . '%']);
-
-      return $req->rowCount() > 0 ? $req->fetchAll(PDO::FETCH_ASSOC) : new stdClass();
+    public function getByTokenAllInformations(string $token) {
+      $req = $this->db->prepare('SELECT * FROM users WHERE token = :token');
+      $req->execute(['token' => $token]);
+      $user = $req->fetch(PDO::FETCH_ASSOC);
+      return $user ?: false;
     }
 
     public function ifExist($token) {

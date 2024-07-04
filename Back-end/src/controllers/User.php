@@ -26,16 +26,19 @@ class User extends Controller {
   }
 
   public function postUser() {
+    
+    if (in_array('getinformations', $this->params)) {
 
-    if (in_array('getbymail', $this->params)) {
-
-      return $this->auth->ifExist($this->body['home_id']);
+      $userExist = $this->user->getByTokenAllInformations($this->body[0]);
       
-    } elseif (in_array('byName', $this->params)) {
-
-      return $this->user->getUsersWithoutFlatmates($this->body[0]);
+      return $userExist;
+      if ($userExist) {
+        
+        return $userExist;
+      }
     
     } elseif (in_array('getbytoken', $this->params)) {
+
       return $this->auth->getByToken($this->body[0]);
       
     }
@@ -51,7 +54,6 @@ class User extends Controller {
   }
 
   public function getUser() {
-    
     return $this->user->get(intval($this->params['id']));
     
   }

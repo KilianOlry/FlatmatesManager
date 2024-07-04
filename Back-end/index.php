@@ -14,9 +14,8 @@ use App\Controllers\Message;
 
 new Router([
   # user actions
-  'user/:byName' => User::class,
+  'user/:getinformations' => User::class,
   'user/:id' => User::class,
-  'user/:getbymail' => User::class,
   'user/:update' => User::class,
   'user/getbytoken' => User::class,
 

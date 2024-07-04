@@ -4,14 +4,17 @@ namespace App\Controllers;
 
 use App\Controllers\Controller;
 use App\Models\MessageModel;
+use App\Models\UserModel;
 use App\Services\FormControl;
 
 class Message extends Controller {
   protected object $message;
+  protected object $user;
   public $formControl;
 
   public function __construct($param) {
     $this->message = new MessageModel();
+    $this->user = new UserModel();
 
     parent::__construct($param);
   }
@@ -44,7 +47,14 @@ class Message extends Controller {
   }
 
   public function getMessage() {
-    return $this->message->getAll($this->params['id']);
+    
+    $userExist = $this->user->getByTokenAllInformations($this->params['id']);
+
+    if ($userExist) {
+      
+      return $this->message->getAll($userExist['home_id']);
+
+    }
   }
 
 }

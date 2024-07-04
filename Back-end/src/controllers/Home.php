@@ -5,15 +5,18 @@ namespace App\Controllers;
 use App\Controllers\Controller;
 use App\Models\AuthModel;
 use App\Models\HomeModel;
+use App\Models\UserModel;
 use App\Services\FormControl;
 
 class Home extends Controller {
   protected object $home;
   protected object $auth;
+  protected object $user;
 
   public function __construct($param) {
     $this->home = new HomeModel();
     $this->auth = new AuthModel();
+    $this->user = new UserModel();
     
     parent::__construct($param);
   }
@@ -33,8 +36,10 @@ class Home extends Controller {
   }
 
   public function getHome() {
+    
+    $user = $this->user->getByTokenAllInformations($this->params['id']);
 
-    return $this->home->getFlatmates(intval($this->params['id']));
+    return $this->home->getFlatmates($user['home_id']);
  
   }
 
