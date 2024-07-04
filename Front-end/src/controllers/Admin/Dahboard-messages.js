@@ -2,31 +2,36 @@
 import viewNav from '../../views/global/nav';
 import viewSidebar from '../../views/admin/global/sidebar';
 import viewContent from '../../views/admin/messages/form';
-import AuthService from '../../services/Auth';
-import Utiles from '../../services/Utiles';
-import AxiosQuery from '../../services/AxiosQuery';
-import AdminService from '../../services/Admin';
 
-const DashboardMessage = class extends AuthService {
+import ServiceAuth from '../../services/Auth';
+import ServiceUtiles from '../../services/Utiles';
+import ServiceAxiosQuery from '../../services/AxiosQuery';
+import ServiceAdmin from '../../services/Admin';
+
+const DashboardMessage = class extends ServiceAuth {
   constructor() {
     super();
     this.el = document.querySelector('#root');
-    this.axiosQuery = new AxiosQuery();
-    this.adminService = new AdminService();
+    this.axiosQuery = new ServiceAxiosQuery();
+    this.adminService = new ServiceAdmin();
     this.run();
   }
 
   async render(flatmates) {
     return `
-      ${viewNav(this.currentlyCookie)}
+
+      ${viewNav(await this.user)}
+
       <div class='flex flex-col xl:flex-row p-3 md:pl-6 container_dashboard'>
-         ${viewSidebar(flatmates)}
-         ${viewContent()}
+         
+        ${viewSidebar(flatmates)}
+        ${viewContent()}
+      
       </div>
     `;
   }
 
-  getDataForm(user) {
+  getDataForm() {
     const formCreateMessage = document.querySelector('.form-create-message');
     formCreateMessage.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -34,8 +39,7 @@ const DashboardMessage = class extends AuthService {
       const data = {
         title: formData.get('title'),
         message: formData.get('message'),
-        idUser: user.id,
-        idHome: user.home_id
+        userToken: this.getCookie()
       };
       this.sendMessage(data);
     });
@@ -47,11 +51,12 @@ const DashboardMessage = class extends AuthService {
 
   async run() {
     const user = await this.adminService.getUser();
+
     if (user) {
       const flatmates = await this.adminService.getFlatMates();
       this.el.innerHTML = await this.render(flatmates);
       this.getDataForm(user);
-      this.toggleSidebar = new Utiles();
+      this.toggleSidebar = new ServiceUtiles();
     }
   }
 };

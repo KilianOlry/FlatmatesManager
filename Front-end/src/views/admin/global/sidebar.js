@@ -22,7 +22,7 @@ const links = [
     icon: iconMoney
   },
   {
-    name: 'Tâches',
+    name: 'Messages',
     link: '/dashboard-messages',
     icon: iconTalk
   },
