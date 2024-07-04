@@ -1,38 +1,44 @@
 /* eslint-disable no-console */
 import { Calendar } from '@fullcalendar/core';
 import timeGridPlugin from '@fullcalendar/timegrid';
+
 import viewNav from '../../views/global/nav';
 import viewSidebar from '../../views/admin/global/sidebar';
 import viewContent from '../../views/admin/dashboard/dashboard';
-import AuthService from '../../services/Auth';
-import Utiles from '../../services/Utiles';
-import AxiosQuery from '../../services/AxiosQuery';
-import AdminService from '../../services/Admin';
 
-const Dashboard = class extends AuthService {
+import ServiceAuth from '../../services/Auth';
+import ServiceUtiles from '../../services/Utiles';
+import ServiceAxiosQuery from '../../services/AxiosQuery';
+import ServiceFlatmate from '../../services/Admin';
+
+const Dashboard = class extends ServiceAuth {
   constructor() {
     super();
     this.el = document.querySelector('#root');
-    this.axiosQuery = new AxiosQuery();
-    this.adminService = new AdminService();
+    this.serviceAxiosQuery = new ServiceAxiosQuery();
+    this.serviceFlatmate = new ServiceFlatmate();
     this.run();
   }
 
-  render(members, tasks, expenses, calendar, messages) {
+  async render(flatmates, tasks, expenses, calendar, messages) {
     return `
-      ${viewNav(this.currentlyCookie)}
+
+      ${viewNav(await this.user)}
+
       <div class='flex flex-col xl:flex-row p-3 md:pl-6 container_dashboard'>
-        ${viewSidebar(members)}
+        
+        ${viewSidebar(flatmates)}
         ${viewContent(tasks, expenses, calendar, messages)}
+      
       </div>
     `;
   }
 
   buildCalendar(task) {
-    const hasExpenses = Object.keys(task).length > 0;
+    const hasTasks = Object.keys(task).length > 0;
     const calendarEl = document.querySelector('.calendar__dashboard');
 
-    if (hasExpenses) {
+    if (hasTasks) {
       const calendar = new Calendar(calendarEl, {
         plugins: [timeGridPlugin],
         initialView: 'timeGridDay',
@@ -93,11 +99,11 @@ const Dashboard = class extends AuthService {
   }
 
   sendDataExpense(id) {
-    this.axiosQuery.Put('http://localhost:50/expense/update', id);
+    this.serviceAxiosQuery.Put('http://localhost:50/expense/update', id);
   }
 
   sendDataTask(id) {
-    this.axiosQuery.Put('http://localhost:50/task/update', id);
+    this.serviceAxiosQuery.Put('http://localhost:50/task/update', id);
   }
 
   regarcheDom() {
@@ -105,24 +111,24 @@ const Dashboard = class extends AuthService {
   }
 
   async run() {
-    const user = await this.adminService.getUser();
+    const user = await this.serviceFlatmate.getUser();
 
     if (user) {
-      // Get members on flatmate
-      const members = await this.adminService.getFlatMates();
-      // Get tasks about user
-      const tasks = await this.adminService.getTasks();
-      // Get expenses about user
-      const expenses = await this.adminService.getExpenses();
-      // Get all messages about flatmate
-      const messages = await this.adminService.getMessages();
-      // Render view with all data
-      this.el.innerHTML = this.render(members, tasks, expenses, messages);
-      // Build calendar with tasks Users
+      const flatmates = await this.serviceFlatmate.getFlatMates();
+
+      const tasks = await this.serviceFlatmate.getTasks();
+
+      const expenses = await this.serviceFlatmate.getExpenses();
+
+      const messages = await this.serviceFlatmate.getMessages();
+
+      this.el.innerHTML = await this.render(flatmates, tasks, expenses, messages);
+
+      this.buildCalendar(tasks);
+
       this.getStatusExpense();
       this.getStatusTask();
-      this.buildCalendar(tasks);
-      this.toggleSidebar = new Utiles();
+      this.toggleSidebar = new ServiceUtiles();
     } else {
       this.el.innerHTML = '<p>Error loading dashboard. Please try again later.</p>';
     }
