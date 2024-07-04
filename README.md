@@ -21,7 +21,7 @@
   <a href="#rocket-technologies">Technologies</a> &#xa0; | &#xa0;
   <a href="#white_check_mark-requirements">Requirements</a> &#xa0; | &#xa0;
   <a href="#checkered_flag-starting">Starting</a> &#xa0; | &#xa0;
-  <a href="https://github.com/Raxuis" target="_blank">Author</a>
+  <a href="https://github.com/KilianOlry" target="_blank">Author</a>
 </p>
 
 <br>
@@ -94,7 +94,7 @@ $ sudo systemctl start php@8.1 && sudo systemctl start nginx
 
 # Start your MAMP / XAMP / LAMP server
 
-# Get the DB file at /app-colo
+# Get the DB file at /flatmates.sql
 ```
 
 
