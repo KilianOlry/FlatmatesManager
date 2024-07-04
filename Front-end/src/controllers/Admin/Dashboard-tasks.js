@@ -1,27 +1,33 @@
 /* eslint-disable no-console */
-// import toastr from 'toastr';
-import Cookies from 'js-cookie';
+
 import viewNav from '../../views/global/nav';
 import viewSidebar from '../../views/admin/global/sidebar';
 import viewContent from '../../views/admin/tasks/tasks';
-import Utiles from '../../services/Utiles';
-import AxiosQuery from '../../services/AxiosQuery';
-import AdminService from '../../services/Admin';
 
-const DashboardTask = class {
+import ServiceUtiles from '../../services/Utiles';
+import ServiceAxiosQuery from '../../services/AxiosQuery';
+import ServiceAdmin from '../../services/Admin';
+import ServiceAuth from '../../services/Auth';
+
+const DashboardTask = class extends ServiceAuth {
   constructor() {
+    super();
     this.el = document.querySelector('#root');
-    this.axiosQuery = new AxiosQuery();
-    this.adminService = new AdminService();
+    this.axiosQuery = new ServiceAxiosQuery();
+    this.adminService = new ServiceAdmin();
     this.run();
   }
 
-  async render(flatmates) {
+  async render(categoriesTask, flatmates) {
     return `
-      ${viewNav()}
+
+      ${viewNav(await this.user)}
+
       <div class='flex flex-col xl:flex-row container_dashboard p-3 md:pl-6 gap-4'>
-         ${viewSidebar(flatmates)}
-         ${viewContent(await this.adminService.getCategoriesTask(), flatmates)}
+         
+        ${viewSidebar(flatmates)}
+        ${viewContent(categoriesTask, flatmates)}
+      
       </div>
     `;
   }
@@ -50,10 +56,9 @@ const DashboardTask = class {
       e.preventDefault();
 
       const formData = new FormData(formCreateTask);
-      const cookie = JSON.parse(Cookies.get('Session'));
-      const { token } = cookie;
+      const userToken = this.getCookie();
       const data = {
-        tokenUser: token,
+        userToken,
         date: formData.get('date'),
         flatmates: formData.get('flatmates'),
         category: formData.get('category'),
@@ -74,13 +79,14 @@ const DashboardTask = class {
 
     if (user) {
       const flatmates = await this.adminService.getFlatMates();
+      const categoriesTask = await this.adminService.getCategoriesTask();
 
-      this.el.innerHTML = await this.render(flatmates);
+      this.el.innerHTML = await this.render(categoriesTask, flatmates);
 
       this.getDataForm();
       await this.toggleModalForm();
       await this.closeToggleModal();
-      this.toggleSidebar = new Utiles();
+      this.toggleSidebar = new ServiceUtiles();
     }
   }
 };

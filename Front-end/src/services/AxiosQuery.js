@@ -10,7 +10,7 @@ const AxiosQuery = class {
       }
     })
       .then((response) => {
-        // console.log('GET', url, response);
+        console.log('GET', url, response);
         if (response.status === 200) {
           if (response.data.message) {
             toastr.success(response.data.message);
@@ -33,7 +33,7 @@ const AxiosQuery = class {
       }
     })
       .then((response) => {
-        // console.log('POST => ', url, response);
+        console.log('POST => ', url, response);
         if (response.status === 200) {
           if (response.data.message) {
             toastr.success(response.data.message);
