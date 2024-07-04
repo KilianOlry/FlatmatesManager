@@ -1,26 +1,32 @@
 /* eslint-disable no-console */
-import Cookies from 'js-cookie';
 import viewNav from '../../views/global/nav';
 import viewSidebar from '../../views/admin/global/sidebar';
 import viewContent from '../../views/admin/expenses/expenses';
-import Utiles from '../../services/Utiles';
-import AxiosQuery from '../../services/AxiosQuery';
-import AdminService from '../../services/Admin';
 
-const DashboardExpenses = class {
+import ServiceAuth from '../../services/Auth';
+import ServiceUtiles from '../../services/Utiles';
+import ServiceAxiosQuery from '../../services/AxiosQuery';
+import ServiceAdmin from '../../services/Admin';
+
+const DashboardExpenses = class extends ServiceAuth {
   constructor() {
+    super();
     this.el = document.querySelector('#root');
-    this.axiosQuery = new AxiosQuery();
-    this.adminService = new AdminService();
+    this.axiosQuery = new ServiceAxiosQuery();
+    this.adminService = new ServiceAdmin();
     this.run();
   }
 
-  render(categoriesExpenses, flatmates) {
+  async render(categoriesExpenses, flatmates) {
     return `
-      ${viewNav()}
+      
+      ${viewNav(await this.user)}
+      
       <div class='flex flex-col xl:flex-row container_dashboard p-3 md:pl-6 gap-4'>
-         ${viewSidebar(flatmates)}
-         ${viewContent(categoriesExpenses, flatmates)}
+         
+        ${viewSidebar(flatmates)}
+        ${viewContent(categoriesExpenses, flatmates)}
+      
       </div>
     `;
   }
@@ -31,10 +37,8 @@ const DashboardExpenses = class {
       e.preventDefault();
 
       const formData = new FormData(formCreateExpense);
-      const cookie = JSON.parse(Cookies.get('Session'));
-      const { token } = cookie;
       const data = {
-        tokenUser: token,
+        userToken: this.adminService.getCookie(),
         date: formData.get('date'),
         flatmates: formData.get('flatmates'),
         category: formData.get('category'),
@@ -77,7 +81,7 @@ const DashboardExpenses = class {
       this.getDataForm();
       this.toggleModal();
       this.closeToggleModal();
-      this.toggleSidebar = new Utiles();
+      this.toggleSidebar = new ServiceUtiles();
     }
   }
 };
